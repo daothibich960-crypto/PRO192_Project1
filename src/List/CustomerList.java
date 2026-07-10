@@ -130,5 +130,14 @@ public class CustomerList {
     public void clear(){
         list.clear();
     }
+    
+    public boolean updateCustomer (String name, String phone, String address){
+        if (list.isEmpty()) return false;
+        Customer c = getCustomer(phone);
+        if (c == null) return false;
+        c.setAddress(address);
+        c.setFullName(name);
+        return true;
+    }
 
 }

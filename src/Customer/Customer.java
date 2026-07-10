@@ -14,13 +14,13 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer( String fullName, String phone, String address, double point, LocalDate createDate) {
+    public Customer( String fullName, String phone, String address) {
         
         this.fullName = fullName;
         this.phone = phone;
         this.address = address;
-        this.point = point;
-        this.createDate = createDate;
+        this.point = 0;
+        this.createDate = LocalDate.now();
     }
 
     

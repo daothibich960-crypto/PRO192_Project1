@@ -3,6 +3,8 @@ package List;
 import Employee.Employee;
 import Employee.FullTimeEmployee;
 import Employee.PartTimeEmployee;
+import Emun.Gender;
+import Emun.Position;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class EmployeeList {
         if (!list.isEmpty()) {
             for (Employee e : list) {
                 if (e.getPhone().equals(employee.getPhone()) == true
-                        || e.getEmployeeID().equals(employee.getEmployeeID()) == true) {
+                        && e.getEmployeeID().equals(employee.getEmployeeID()) == true ) {
                     return ;
                 } else {
                     list.add(employee);
@@ -148,7 +150,18 @@ public class EmployeeList {
         return count;
     }
     
-    
+    public boolean updateEmployee(String employeeID, String fullName, String phone, Gender gender , Position pos
+    , boolean status ){
+        if (list.isEmpty()) return false;
+        Employee e = getEmployee(employeeID);
+        if (e == null) return false;
+        e.setFullName(fullName);
+        e.setGender(gender);
+        e.setPhone(phone);
+        e.setPosition(pos);
+        e.setStatus(status);
+        return true;
+    }
     
     
     
