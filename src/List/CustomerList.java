@@ -11,6 +11,7 @@ public class CustomerList {
 
     public CustomerList() {
         list = new ArrayList<>();
+        
     }
 
     public void addCustomer(Customer customer) {
