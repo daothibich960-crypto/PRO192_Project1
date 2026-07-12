@@ -1,6 +1,10 @@
 package Supplier;
 
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,5 +170,70 @@ public class SupplierList {
         return list;
 
     }
+    // Đọc dữ liệu từ file
+public void loadFromFile() {
+
+    list.clear();
+
+    try {
+
+        BufferedReader br = new BufferedReader(new FileReader("data/supplier.txt"));
+
+        String line;
+
+        while ((line = br.readLine()) != null) {
+
+            String[] data = line.split("\\|");
+
+            Supplier supplier = new Supplier(
+                    data[0],
+                    data[1],
+                    data[2],
+                    data[3],
+                    data[4]);
+
+            list.add(supplier);
+
+        }
+
+        br.close();
+
+        System.out.println("Load supplier successfully.");
+
+    } catch (IOException e) {
+
+        System.out.println("Cannot read supplier.txt");
+
+    }
+
+}// Lưu dữ liệu xuống file
+public void saveToFile() {
+
+    try {
+
+        PrintWriter pw = new PrintWriter(new FileWriter("data/supplier.txt"));
+
+        for (Supplier supplier : list) {
+
+            pw.println(
+                    supplier.getSupplierId() + "|"
+                    + supplier.getSupplierName() + "|"
+                    + supplier.getPhone() + "|"
+                    + supplier.getEmail() + "|"
+                    + supplier.getAddress());
+
+        }
+
+        pw.close();
+
+        System.out.println("Save supplier successfully.");
+
+    } catch (IOException e) {
+
+        System.out.println("Cannot save supplier.txt");
+
+    }
+
+}
 
 }

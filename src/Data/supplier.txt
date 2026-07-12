@@ -1,0 +1,15 @@
+S001|Công ty TNHH Trà Thái Nguyên Xanh|0203888999|contact@thainguyenxanh.vn|Thái Nguyên
+S002|Công ty CP Trà Bảo Tín|02837778888|sales@baotintea.vn|Quận 7, TP.HCM
+S003|Phúc Long Coffee & Tea Supplier|02839393939|supplier@phuclong.com.vn|Quận 1, TP.HCM
+S004|Làng Trà Mộc Châu|02123888888|info@moctra.vn|Mộc Châu, Sơn La
+S005|Công ty Trà Shan Tuyết Hà Giang|02193889999|contact@shantuyet.vn|Hà Giang
+S006|Trà Tâm Châu Bảo Lộc|02633888888|support@tamchau.vn|Bảo Lộc, Lâm Đồng
+S007|Công ty TNHH Trà Việt|02435556666|contact@traviet.vn|Hà Nội
+S008|Cửa hàng Trà Đạo Việt|0903456789|tradaoviet@gmail.com|Cầu Giấy, Hà Nội
+S009|Tea House Việt Nam|0932123456|teahouse@gmail.com|Đà Nẵng
+S010|Công ty Trà Cao Cấp An Nhiên|02583888888|annhientea@gmail.com|Nha Trang, Khánh Hòa
+S011|Đặc sản Trà Tân Cương|0911222333|tancuongtea@gmail.com|Thái Nguyên
+S012|Công ty Trà Ô Long B'Lao|02633999999|olongblao@gmail.com|Bảo Lộc, Lâm Đồng
+S013|Trà Hương Việt|0988111222|huongviet@gmail.com|Huế
+S014|Công ty Trà Bảo Ngọc|0915888999|baongoc@gmail.com|Bình Dương
+S015|Trà Việt Xanh|0909777666|travietxanh@gmail.com|Đồng Nai

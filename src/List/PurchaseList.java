@@ -1,5 +1,12 @@
 package List;
 
+import Supplier.Supplier;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import Purchase.PurchaseReceipt;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +113,73 @@ public class PurchaseList {
         return list;
 
     }
+// Đọc dữ liệu từ file
+public void loadFromFile(SupplierList supplierList) {
 
+    list.clear();
+
+    try {
+
+        BufferedReader br = new BufferedReader(new FileReader("data/purchase.txt"));
+
+        String line;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        while ((line = br.readLine()) != null) {
+
+            String[] data = line.split("\\|");
+
+            Supplier supplier = supplierList.searchSupplier(data[2]);
+
+            PurchaseReceipt receipt = new PurchaseReceipt(
+                    data[0],
+                    sdf.parse(data[1]),
+                    supplier);
+
+            list.add(receipt);
+
+        }
+
+        br.close();
+
+        System.out.println("Load purchase successfully.");
+
+    } catch (Exception e) {
+
+        System.out.println("Cannot read purchase.txt");
+
+    }
+
+}
+// Lưu dữ liệu xuống file
+public void saveToFile() {
+
+    try {
+
+        PrintWriter pw = new PrintWriter(new FileWriter("data/purchase.txt"));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (PurchaseReceipt receipt : list) {
+
+            pw.println(
+                    receipt.getReceiptId() + "|"
+                    + sdf.format(receipt.getImportDate()) + "|"
+                    + receipt.getSupplier().getSupplierId());
+
+        }
+
+        pw.close();
+
+        System.out.println("Save purchase successfully.");
+
+    } catch (Exception e) {
+
+        System.out.println("Cannot save purchase.txt");
+
+    }
+
+}
 
 }

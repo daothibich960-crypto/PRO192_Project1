@@ -5,11 +5,9 @@ import List.PurchaseList;
 import Supplier.SupplierList;
 import java.util.Scanner;
 
-
 public class PurchaseMenu {
 
     private Scanner sc;
-
     private PurchaseList purchaseList;
     private SupplierList supplierList;
     private Inventory inventory;
@@ -19,10 +17,11 @@ public class PurchaseMenu {
         sc = new Scanner(System.in);
 
         purchaseList = new PurchaseList();
-
         supplierList = new SupplierList();
-
         inventory = new Inventory();
+
+        supplierList.loadFromFile();
+        purchaseList.loadFromFile(supplierList);
 
     }
 
@@ -32,8 +31,7 @@ public class PurchaseMenu {
 
         do {
 
-            System.out.println();
-            System.out.println("========== PURCHASE MANAGEMENT ==========");
+            System.out.println("\n========== PURCHASE MANAGEMENT ==========");
             System.out.println("1. Supplier Management");
             System.out.println("2. Create Purchase Receipt");
             System.out.println("3. Display Purchase Receipt");
@@ -41,6 +39,7 @@ public class PurchaseMenu {
             System.out.println("5. Stock In");
             System.out.println("6. Stock Out");
             System.out.println("0. Exit");
+
             System.out.print("Choose: ");
 
             choice = Integer.parseInt(sc.nextLine());
@@ -49,7 +48,8 @@ public class PurchaseMenu {
 
                 case 1:
 
-                    supplierMenu();
+                    SupplierMenu supplierMenu = new SupplierMenu(supplierList);
+                    supplierMenu.menu();
 
                     break;
 
@@ -85,8 +85,6 @@ public class PurchaseMenu {
 
                 case 0:
 
-                    System.out.println("Exit...");
-
                     break;
 
                 default:
@@ -96,12 +94,6 @@ public class PurchaseMenu {
             }
 
         } while (choice != 0);
-
-    }
-
-    private void supplierMenu() {
-
-        System.out.println("Supplier Menu");
 
     }
 
@@ -122,7 +114,5 @@ public class PurchaseMenu {
         System.out.println("Stock Out");
 
     }
-
-   
 
 }
