@@ -14,15 +14,23 @@ public class CustomerList {
         
     }
 
+    public List<Customer> getList() {
+        return list;
+    }
+
+    public CustomerList(List<Customer> list) {
+        this.list = list;
+    }
+
+    
     public void addCustomer(Customer customer) {
         for (Customer c : list) {
             if (c.getPhone().equals(customer.getPhone())) {
                 System.out.println("Thêm khách hàng thất bại !!!");
                 return;
-            } else {
-                list.add(customer);
             }
         }
+        list.add(customer);
     }
 
     public void removeCustomer(String phone) {
@@ -129,6 +137,15 @@ public class CustomerList {
     }
     public void clear(){
         list.clear();
+    }
+    
+    public boolean updateCustomer (String name, String phone, String address){
+        if (list.isEmpty()) return false;
+        Customer c = getCustomer(phone);
+        if (c == null) return false;
+        c.setAddress(address);
+        c.setFullName(name);
+        return true;
     }
 
 }

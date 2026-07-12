@@ -1,7 +1,8 @@
 package Employee;
 
-import Emun.Gender;
-import Emun.Position;
+import Enum.Gender;
+import Enum.Position;
+import Utils.Formatter;
 
 public class PartTimeEmployee extends Employee {
 
@@ -12,10 +13,9 @@ public class PartTimeEmployee extends Employee {
     public PartTimeEmployee() {
     }
 
-    public PartTimeEmployee(String employeeID, String fullName, String phone, Gender gender, Position position, boolean status, double hourWorked, double salaryPerHour) {
+    public PartTimeEmployee(String employeeID, String fullName, String phone, Gender gender, Position position, boolean status) {
         super(employeeID, fullName, phone, gender, position, status);
-        this.hourWorked = hourWorked;
-        this.salaryPerHour = salaryPerHour;
+        this.hourWorked = 0;
     }
 
     public double getHourWorked() {
@@ -36,7 +36,7 @@ public class PartTimeEmployee extends Employee {
 
     @Override
     public String toString() {
-        return super.toString() + hourWorked + ", " + salaryPerHour;
+        return super.toString() + hourWorked + ", " + Formatter.currency(salaryPerHour);
     }
 
     @Override
