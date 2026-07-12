@@ -1,5 +1,5 @@
 
-package Emun;
+package Enum;
 
 
 public enum Position {

@@ -1,8 +1,11 @@
 package Invoice;
 
-import Emun.InvoiceStatus;
-import Emun.PayMethod;
+
+import Enum.PayMethod;
+import Enum.InvoiceStatus;
 import Product.Product;
+import Utils.DateUtil;
+import Utils.Formatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -89,7 +92,7 @@ public class Invoice {
         System.out.println("Mã HĐ: " + invoiceID);
         System.out.println("Nhân viên: " + employeeID);
         System.out.println("Khách hàng: " + customerPhone);
-        System.out.println("Ngày lập: " + invoiceDate);
+        System.out.println("Ngày lập: " + DateUtil.format(invoiceDate));
         System.out.println("--------------------");
         System.out.printf("%-10s %-20s %-3s %-10s %-10s", "ProductID", "ProoductName",
                  "Quantity", "Price", "Total");
@@ -97,7 +100,7 @@ public class Invoice {
             d.display();
         }
         System.out.println("--------------------");
-        System.out.println("Tổng tiền: " + totalAmount);
+        System.out.println("Tổng tiền: " + Formatter.currency(totalAmount));
         System.out.println("Thanh toán: " + payMethod);
         System.out.println("Trạng thái: " + status);
     }
@@ -140,6 +143,11 @@ public class Invoice {
     public LocalDateTime getInvoiceDate() {
         return invoiceDate;
     }
+
+    public void setInvoiceDate(LocalDateTime invoiceDate) {
+        this.invoiceDate = invoiceDate;
+    }
+    
 
     public ArrayList<InvoiceDetail> getDetail() {
         return detail;

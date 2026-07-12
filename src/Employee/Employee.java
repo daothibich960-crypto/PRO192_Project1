@@ -1,8 +1,9 @@
 
 package Employee;
 
-import Emun.Gender;
-import Emun.Position;
+import Enum.Gender;
+import Enum.Position;
+import Utils.Formatter;
 
 
 public abstract class Employee {
@@ -75,7 +76,7 @@ public abstract class Employee {
 
     @Override
     public String toString() {
-        return employeeID + ", " + fullName + ", " + phone + ", " + gender +", " + position + ", "
+        return employeeID + ", " + fullName + ", " + Formatter.phone(phone) + ", " + gender +", " + position + ", "
                  + status;
     }
     

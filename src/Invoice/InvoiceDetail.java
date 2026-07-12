@@ -2,6 +2,7 @@
 package Invoice;
 
 import Product.Product;
+import Utils.Formatter;
 
 public class InvoiceDetail {
     private String productID;
@@ -17,7 +18,7 @@ public class InvoiceDetail {
         this.productID = productID;
         this.productName = productName;
         this.quantity = quantity;
-//        this.price = product.getPrice(); // lấy giá ở sản phẩm
+        this.price = product.getSellingPrice(); // lấy giá ở sản phẩm
         this.subTotal = calculateSubTotal();
     }
 
@@ -82,7 +83,8 @@ public class InvoiceDetail {
     
     public void display(){
         System.out.printf("%-10s %-20s %-3d %-10.3f %-10.3f",
-                productID , productName ,quantity,price,subTotal);
+                productID , productName ,quantity,Formatter.currency(price),
+                Formatter.currency(subTotal));
     }
     
         

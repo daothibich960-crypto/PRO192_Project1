@@ -1,10 +1,14 @@
 
 package Customer;
 
+import Utils.DateUtil;
+import Utils.Formatter;
+import Utils.IDGenerator;
 import java.time.LocalDate;
 
 
 public class Customer {
+    private String customerID;
     private String fullName;
     private String phone;
     private String address;
@@ -15,14 +19,21 @@ public class Customer {
     }
 
     public Customer( String fullName, String phone, String address) {
-        
+        this.customerID = IDGenerator.generateCustomerID();
         this.fullName = fullName;
         this.phone = phone;
-        this.address = address;
+        this.address = null;
         this.point = 0;
         this.createDate = LocalDate.now();
     }
 
+    public Customer( String customerID,String fullName, String phone, String address) {
+        this.fullName = fullName;
+        this.phone = phone;
+        this.address = null;
+        this.point = 0;
+        this.createDate = LocalDate.now();
+    }
     
 
     public String getFullName() {
@@ -67,8 +78,8 @@ public class Customer {
 
     @Override
     public String toString() {
-        return  fullName + ", " + phone + ", " + address 
-                + ", " + point + ", " + createDate;
+        return  fullName + ", " + Formatter.phone(phone) + ", " + address 
+                + ", " + point + ", " + DateUtil.format(createDate);
     }
     
     

@@ -13,6 +13,11 @@ public class InvoiceList {
         list = new ArrayList<>();
     }
 
+    public List<Invoice> getList() {
+        return list;
+    }
+
+    
     public void addInvoice(Invoice invoice) {
         Invoice exis = findInvoice(invoice.getInvoiceID());
         if (exis == null){
@@ -22,6 +27,7 @@ public class InvoiceList {
         }
 
     }
+    
     public void removeInvoice(String invoiceID){
         Invoice exis = findInvoice(invoiceID);
         if (exis != null){

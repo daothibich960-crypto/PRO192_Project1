@@ -3,8 +3,8 @@ package List;
 import Employee.Employee;
 import Employee.FullTimeEmployee;
 import Employee.PartTimeEmployee;
-import Emun.Gender;
-import Emun.Position;
+import Enum.Gender;
+import Enum.Position;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +16,11 @@ public class EmployeeList {
         list = new ArrayList<>();
     }
 
+    public List<Employee> getList() {
+        return list;
+    }
+
+    
     public void addEmployee(Employee employee) {
         if (!list.isEmpty()) {
             for (Employee e : list) {
