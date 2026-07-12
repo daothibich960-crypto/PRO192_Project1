@@ -1,10 +1,11 @@
 package Service;
 
 import Enum.InvoiceStatus;
+import Inventory.Inventory;
 import Invoice.Invoice;
 import Invoice.InvoiceDetail;
 import List.CustomerList;
-import List.Inventory;
+
 import List.InvoiceList;
 import Utils.IDGenerator;
 
