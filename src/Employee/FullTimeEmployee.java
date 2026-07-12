@@ -1,8 +1,9 @@
 
 package Employee;
 
-import Emun.Gender;
-import Emun.Position;
+import Enum.Gender;
+import Enum.Position;
+import Utils.Formatter;
 
 public class FullTimeEmployee extends Employee {
     private double baseSalary;
@@ -12,12 +13,9 @@ public class FullTimeEmployee extends Employee {
     public FullTimeEmployee() {
     }
 
-    public FullTimeEmployee(String employeeID, String fullName, String phone, Gender gender, Position position, boolean status,
-            double baseSalary, double allowance, double bonus) {
+    public FullTimeEmployee(String employeeID, String fullName, String phone, Gender gender, Position position, boolean status
+           ) {
         super(employeeID, fullName, phone, gender, position, status);
-        this.baseSalary = baseSalary;
-        this.allowance = allowance;
-        this.bonus = bonus;
     }
 
     public double getBaseSalary() {
@@ -48,6 +46,12 @@ public class FullTimeEmployee extends Employee {
     @Override
     public double calculateSalary() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +", " +  Formatter.currency(baseSalary) + 
+                ", " + Formatter.currency(allowance) + ", " + Formatter.currency(bonus);
     }
     
     
