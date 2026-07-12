@@ -2,11 +2,11 @@ package Service;
 
 import Customer.Customer;
 import Employee.Employee;
+import Inventory.Inventory;
 import Invoice.Invoice;
 import Invoice.InvoiceDetail;
 import List.CustomerList;
 import List.EmployeeList;
-import List.Inventory;
 import List.InvoiceList;
 import Product.Product;
 import java.time.LocalDate;

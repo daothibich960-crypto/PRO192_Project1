@@ -1,9 +1,9 @@
 
 package Menu;
 
+import Inventory.Inventory;
 import List.CustomerList;
 import List.EmployeeList;
-import List.Inventory;
 import List.InvoiceList;
 import Service.MemberShipService;
 import Service.SaleService;
