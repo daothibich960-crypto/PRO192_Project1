@@ -21,7 +21,7 @@ public class InvoiceList {
     public void addInvoice(Invoice invoice) {
         Invoice exis = findInvoice(invoice.getInvoiceID());
         if (exis == null){
-            list.add(exis);
+            list.add(invoice);
         }else{
             System.out.println("Hóa đơn đã tồn tại.");
         }

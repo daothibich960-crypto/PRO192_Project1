@@ -9,6 +9,9 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import Purchase.PurchaseReceipt;
 import Supplier.SupplierList;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +117,7 @@ public class PurchaseList {
         return list;
 
     }
+ 
 // Đọc dữ liệu từ file
 public void loadFromFile(SupplierList supplierList) {
 
@@ -121,7 +125,7 @@ public void loadFromFile(SupplierList supplierList) {
 
     try {
 
-        BufferedReader br = new BufferedReader(new FileReader("data/purchase.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("Data/purchase.txt"));
 
         String line;
 
@@ -158,7 +162,7 @@ public void saveToFile() {
 
     try {
 
-        PrintWriter pw = new PrintWriter(new FileWriter("data/purchase.txt"));
+        PrintWriter pw = new PrintWriter(new FileWriter("Data/purchase.txt"));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 

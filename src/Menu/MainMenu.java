@@ -8,6 +8,7 @@ import List.InvoiceList;
 import Service.MemberShipService;
 import Service.SaleService;
 import Service.StatisticService;
+import Supplier.SupplierList;
 import Utils.Input;
 import java.util.Scanner;
 
@@ -19,7 +20,8 @@ public class MainMenu {
     private MemberShipService memberShipService;
     private SaleService saleService;
     private StatisticService statisticService;
-    private Scanner sc;
+    private SupplierList supplierList;
+    private Scanner sc = new Scanner(System.in);
 
     public MainMenu() {
         // Khởi tạo toàn bộ dữ liệu + service 1 lần duy nhất khi chương trình chạy
@@ -49,11 +51,11 @@ public class MainMenu {
         boolean running = true;
         while (running) {
             printMenu();
-            int choice = Input.readIntInRange("Chọn: ", 0, 5);
+            int choice = Input.readIntInRange("Chọn: ", 0, 7);
 
             switch (choice) {
                 case 1:
-//                    new ProductMenu(inventory,sc).show();
+                    new ProductMenu(inventory,sc).show();
                     break;
                 case 2:
                     new CustomerMenu(customerList,sc).show();
@@ -67,6 +69,11 @@ public class MainMenu {
                 case 5:
                     new StatisticMenu(statisticService,sc).show();
                     break;
+                case 6:
+                    new SupplierMenu(supplierList,sc).show();
+                    break;
+                case 7:
+                    new PurchaseMenu(inventory,supplierList,sc).show();
                 case 0:
                     running = false;
                     System.out.println("Cảm ơn đã sử dụng chương trình. Hẹn gặp lại!");
@@ -75,18 +82,20 @@ public class MainMenu {
         }
     }
 
-    private void printMenu() {
-        System.out.println("\n╔══════════════════════════════════════╗");
-        System.out.println("║      QUẢN LÝ QUÁN TRÀ                 ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("║ 1. Quản lý sản phẩm                   ║");
-        System.out.println("║ 2. Quản lý khách hàng                 ║");
-        System.out.println("║ 3. Quản lý nhân viên                  ║");
-        System.out.println("║ 4. Bán hàng                           ║");
-        System.out.println("║ 5. Thống kê / Báo cáo                 ║");
-        System.out.println("║ 0. Thoát                              ║");
-        System.out.println("╚══════════════════════════════════════╝");
-    }
+   private void printMenu() {
+    System.out.println("\n╔══════════════════════════════════════════════════════════╗");
+    System.out.println("║                QUẢN LÝ QUÁN TRÀ                          ║");
+    System.out.println("╠══════════════════════════════════════════════════════════╣");
+    System.out.println("║ 1. Quản lý sản phẩm                                      ║");
+    System.out.println("║ 2. Quản lý khách hàng                                    ║");
+    System.out.println("║ 3. Quản lý nhân viên                                     ║");
+    System.out.println("║ 4. Bán hàng                                              ║");
+    System.out.println("║ 5. Thống kê / Báo cáo                                    ║");
+    System.out.println("║ 6. Quản lý nhà cung cấp                                  ║"); // Thêm dòng này
+    System.out.println("║ 7. Quản lý mua hàng (Purchase)                           ║"); // Thêm dòng này
+    System.out.println("║ 0. Thoát                                                 ║");
+    System.out.println("╚══════════════════════════════════════════════════════════╝");
+}
 
     public static void main(String[] args) {
         new MainMenu().run();

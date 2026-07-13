@@ -7,6 +7,7 @@ import Invoice.InvoiceDetail;
 import List.CustomerList;
 
 import List.InvoiceList;
+import Product.Product;
 import Utils.IDGenerator;
 
 public class SaleService {
@@ -40,16 +41,16 @@ public class SaleService {
             return false;
         }
         double total = invoice.calculateTotal();
-        if (invoice.getCustomerPhone() != null &&! invoice.getCustomerPhone().isEmpty() ){
+        if (invoice.getCustomerPhone() != null && !invoice.getCustomerPhone().isEmpty() ){
             member.earnPoint(invoice.getCustomerPhone(), total);
         }
-        // update hàng hóa ở trong kho hàng
-        updateInventory(invoice);
+        
         // update trạng thái của hóa đơn
         invoice.setStatus(InvoiceStatus.COMPLETE);
         // lưu hóa đơn vào danh sách hóa đơn
         saveInvoice(invoice);
         // giảm tồn kho của sản phẩm ở trong danh sách
+        // update hàng hóa ở trong kho hàng
         updateInventory(invoice);
         return true;
     }
@@ -57,7 +58,7 @@ public class SaleService {
     public void cancelInvoice(Invoice invoice) {
         if (invoice.getStatus() == InvoiceStatus.COMPLETE){
             for (InvoiceDetail i: invoice.getDetail()){
-                // code
+                inventory.stockIn(i.getProductID(), i.getQuantity());
             }
             invoiceList.removeInvoice(invoice.getInvoiceID());
         }
@@ -77,4 +78,33 @@ public class SaleService {
         System.out.println("Đã lưu hóa dơn: " + invoice.getInvoiceID());
 
     }
+    public void addProduct(Invoice invoice, String productID, int quantity) {
+    Product product = inventory.searchProduct(productID);
+    if (product == null) {
+        System.out.println("Sản phẩm không tồn tại trong kho!");
+        return;
+    }
+    if (inventory.getCurrentQuantity(productID) < quantity) {
+            System.out.println("Không đủ hàng trong kho!");
+            return;
+        }
+    invoice.addProduct(productID, quantity, product);
+}
+
+public void removeProduct(Invoice invoice, String productID) {
+    invoice.removePrroduct(productID);
+}
+
+public void updateQuantity(Invoice invoice, String productID, int quantity) {
+    Product product = inventory.searchProduct(productID);
+    if (product == null) {
+        System.out.println("Sản phẩm không tồn tại trong kho!");
+        return;
+    }
+    if (quantity >= 0) {
+        invoice.updateAddQuantity(productID, quantity);
+    } else {
+        invoice.updateDesceaseQuantity(productID, Math.abs(quantity));
+    }
+}
 }

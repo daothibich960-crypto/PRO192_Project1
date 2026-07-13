@@ -58,22 +58,19 @@ public class ProductMenu {
     //========================================
     // CONSTRUCTOR
     //========================================
-    public ProductMenu() {
+    public ProductMenu(Inventory inventory, Scanner sc) {
+        this.inventory = inventory;
+        this.scanner = sc;
 
-        inventory = new Inventory();
-
-        supplierList = new SupplierList();
-
+        this.supplierList = new SupplierList();
+//        this.supplierList.loadFromFile(); // Cần load dữ liệu nhà cung cấp từ file!
         productService = new ProductService(inventory);
-
-        scanner = new Scanner(System.in);
-
     }
 
     //========================================
     // MAIN MENU
     //========================================
-    public void menu() {
+    public void show() {
 
         int choice;
 
@@ -82,7 +79,7 @@ public class ProductMenu {
             clearScreen();
 
             printProductMenu();
-
+// inputChoice()
             choice = inputChoice();
 
             switch (choice) {
@@ -143,17 +140,16 @@ public class ProductMenu {
     //========================================
     private void printProductMenu() {
 
-        printHeader("PRODUCT MANAGEMENT");
+        printHeader("\n===== QUẢN LÝ SẢN PHẨM =====");
+        System.out.println("1. Xem tất cả sản phẩm");
+        System.out.println("2. Thêm sản phẩm");
+        System.out.println("3. Cập nhật sản phẩm");
+        System.out.println("4. Xóa sản phẩm");
+        System.out.println("5. Tìm kiếm sản phẩm");
+        System.out.println("6. Quản lý nhà cung cấp");
+        System.out.println("0. Quay lại");
 
-        System.out.println("1. View All Products");
-        System.out.println("2. Add Product");
-        System.out.println("3. Update Product");
-        System.out.println("4. Delete Product");
-        System.out.println("5. Search Product");
-        System.out.println("6. Supplier Management");
-        System.out.println("0. Back");
-
-        System.out.println("----------------------------------------");
+        System.out.println("-------------------------------------");
 
     }
 
@@ -166,13 +162,13 @@ public class ProductMenu {
 
             try {
 
-                System.out.print("Choose: ");
+                System.out.print("Chọn: ");
 
                 return Integer.parseInt(scanner.nextLine());
 
             } catch (NumberFormatException e) {
 
-                System.out.println("Please enter a valid number!");
+                System.out.println("Vui lòng nhập số hợp lệ.");
 
             }
 
@@ -312,7 +308,7 @@ public class ProductMenu {
 
         while (true) {
 
-            printHeader("CHOOSE UNIT");
+            printHeader("CHỌN ĐƠN VỊ ");
 
             System.out.println("1. Gram");
             System.out.println("2. Kilogram");
@@ -362,11 +358,11 @@ public class ProductMenu {
 
         while (true) {
 
-            printHeader("CHOOSE PRODUCT STATUS");
+            printHeader("CHỌN TRẠNG THÁI SẢN PHẨM");
 
-            System.out.println("1. Available");
-            System.out.println("2. Out Of Stock");
-            System.out.println("3. Discontinued");
+            System.out.println("1. Còn hàng");
+            System.out.println("2. Hết hàng");
+            System.out.println("3. Ngừng kinh doanh");
 
             int choice = inputChoice();
 
@@ -413,8 +409,26 @@ public class ProductMenu {
             System.out.println("Supplier does not exist!");
             pause();
 
+            addSupplier();
+
         }
 
+    }
+
+    private void addSupplier() {
+        System.out.println("Thêm nhà cung cấp");
+        System.out.print("Nhập mã nhà cung cấp: ");
+        String id = scanner.nextLine();
+        System.out.print("Nhập tên nhà cung cấp: ");
+        String name = scanner.nextLine();
+        System.out.print("Nhập số điện thoại nhà cung cấp: ");
+        String phone = scanner.nextLine();
+        System.out.print("Nhập email nhà cung cấp: ");
+        String mail = scanner.nextLine();
+        System.out.print("Nhập địa chỉ  nhà cung cấp: ");
+        String address = scanner.nextLine();
+        Supplier sup = new Supplier(id, name, phone, mail, address);
+        supplierList.addSupplier(sup);
     }
 //========================================
 // INPUT PRODUCT INFORMATION
@@ -841,13 +855,13 @@ public class ProductMenu {
 
             clearScreen();
 
-            printHeader("ADD PRODUCT");
+            printHeader("THÊM SẢN PHẨM");
 
-            System.out.println("1. Tea");
-            System.out.println("2. Tea Pot");
-            System.out.println("3. Tea Cup");
-            System.out.println("4. Accessory");
-            System.out.println("0. Back");
+            System.out.println("1. Trà");
+            System.out.println("2. Ấm trà");
+            System.out.println("3. Tách trà");
+            System.out.println("4. Phụ kiện");
+            System.out.println("0. Quay lại");
 
             choice = inputChoice();
 

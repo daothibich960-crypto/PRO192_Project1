@@ -1,4 +1,3 @@
-
 package Customer;
 
 import Utils.DateUtil;
@@ -6,8 +5,8 @@ import Utils.Formatter;
 import Utils.IDGenerator;
 import java.time.LocalDate;
 
-
 public class Customer {
+
     private String customerID;
     private String fullName;
     private String phone;
@@ -18,23 +17,28 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer( String fullName, String phone, String address) {
+    public Customer(String fullName, String phone, String address) {
         this.customerID = IDGenerator.generateCustomerID();
         this.fullName = fullName;
         this.phone = phone;
-        this.address = null;
+        this.address = address;
         this.point = 0;
         this.createDate = LocalDate.now();
     }
 
-    public Customer( String customerID,String fullName, String phone, String address) {
+    
+    public Customer(String customerID, String fullName, String phone, String address) {
+        this.customerID = customerID;
         this.fullName = fullName;
         this.phone = phone;
-        this.address = null;
+        this.address = address;
         this.point = 0;
         this.createDate = LocalDate.now();
     }
-    
+
+    public String getCustomerID() {
+        return customerID;
+    }
 
     public String getFullName() {
         return fullName;
@@ -64,7 +68,7 @@ public class Customer {
         return point;
     }
 
-    public void setPoint(double totalInvoice) {
+    public void setPoint(double point) {
         this.point = point;
     }
 
@@ -78,12 +82,8 @@ public class Customer {
 
     @Override
     public String toString() {
-        return  fullName + ", " + Formatter.phone(phone) + ", " + address 
+        return fullName + ", " + Formatter.phone(phone) + ", " + address
                 + ", " + point + ", " + DateUtil.format(createDate);
     }
-    
-    
-    
-    
-    
+
 }

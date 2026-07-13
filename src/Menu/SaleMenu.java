@@ -22,8 +22,8 @@ public class SaleMenu {
     }
 
     public void show() {
-        System.out.print("Nhập mã nhân viên bán hàng: ");
-        String employeeID = scanner.nextLine();
+        String employeeID = Input.readNonEmptyString("Nhập mã nhân viên bán hàng: ");
+
 
         Invoice invoice = saleService.createInvoice(employeeID);
         System.out.println("Đã tạo hóa đơn: " + invoice.getInvoiceID());
@@ -38,9 +38,9 @@ public class SaleMenu {
             System.out.println("5. Thanh toán");
             System.out.println("6. Hủy hóa đơn");
             System.out.println("0. Quay lại menu chính (hủy bỏ nếu chưa thanh toán)");
-            
 
-            int choice = Input.readIntInRange("Chọn: ",0,6);
+            int choice = Input.readIntInRange("Chọn: ", 0, 6);
+            scanner.nextLine();
             switch (choice) {
                 case 1:
                     System.out.print("Nhập Product ID của sản phẩm: ");
@@ -49,33 +49,20 @@ public class SaleMenu {
                     String name = scanner.nextLine();
                     System.out.print("Nhập số lượng sản phẩm: ");
                     int quantity = scanner.nextInt();
-                    Product product = null;
-                    if (productID.substring(0, 3).equalsIgnoreCase("TEA")) {
-                        product = new Tea(productID, name);
 
-                    } else if (productID.substring(0, 3).equalsIgnoreCase("CUP")) {
-                        product = new TeaCup(productID, name);
-                    } else if (productID.substring(0, 3).equalsIgnoreCase("POT")) {
-                        product = new TeaPot(productID, name);
-                    } else if (productID.substring(0, 3).equalsIgnoreCase("ACC")) {
-                        product = new Accessory(productID, name);
-                    }
-                    invoice.addProduct(productID, quantity, product);
+                    saleService.addProduct(invoice, productID, quantity);
+                    break;
                 case 2:
                     System.out.print("Nhập Product ID của sản phẩm: ");
                     String productID1 = scanner.nextLine();
-                    invoice.removePrroduct(productID1);
+                    saleService.removeProduct(invoice, productID1);
                     break;
                 case 3:
                     System.out.print("Nhập Product ID của sản phẩm: ");
                     String productID2 = scanner.nextLine();
                     System.out.print("Nhập số lượng sản phẩm (thêm >= 0 || xóa < 0 ): ");
                     int quantity2 = scanner.nextInt();
-                    if (quantity2 >= 0) {
-                        invoice.updateAddQuantity(productID2, quantity2);
-                    }else{
-                        invoice.updateDesceaseQuantity(productID2, quantity2);
-                    }
+                    saleService.updateQuantity(invoice, productID2, quantity2);
                     break;
                 case 4:
                     invoice.displayInvoice();
@@ -102,8 +89,6 @@ public class SaleMenu {
         }
     }
 
-    
-
     private boolean checkout(Invoice invoice) {
         System.out.print("Số điện thoại khách hàng (Enter nếu khách lẻ): ");
         String phone = scanner.nextLine();
@@ -114,8 +99,8 @@ public class SaleMenu {
         System.out.println("Hình thức thanh toán: 1. Tiền mặt  2. Chuyển khoản  3. Thẻ 4.Other");
         System.out.print("Chọn: ");
         int payChoice = Integer.parseInt(scanner.nextLine());
-        PayMethod  pay = null;
-        switch(payChoice){
+        PayMethod pay = null;
+        switch (payChoice) {
             case 1:
                 pay = PayMethod.CASH;
                 break;
@@ -132,17 +117,16 @@ public class SaleMenu {
                 pay = PayMethod.CASH;
                 break;
         }
-        
+
         invoice.setPayMethod(pay);
-        System.out.println("Tình trạng thanh toán:\n1.Thành công(>0)\n2.Thất bại(<0)");
-        int status = scanner.nextInt();
-        
-        boolean success = saleService.checkout(invoice,status);
+        boolean confirmed = Input.readYesNo("Xác nhận thanh toán thành công");
+
+        boolean success = saleService.checkout(invoice, confirmed ? 1 : -1);
         if (success) {
             System.out.println("Thanh toán thành công!");
             invoice.displayInvoice();
         } else {
-            System.out.println("Thanh toán thất bại (hóa đơn trống hoặc lỗi khác).");
+            System.out.println("Thanh toán thất bại (hóa đơn trống hoặc bị hủy).");
         }
         return success;
     }

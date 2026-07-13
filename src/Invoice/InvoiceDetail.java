@@ -15,8 +15,8 @@ public class InvoiceDetail {
     }
 
     public InvoiceDetail( Product product,int quantity) {
-        this.productID = productID;
-        this.productName = productName;
+        this.productID = product.getProductId();
+        this.productName = product.getProductName();
         this.quantity = quantity;
         this.price = product.getSellingPrice(); // lấy giá ở sản phẩm
         this.subTotal = calculateSubTotal();
@@ -64,12 +64,13 @@ public class InvoiceDetail {
     
     public double calculateSubTotal(){
         double total = price * quantity;
-        return total;
+        return this.subTotal = total;
+        
     }
     public void increaseQuantity( int quantity){
         int q = this.quantity + quantity ;
         setQuantity(q);
-        calculateSubTotal();// cập nhật lại subTotal sau khi đổi số lượng
+        calculateSubTotal();
     }
     public void descreaseQuantity(int quantity ){
         if (this.quantity < quantity) {
@@ -82,7 +83,7 @@ public class InvoiceDetail {
     }
     
     public void display(){
-        System.out.printf("%-10s %-20s %-3d %-10.3f %-10.3f",
+        System.out.printf("%-10s %-20s %-3d %-10s %-10s%n",
                 productID , productName ,quantity,Formatter.currency(price),
                 Formatter.currency(subTotal));
     }

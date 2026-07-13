@@ -16,6 +16,7 @@ public class FullTimeEmployee extends Employee {
     public FullTimeEmployee(String employeeID, String fullName, String phone, Gender gender, Position position, boolean status
            ) {
         super(employeeID, fullName, phone, gender, position, status);
+        
     }
 
     public double getBaseSalary() {

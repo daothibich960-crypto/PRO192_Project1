@@ -12,20 +12,17 @@ public class PurchaseMenu {
     private SupplierList supplierList;
     private Inventory inventory;
 
-    public PurchaseMenu() {
-
-        sc = new Scanner(System.in);
-
-        purchaseList = new PurchaseList();
-        supplierList = new SupplierList();
-        inventory = new Inventory();
-
-        supplierList.loadFromFile();
-        purchaseList.loadFromFile(supplierList);
+    public PurchaseMenu(Inventory inventory, SupplierList supplierList,
+            Scanner sc) {
+        this.sc = sc;
+        this.inventory = inventory;
+        this.supplierList = supplierList;
+        this.purchaseList = new PurchaseList();
+        this.purchaseList.loadFromFile(supplierList);
 
     }
 
-    public void menu() {
+    public void show() {
 
         int choice;
 
@@ -48,8 +45,8 @@ public class PurchaseMenu {
 
                 case 1:
 
-                    SupplierMenu supplierMenu = new SupplierMenu(supplierList);
-                    supplierMenu.menu();
+                    SupplierMenu supplierMenu = new SupplierMenu(supplierList,sc);
+                    supplierMenu.show();
 
                     break;
 
