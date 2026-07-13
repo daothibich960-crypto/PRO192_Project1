@@ -41,7 +41,7 @@ public class PartTimeEmployee extends Employee {
 
     @Override
     public double calculateSalary() {
-        double salary = hourWorked*salaryPerHour;
+        double salary = hourWorked*salaryPerHour* getPosition().getHeSoLuong();
         return salary;
 
     }

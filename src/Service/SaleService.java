@@ -44,7 +44,7 @@ public class SaleService {
             member.earnPoint(invoice.getCustomerPhone(), total);
         }
         // update hàng hóa ở trong kho hàng
-        
+        updateInventory(invoice);
         // update trạng thái của hóa đơn
         invoice.setStatus(InvoiceStatus.COMPLETE);
         // lưu hóa đơn vào danh sách hóa đơn
@@ -67,7 +67,7 @@ public class SaleService {
 // trừ kho 
     private void updateInventory(Invoice invoice) {
         for (InvoiceDetail i: invoice.getDetail()){
-            // code
+            inventory.stockOut(i.getProductID(), i.getQuantity());
         }
 
     }

@@ -63,8 +63,9 @@ public class CustomerMenu {
     }
 
     private void addCustomer() {
-        String phone ="";
-        checkPhone(phone);
+        String phone =null;
+        phone = checkPhone(phone);
+        
 
         if (customerList.containsCustomer(phone)) {
             System.out.println("Số điện thoại này đã là thành viên!");
@@ -82,13 +83,14 @@ public class CustomerMenu {
         System.out.println("Thêm khách hàng thành công!");
     }
 
-    private void checkPhone(String phone) {
+    private String checkPhone(String phone) {
         do {
             phone = Input.readString("Số điện thoại: ");
             if (!Validation.isValidPhone(phone)) {
                 System.out.println("Số điện thoại không hợp lệ (phải có 10 số, bắt đầu bằng 0)!");
             }
         } while (!Validation.isValidPhone(phone));
+        return phone;
     }
 
     private void removeCustomer() {
