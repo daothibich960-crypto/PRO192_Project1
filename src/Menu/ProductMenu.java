@@ -1,27 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Menu;
 
 import java.util.Scanner;
-import Service.ProductService;
-import Service.SupplierService;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-import Product.Tea;
-import Product.Supplier;
+import Service.ProductService;
+
+import Inventory.Inventory;
+
+import Supplier.Supplier;
+import Supplier.SupplierList;
+
 import Product.Product;
+import Product.Tea;
 import Product.TeaCup;
 import Product.TeaPot;
 import Product.Accessory;
 
 import Enum.Unit;
 import Enum.ProductStatus;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Product Management Menu
@@ -36,7 +34,10 @@ public class ProductMenu {
     // SERVICES
     //========================================
     private ProductService productService;
-    private SupplierService supplierService;
+
+    private SupplierList supplierList;
+
+    private Inventory inventory;
 
     //========================================
     // SCANNER
@@ -59,8 +60,11 @@ public class ProductMenu {
     //========================================
     public ProductMenu() {
 
-        productService = new ProductService();
-        supplierService = new SupplierService();
+        inventory = new Inventory();
+
+        supplierList = new SupplierList();
+
+        productService = new ProductService(inventory);
 
         scanner = new Scanner(System.in);
 
@@ -394,11 +398,11 @@ public class ProductMenu {
 
             printHeader("SUPPLIER LIST");
 
-            supplierService.displayAllSuppliers();
+            supplierList.displayAllSupplier();
 
             String supplierId = inputString("Enter Supplier ID: ");
 
-            Supplier supplier = supplierService.findSupplierById(supplierId);
+            Supplier supplier = supplierList.searchSupplier(supplierId);
 
             if (supplier != null) {
 
@@ -412,10 +416,10 @@ public class ProductMenu {
         }
 
     }
-
 //========================================
 // INPUT PRODUCT INFORMATION
 //========================================
+
     /**
      * Nhập các thông tin chung của một sản phẩm.
      *
@@ -458,39 +462,38 @@ public class ProductMenu {
                 chooseSupplier());
 
     }
-    
+
     //========================================
 // UPDATE COMMON PRODUCT INFO
 //========================================
-private void updateProductInfo(Product product) {
+    private void updateProductInfo(Product product) {
 
-    System.out.println("\n===== UPDATE PRODUCT =====");
+        System.out.println("\n===== UPDATE PRODUCT =====");
 
-    product.setProductName(
-            inputString("Product Name: "));
+        product.setProductName(
+                inputString("Product Name: "));
 
-    product.setImportPrice(
-            inputPositiveDouble("Import Price: "));
+        product.setImportPrice(
+                inputPositiveDouble("Import Price: "));
 
-    product.setSellingPrice(
-            inputPositiveDouble("Selling Price: "));
+        product.setSellingPrice(
+                inputPositiveDouble("Selling Price: "));
 
-    // Không cập nhật Stock Quantity
-    // Kho sẽ quản lý số lượng
+        // Không cập nhật Stock Quantity
+        // Kho sẽ quản lý số lượng
+        product.setUnit(
+                chooseUnit());
 
-    product.setUnit(
-            chooseUnit());
+        product.setStatus(
+                chooseStatus());
 
-    product.setStatus(
-            chooseStatus());
+        product.setDescription(
+                inputString("Description: "));
 
-    product.setDescription(
-            inputString("Description: "));
+        product.setSupplier(
+                chooseSupplier());
 
-    product.setSupplier(
-            chooseSupplier());
-
-}
+    }
 
 //========================================
 // ADD TEA
@@ -935,8 +938,6 @@ private void updateProductInfo(Product product) {
         tea.setExpiryDate(
                 inputDate("Expiry Date (yyyy-MM-dd): "));
 
-        
-
         //========================================
         // Lưu thay đổi
         //========================================
@@ -1181,5 +1182,4 @@ private void updateProductInfo(Product product) {
 
         // TODO
     }
-
 }
