@@ -26,9 +26,8 @@ public class EmployeeList {
             for (Employee e : list) {
                 if (e.getPhone().equals(employee.getPhone()) == true
                         && e.getEmployeeID().equals(employee.getEmployeeID()) == true ) {
+                    System.out.println("Thêm nhân viên thất bại! Trùng ID hoặc Số điện thoại.");
                     return ;
-                } else {
-                    list.add(employee);
                 }
             }
         }
@@ -42,6 +41,7 @@ public class EmployeeList {
         for (Employee e : list) {
             if (e.getEmployeeID().equals(employeeID)) {
                 list.remove(e);
+                break;
             }
         }
     }
@@ -53,6 +53,7 @@ public class EmployeeList {
         for (Employee e : list) {
             if (e.getPhone().equals(phone)) {
                 list.remove(e);
+                break;
             }
         }
     }

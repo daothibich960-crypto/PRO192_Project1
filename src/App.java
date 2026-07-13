@@ -1,45 +1,36 @@
-
-import Customer.Customer;
-import Employee.FullTimeEmployee;
-import Employee.PartTimeEmployee;
-import Enum.Gender;
-import Enum.Position;
-import Invoice.Invoice;
-import List.CustomerList;
-import List.EmployeeList;
-
-import List.InvoiceList;
-import Menu.CustomerMenu;
-import Menu.MainMenu;
-import Menu.ProductMenu;
-import Product.Product;
-
-import Product.Tea;
 import java.util.Scanner;
 
+import Inventory.Inventory;
+import List.CustomerList;
+import List.EmployeeList;
+import List.InvoiceList;
+import Supplier.SupplierList;
+import Menu.CustomerMenu;
+import Menu.EmployeeMenu;
+import Menu.MainMenu;
+import Menu.ProductMenu;
+import Menu.PurchaseMenu;
+import Menu.SaleMenu;
+import Menu.StatisticMenu;
+import Service.MemberShipService;
+import Service.SaleService;
+import Service.StatisticService;
 
 public class App {
-     public static void main(String[] args) {
-         Scanner sc = new Scanner(System.in);
-        System.out.println("=== TEST CUSTOMER MENU ===");
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in); // Scanner DUY NHẤT cho toàn bộ chương trình
 
-        CustomerList custormerList = new CustomerList();
+        Inventory inventory = new Inventory();
+        SupplierList supplierList = new SupplierList();
+        CustomerList customerList = new CustomerList();
+        EmployeeList employeeList = new EmployeeList();
+        InvoiceList invoiceList = new InvoiceList();
 
-        // Thêm sẵn vài khách hàng mẫu để test tìm kiếm/cập nhật/xóa
-        custormerList.addCustomer(new Customer("KH001", "Nguyễn Văn An", "0912345678",
-                "123 Lê Lợi, Q1"));
-        custormerList.addCustomer(new Customer("KH002", "Trần Thị Bình", "0923456789",
-                "45 Nguyễn Huệ, Q1"));
+        MemberShipService memberShipService = new MemberShipService(customerList);
+        SaleService saleService = new SaleService(invoiceList, customerList, inventory, memberShipService);
+        StatisticService statisticService = new StatisticService(invoiceList, employeeList, customerList, inventory);
 
-        System.out.println("Đã nạp " + custormerList.getToatlCustomer() + " khách hàng mẫu.\n");
-         System.out.println("------------");
-        custormerList.displayAllCustomer();
-
-        CustomerMenu customerMenu = new CustomerMenu(custormerList,sc);
-        customerMenu.show();
-
-        System.out.println("Kết thúc test.");
-        
-       
+        MainMenu menu = new MainMenu(inventory,customerList,employeeList,invoiceList);
+        menu.run();
     }
 }

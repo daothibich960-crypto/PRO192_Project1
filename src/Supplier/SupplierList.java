@@ -177,7 +177,7 @@ public void loadFromFile() {
 
     try {
 
-        BufferedReader br = new BufferedReader(new FileReader("data/supplier.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("Data/supplier.txt"));
 
         String line;
 
@@ -211,7 +211,7 @@ public void saveToFile() {
 
     try {
 
-        PrintWriter pw = new PrintWriter(new FileWriter("data/supplier.txt"));
+        PrintWriter pw = new PrintWriter(new FileWriter("Data/supplier.txt"));
 
         for (Supplier supplier : list) {
 

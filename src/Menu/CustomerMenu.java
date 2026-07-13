@@ -32,6 +32,7 @@ public class CustomerMenu {
             System.out.println("6. Hiển thị tất cả khách hàng");
             System.out.println("0. Quay lại");
             System.out.print("Chọn: ");
+            
             choice = Integer.parseInt(scanner.nextLine());
 
             switch (choice) {
@@ -78,7 +79,7 @@ public class CustomerMenu {
         String address = scanner.nextLine();
 
         String custormerID = IDGenerator.generateCustomerID();
-        Customer customer = new Customer(custormerID, fullName, phone);
+        Customer customer = new Customer(custormerID,fullName, phone, address);
         customerList.addCustomer(customer);
         System.out.println("Thêm khách hàng thành công!");
     }
@@ -95,8 +96,8 @@ public class CustomerMenu {
 
     private void removeCustomer() {
         System.out.print("Nhập số điện thoại cần xóa: ");
-        String phone = "";
-        checkPhone(phone);
+        String phone = null;
+        phone =  checkPhone(phone);
 
         if (!customerList.containsCustomer(phone)) {
             System.out.println("Không tìm thấy khách hàng!");
@@ -108,8 +109,8 @@ public class CustomerMenu {
 
     private void updateCustomer() {
         System.out.print("Nhập số điện thoại cần cập nhật: ");
-        String phone = "";
-        checkPhone(phone);
+        String phone = null;
+        phone = checkPhone(phone);
 
         if (!customerList.containsCustomer(phone)) {
             System.out.println("Không tìm thấy khách hàng!");
@@ -127,8 +128,8 @@ public class CustomerMenu {
 
     private void searchByPhone() {
         System.out.print("Nhập số điện thoại: ");
-        String phone ="";
-        checkPhone(phone);
+        String phone =null;
+        phone =  checkPhone(phone);
 
         Customer c = customerList.searchByPhone(phone);
         if (c == null) {

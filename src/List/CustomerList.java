@@ -107,9 +107,8 @@ public class CustomerList {
             if (c.getPhone().equals(phone)) {
                 double point1 = c.getPoint() + point;
                 c.setPoint(point1);
-            } else {
                 return;
-            }
+            } 
         }
     }
 
@@ -126,9 +125,8 @@ public class CustomerList {
                     double point1 = c.getPoint() - point;
                     c.setPoint(point1);
                 }
-            } else {
                 return;
-            }
+            } 
         }
     }
     public long getToatlCustomer(){

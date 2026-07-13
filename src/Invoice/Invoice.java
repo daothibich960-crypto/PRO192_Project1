@@ -95,7 +95,7 @@ public class Invoice {
         System.out.println("Ngày lập: " + DateUtil.format(invoiceDate));
         System.out.println("--------------------");
         System.out.printf("%-10s %-20s %-3s %-10s %-10s", "ProductID", "ProoductName",
-                 "Quantity", "Price", "Total");
+                 "Quantity", "Price", "Total\n");
         for (InvoiceDetail d : detail) {
             d.display();
         }

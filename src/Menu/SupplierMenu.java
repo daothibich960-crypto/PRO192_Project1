@@ -9,14 +9,12 @@ public class SupplierMenu {
     private SupplierList supplierList;
     private Scanner sc;
 
-    public SupplierMenu(SupplierList supplierList) {
-
+    public SupplierMenu(SupplierList supplierList, Scanner sc) {
         this.supplierList = supplierList;
-        sc = new Scanner(System.in);
-
+        this.sc = sc;   // không tự new Scanner nữa
     }
 
-    public void menu() {
+    public void show() {
 
         int choice;
 

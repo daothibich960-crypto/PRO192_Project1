@@ -36,7 +36,7 @@ public class PartTimeEmployee extends Employee {
 
     @Override
     public String toString() {
-        return super.toString() + hourWorked + ", " + Formatter.currency(salaryPerHour);
+        return super.toString() +", " +  hourWorked + ", " + Formatter.currency(salaryPerHour);
     }
 
     @Override

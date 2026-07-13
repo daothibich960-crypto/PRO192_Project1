@@ -92,7 +92,7 @@ public class EmployeeMenu {
             System.out.println("--------Full Time----------");
             employeeList.displayFullTimeEmployee();
         } else {
-            System.out.println("--------Full Time----------");
+            System.out.println("--------Part Time----------");
             employeeList.displayPartTimeEmployee();
         }
 
@@ -101,13 +101,13 @@ public class EmployeeMenu {
     private void addEmployee() {
         System.out.println("Nhân viên mới là:\n1.Nhân viên part time\n2.Nhân viên full time");
         int choice = Input.readIntInRange("Chọn: ", 1, 2);
+        sc.nextLine();
         switch (choice) {
             case 1:
                 System.out.print("Nhập họ và tên: ");
                 String name = sc.nextLine();
-                System.out.print("Nhập số điện thoại: ");
-                String phone = "";
-                checkPhone(phone);
+                String phone = null ;
+                phone = checkPhone(phone);
                 Gender gender1 = null;
                 try {
                     System.out.print("Nhập giới tính: ");
@@ -119,12 +119,39 @@ public class EmployeeMenu {
                 Position position = null;
                 try {
                     System.out.println("Nhập ví trị làm việc: ");
-                    String pos1 = sc.nextLine().toUpperCase();
-                    position = Position.valueOf(pos1);
+                    PositionMenu();
+                    int choice1 = Input.readIntInRange("Chọn:", 1, 7);
+                    
+                    switch(choice1){
+                        case 1:
+                            position = Position.MANAGER;
+                            break;
+                        case 2:
+                            position = Position.TEA_MASTER;
+                            break;
+                        case 3:
+                            position = Position.TEA_LADY;
+                            break;
+                        case 4:
+                            position = Position.TEA_ASSISTANT;
+                            break;
+                        case 5:
+                            position = Position.SALES_STAFF;
+                            break;
+                        case 6:
+                            position = Position.CASHIER;
+                            break;
+                        case 7:
+                            position = Position.WAREHOUSE_STAFF;
+                            break;
+                        default:
+                            System.out.println("Giá trị nhập không hợp lệ.");
+                            break;
+                    }
                 } catch (Exception e) {
                     System.out.println("Nhập vị trí không hợp lệ.");
                 }
-                System.out.print("Nhập trạng thái làm việc(Onl | OFF) :");
+                System.out.print("Nhập trạng thái làm việc(Onl<true> | OFF<false>) :");
                 boolean status = sc.nextBoolean();
                 String employeeID = IDGenerator.generateEmployeeID();
                 Employee e = new PartTimeEmployee(employeeID, name, phone, gender1, position, status);
@@ -132,30 +159,56 @@ public class EmployeeMenu {
                 employeeList.addEmployee(e);
                 break;
             case 2:
+                
                 System.out.print("Nhập họ và tên: ");
                 String name2 = sc.nextLine();
-                System.out.print("Nhập số điện thoại: ");
-                String phone2 = "";
-                checkPhone(phone2);
+                String phone2 = null;
+                phone2 = checkPhone(phone2);
                 Gender gender2 = null;
                 try {
                     System.out.print("Nhập giới tính: ");
                     String gender = sc.nextLine().toUpperCase();
                     gender2 = Gender.valueOf(gender);
-                    break;
                 } catch (Exception e1) {
                     System.out.print("Giới tính nhập không hợp lệ");
                 }
                 Position position2 = null;
                 try {
                     System.out.println("Nhập ví trị làm việc: ");
-                    String pos1 = sc.nextLine().toUpperCase();
-                    position2 = Position.valueOf(pos1);
-                    break;
+                    PositionMenu();
+                    int choice1 = Input.readIntInRange("Chọn:", 1, 7);
+                    
+                    switch(choice1){
+                        case 1:
+                            position2 = Position.MANAGER;
+                            break;
+                        case 2:
+                            position2 = Position.TEA_MASTER;
+                            break;
+                        case 3:
+                            position2 = Position.TEA_LADY;
+                            break;
+                        case 4:
+                            position2 = Position.TEA_ASSISTANT;
+                            break;
+                        case 5:
+                            position2 = Position.SALES_STAFF;
+                            break;
+                        case 6:
+                            position2 = Position.CASHIER;
+                            break;
+                        case 7:
+                            position2 = Position.WAREHOUSE_STAFF;
+                            break;
+                        default:
+                            System.out.println("Giá trị nhập không hợp lệ.");
+                            break;
+                    }
+                   
                 } catch (Exception e1) {
                     System.out.println("Nhập vị trí không hợp lệ.");
                 }
-                System.out.print("Nhập trạng thái làm việc(Onl | OFF) :");
+                System.out.print("Nhập trạng thái làm việc(Onl<true> | OFF<false>) :");
                 boolean status2 = sc.nextBoolean();
                 String employeeID2 = IDGenerator.generateEmployeeID();
                 Employee e2 = new FullTimeEmployee(employeeID2, name2, phone2, gender2, position2, status2);
@@ -168,6 +221,12 @@ public class EmployeeMenu {
         }
 
     }
+    private void PositionMenu(){
+        System.out.println("====== Vị trí làm việc =========");
+        System.out.println("1.Quản lí cửa hàng\n2.Nghệ nhân pa trà(tea master)"
+                + "\n3.Trà nương\n4.Trà nô\n5.Nhân viên bán hàng\n6.Thu ngân\n7.Nhân viên kho hàng");
+            
+    }
 
     private void removeEmployee() {
         System.out.println("Nhập xóa bằng:\n1.Xóa bằng ID\n2.Xóa bằng số điện thoại");
@@ -179,8 +238,8 @@ public class EmployeeMenu {
                 employeeList.removeByID(id);
                 break;
             case 2:
-                System.out.print("Nhập số điện thoại  của nhân viên: ");
-                String phone = sc.nextLine();
+                String phone = null;
+                phone = checkPhone(phone);
                 employeeList.removeByPhone(phone);
                 break;
             default:
@@ -199,9 +258,8 @@ public class EmployeeMenu {
 
         System.out.print("Nhập họ và tên: ");
         String name = sc.nextLine();
-        System.out.print("Nhập số điện thoại: ");
-        String phone = "";
-        checkPhone(phone);
+        String phone = null;
+        phone = checkPhone(phone);
         Gender gender1 = null;
         try {
             System.out.print("Nhập giới tính: ");
@@ -213,12 +271,39 @@ public class EmployeeMenu {
         Position position = null;
         try {
             System.out.println("Nhập ví trị làm việc: ");
-            String pos1 = sc.nextLine().toUpperCase();
-            position = Position.valueOf(pos1);
+            PositionMenu();
+                    int choice1 = Input.readIntInRange("Chọn:", 1, 7);
+                    
+                    switch(choice1){
+                        case 1:
+                            position = Position.MANAGER;
+                            break;
+                        case 2:
+                            position = Position.TEA_MASTER;
+                            break;
+                        case 3:
+                            position = Position.TEA_LADY;
+                            break;
+                        case 4:
+                            position = Position.TEA_ASSISTANT;
+                            break;
+                        case 5:
+                            position = Position.SALES_STAFF;
+                            break;
+                        case 6:
+                            position = Position.CASHIER;
+                            break;
+                        case 7:
+                            position = Position.WAREHOUSE_STAFF;
+                            break;
+                        default:
+                            System.out.println("Giá trị nhập không hợp lệ.");
+                            break;
+                    }
         } catch (Exception e) {
             System.out.println("Nhập vị trí không hợp lệ.");
         }
-        System.out.print("Nhập trạng thái làm việc(Onl | OFF) :");
+        System.out.print("Nhập trạng thái làm việc(Onl<true> | OFF<false>) :");
         boolean status = sc.nextBoolean();
         employeeList.updateEmployee(phone, name, phone, gender1, position, status);
     }
@@ -241,13 +326,14 @@ public class EmployeeMenu {
         }
     }
 
-    private void checkPhone(String phone) {
+    private String checkPhone(String phone) {
         do {
             phone = Input.readString("Số điện thoại: ");
             if (!Validation.isValidPhone(phone)) {
                 System.out.println("Số điện thoại không hợp lệ (phải có 10 số, bắt đầu bằng 0)!");
             }
         } while (!Validation.isValidPhone(phone));
+        return phone;
     }
 
 }
