@@ -35,7 +35,12 @@ TeaShopManagement/
 │   │      PurchaseReceipt.java
 │   │      PurchaseDetail.java
 │   │
-│   └
+│   └── category/
+│          TeaCategory.java
+│          ClayType.java
+│          PotShape.java
+│          AccessoryType.java
+│
 ├── list/
 │
 │   ProductList.java
