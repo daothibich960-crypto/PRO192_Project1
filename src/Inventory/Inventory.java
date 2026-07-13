@@ -179,5 +179,15 @@ public class Inventory {
         }
 
     }
+    //
+    public Product getProduct(String productID){
+        Product d = null;
+        for (Product p : products){
+            if (p.getProductId().equalsIgnoreCase(productID)){
+                d = p;
+            }
+        }
+        return d;
+    }
 
 }

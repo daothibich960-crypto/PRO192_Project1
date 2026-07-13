@@ -7,7 +7,7 @@ import Enum.Position;
 import Invoice.Invoice;
 import List.CustomerList;
 import List.EmployeeList;
-import List.Inventory;
+
 import List.InvoiceList;
 import Menu.CustomerMenu;
 import Menu.MainMenu;

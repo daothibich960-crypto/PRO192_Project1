@@ -69,7 +69,7 @@ public class StatisticService {
     public int getTotalInvoiceByDate(LocalDate date) {
         int total = 0;
         for (Invoice i : invoiceList.getList()) {
-            if (i.getInvoiceDate().toLocalDate() == date) {
+            if (i.getInvoiceDate().toLocalDate().equals(date)) {
                 total += 1;
             }
         }
@@ -107,7 +107,7 @@ public class StatisticService {
         ArrayList<String> phones = new ArrayList<>();
         int le = 0;
         for (Invoice i : invoiceList.getList()) {
-            if (i.getInvoiceDate().toLocalDate() == date) {
+            if (i.getInvoiceDate().toLocalDate().equals(date)) {
                 String phone = i.getCustomerPhone();
                 if (phone != null && !phone.isEmpty()) {
                     phones.add(phone);
@@ -162,7 +162,7 @@ public class StatisticService {
         ArrayList<Employee> list = new ArrayList<>();
         HashMap<String, Double> revenue = new HashMap<>();
         for (Invoice i : invoiceList.getList()) {
-            String emID = i.getInvoiceID();
+            String emID = i.getEmployeeID();
             revenue.put(emID, revenue.getOrDefault(emID, 0.0) + i.getTotalAmount());
         }
         List<Employee> em = employeeList.getList();
@@ -222,10 +222,10 @@ public class StatisticService {
         ArrayList<String> productIDs = new ArrayList<>(sold.keySet());//
         productIDs.sort((p1,p2) -> sold.get(p2) - sold.get(p1));
         ArrayList<Product> list1 = new ArrayList<>();
-//        for (int i = 0; i < Math.min(top, productIDs.size()); i++){
-//            Product p = inventory.getProduct(productIDs.get(i));
-//            if (p != null) list1.add(p);
-//        }
+        for (int i = 0; i < Math.min(top, productIDs.size()); i++){
+            Product p = inventory.getProduct(productIDs.get(i));
+            if (p != null) list1.add(p);
+        }
         return list1;
     }
     // lấy danh sách sản phẩm bán được ít nhất
@@ -236,10 +236,10 @@ public class StatisticService {
         productIDs.sort((p1,p2) -> sold.get(p1) - sold.get(p2));
         
         ArrayList<Product> list1 = new ArrayList<>();
-//        for (int i = 0; i < Math.min(top, productIDs.size()); i++){
-//            Product p = inventory.getProduct(productIDs.get(i));
-//            if (p != null) list1.add(p);
-//        }
+        for (int i = 0; i < Math.min(top, productIDs.size()); i++){
+            Product p = inventory.getProduct(productIDs.get(i));
+            if (p != null) list1.add(p);
+        }
         return list1;
     }
     public void printRevenueReport() {

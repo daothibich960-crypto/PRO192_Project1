@@ -113,7 +113,6 @@ public class EmployeeMenu {
                     System.out.print("Nhập giới tính: ");
                     String gender = sc.nextLine().toUpperCase();
                     gender1 = Gender.valueOf(gender);
-                    break;
                 } catch (Exception e) {
                     System.out.print("Giới tính nhập không hợp lệ");
                 }
@@ -122,7 +121,6 @@ public class EmployeeMenu {
                     System.out.println("Nhập ví trị làm việc: ");
                     String pos1 = sc.nextLine().toUpperCase();
                     position = Position.valueOf(pos1);
-                    break;
                 } catch (Exception e) {
                     System.out.println("Nhập vị trí không hợp lệ.");
                 }

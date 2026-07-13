@@ -45,7 +45,8 @@ public class FullTimeEmployee extends Employee {
     
     @Override
     public double calculateSalary() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       double salary = baseSalary*getPosition().getHeSoLuong() + allowance + bonus;
+       return salary;
     }
 
     @Override
