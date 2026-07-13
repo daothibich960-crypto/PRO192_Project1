@@ -1,0 +1,81 @@
+Quản Lý Quán Trà 
+
+
+Cấu trúc dự án :
+
+TeaShopManagement/
+│
+├── Main.java
+│
+├── model/
+│   │
+│   ├── product/
+│   │      Product.java
+│   │      Tea.java
+│   │      TeaPot.java
+│   │      TeaCup.java
+│   │      Accessory.java
+│   │
+│   ├── customer/
+│   │      Customer.java
+│   │
+│   ├── employee/
+│   │      Employee.java
+│   │      FullTimeEmployee.java
+│   │      PartTimeEmployee.java
+│   │
+│   ├── supplier/
+│   │      Supplier.java
+│   │
+│   ├── invoice/
+│   │      Invoice.java
+│   │      InvoiceDetail.java
+│   │
+│   ├── purchase/
+│   │      PurchaseReceipt.java
+│   │      PurchaseDetail.java
+│   │
+│   └
+├── list/
+│
+│   ProductList.java
+│   CustomerList.java
+│   SupplierList.java
+│   EmployeeList.java
+│   InvoiceList.java
+│   PurchaseList.java
+│
+├── service/
+│
+│   ProductService.java
+│   CustomerService.java
+│   SupplierService.java
+│   InventoryService.java
+│   PurchaseService.java
+│   SaleService.java
+│   StatisticService.java
+│
+├── menu/
+│
+│   MainMenu.java
+│   ProductMenu.java
+│   CustomerMenu.java
+│   SupplierMenu.java
+│   PurchaseMenu.java
+│   SaleMenu.java
+│   StatisticMenu.java
+│
+├── utils/
+│
+│   Input.java
+│   Validation.java
+│   IDGenerator.java
+│   DateUtil.java
+│   Formatter.java
+│
+└── data/
+        product.txt
+        customer.txt
+        supplier.txt
+        invoice.txt
+        purchase.txt
