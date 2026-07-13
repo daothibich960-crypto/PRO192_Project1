@@ -20,6 +20,7 @@ public class CustomerMenu {
     }
 
     public void show() {
+        
         int choice;
         do {
             System.out.println("\n===== QUẢN LÝ KHÁCH HÀNG =====");

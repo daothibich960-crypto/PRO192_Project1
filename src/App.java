@@ -11,7 +11,9 @@ import List.EmployeeList;
 import List.InvoiceList;
 import Menu.CustomerMenu;
 import Menu.MainMenu;
+import Menu.ProductMenu;
 import Product.Product;
+
 import Product.Tea;
 import java.util.Scanner;
 
@@ -37,5 +39,7 @@ public class App {
         customerMenu.show();
 
         System.out.println("Kết thúc test.");
+        
+       
     }
 }
