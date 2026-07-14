@@ -1,0 +1,5 @@
+TEA|TEA001|Trà Ô Long Đặc Sản|15000|25000|150|GRAM|AVAILABLE|Trà Ô Long loại thượng hạng từ Lâm Đồng|S006|Ô Long|Lâm Đồng|2026|150.0|A+|90|45|30/12/2027
+TEA|TEA002|Trà Thiết Quan Âm|18000|30000|100|GRAM|AVAILABLE|Trà Thiết Quan Âm nhập khẩu|S010|Thiết Quan Âm|Phúc Kiến|2026|100.0|A|95|60|15/06/2028
+POT|POT001|Ấm Trà Tử Sa Tây Thi|70000|100000|10|PIECE|AVAILABLE|Ấm tử sa dáng Tây Thi|S010|Hắc Nê|Tây Thi|200|Đất sét Tử Sa|Đen|Nghi Hưng|Trung Quốc
+CUP|CUP001|Chén Trà Sứ Trắng|15000|25000|50|PIECE|AVAILABLE|Chén trà bằng sứ trắng cao cấp|S002|Chén Khải|50|Sứ|Trắng|1
+ACC|ACC001|Khay Trà Gỗ Tre|120000|180000|5|PIECE|AVAILABLE|Khay đựng trà làm từ tre tự nhiên|S007|Khay Trà|Tre|40x25cm|Màu tre tự nhiên|Trà Việt

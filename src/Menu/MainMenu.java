@@ -92,7 +92,7 @@ public class MainMenu {
     System.out.println("║ 4. Bán hàng                                              ║");
     System.out.println("║ 5. Thống kê / Báo cáo                                    ║");
     System.out.println("║ 6. Quản lý nhà cung cấp                                  ║"); // Thêm dòng này
-    System.out.println("║ 7. Quản lý mua hàng (Purchase)                           ║"); // Thêm dòng này
+    System.out.println("║ 7. Quản lý kho                                           ║"); // Thêm dòng này
     System.out.println("║ 0. Thoát                                                 ║");
     System.out.println("╚══════════════════════════════════════════════════════════╝");
 }
