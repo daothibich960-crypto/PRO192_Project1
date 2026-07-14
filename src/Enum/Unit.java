@@ -1,21 +1,16 @@
-
 package Enum;
-
-
 
 /**
  * Unit of product
  */
 public enum Unit {
-
-    GRAM("g"),
-    KILOGRAM("kg"),
-    PIECE("piece"),
-    SET("set"),
-    BOX("box"),
-    BOTTLE("bottle"),
-    CAKE("cake-357g");
-
+    GRAM("Gam (g)"),
+    KILOGRAM("Kilôgam (Kg)"),
+    PIECE("Cái"),
+    SET("Bộ"),
+    BOX("Hộp"),
+    BOTTLE("Chai"),
+    CAKE("Bánh");
     private final String symbol;
 
     Unit(String symbol) {
