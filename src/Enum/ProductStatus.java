@@ -5,9 +5,9 @@ package Enum;
 
 public enum ProductStatus {
 
-    AVAILABLE("Available"),
-    OUT_OF_STOCK("Out of Stock"),
-    DISCONTINUED("Discontinued");
+    AVAILABLE("Còn hàng"),
+    OUT_OF_STOCK("Hết hàng"),
+    DISCONTINUED("Ngừng kinh doanh");
 
     private final String displayName;
 

@@ -52,7 +52,6 @@ public class ProductMenu {
     private static final int UPDATE_PRODUCT = 3;
     private static final int DELETE_PRODUCT = 4;
     private static final int SEARCH_PRODUCT = 5;
-    private static final int SUPPLIER_MENU = 6;
     private static final int BACK = 0;
 
     //========================================
@@ -113,20 +112,14 @@ public class ProductMenu {
                     pause();
                     break;
 
-                case SUPPLIER_MENU:
-
-                    supplierMenu();
-                    pause();
-                    break;
-
                 case BACK:
 
-                    System.out.println("Back...");
+                    System.out.println("Quay lại...");
                     break;
 
                 default:
 
-                    System.out.println("Invalid choice!");
+                    System.out.println("Vui lòng chọn đúng chức năng!");
                     pause();
 
             }
@@ -141,12 +134,11 @@ public class ProductMenu {
     private void printProductMenu() {
 
         printHeader("\n===== QUẢN LÝ SẢN PHẨM =====");
-        System.out.println("1. Xem tất cả sản phẩm");
+        System.out.println("1. Xem danh sách sản phẩm");
         System.out.println("2. Thêm sản phẩm");
         System.out.println("3. Cập nhật sản phẩm");
         System.out.println("4. Xóa sản phẩm");
         System.out.println("5. Tìm kiếm sản phẩm");
-        System.out.println("6. Quản lý nhà cung cấp");
         System.out.println("0. Quay lại");
 
         System.out.println("-------------------------------------");
@@ -193,7 +185,7 @@ public class ProductMenu {
 
             }
 
-            System.out.println("Input cannot be empty!");
+            System.out.println("Vui lòng không để trống!");
 
         }
 
@@ -214,7 +206,7 @@ public class ProductMenu {
 
             } catch (NumberFormatException e) {
 
-                System.out.println("Please enter a valid integer!");
+                System.out.println("Vui lòng nhập số nguyên hợp lệ!");
 
             }
 
@@ -237,7 +229,7 @@ public class ProductMenu {
 
             } catch (NumberFormatException e) {
 
-                System.out.println("Please enter a valid number!");
+                System.out.println("Vui lòng nhập số hợp lệ!");
 
             }
 
@@ -260,7 +252,7 @@ public class ProductMenu {
 
             }
 
-            System.out.println("Value must be greater than or equal to 0!");
+            System.out.println("Giá trị phải lớn hơn hoặc bằng 0!");
 
         }
 
@@ -270,7 +262,7 @@ public class ProductMenu {
 //========================================
 
     /**
-     * Nhập ngày theo định dạng yyyy-MM-dd.
+     * Nhập ngày theo định dạng dd/MM/yyyy.
      *
      * @param message thông báo nhập
      * @return LocalDate
@@ -278,7 +270,7 @@ public class ProductMenu {
     private LocalDate inputDate(String message) {
 
         DateTimeFormatter formatter
-                = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         while (true) {
 
@@ -286,21 +278,286 @@ public class ProductMenu {
 
                 System.out.print(message);
 
-                String input = scanner.nextLine();
+                String input = scanner.nextLine().trim();
 
                 return LocalDate.parse(input, formatter);
 
             } catch (DateTimeParseException e) {
 
-                System.out.println("Invalid date! Please use yyyy-MM-dd");
-                System.out.println("Example: 2026-12-31");
+                System.out.println("Ngày không hợp lệ!");
+                System.out.println("Vui lòng nhập theo định dạng: dd/MM/yyyy");
+                System.out.println("Ví dụ: 31/12/2026");
 
             }
 
         }
 
     }
+//========================================
+// UPDATE STRING
+//========================================
+private String updateString(String message, String oldValue) {
 
+    System.out.print(message + " [" + oldValue + "]: ");
+
+    String input = scanner.nextLine().trim();
+
+    if (input.isEmpty()) {
+
+        return oldValue;
+
+    }
+
+    return input;
+
+}
+//========================================
+// UPDATE INTEGER
+//========================================
+private int updateInt(String message, int oldValue) {
+
+    while (true) {
+
+        System.out.print(message + " [" + oldValue + "]: ");
+
+        String input = scanner.nextLine().trim();
+
+        if (input.isEmpty()) {
+
+            return oldValue;
+
+        }
+
+        try {
+
+            return Integer.parseInt(input);
+
+        } catch (NumberFormatException e) {
+
+            System.out.println("Vui lòng nhập số nguyên hợp lệ!");
+
+        }
+
+    }
+
+}
+//========================================
+// UPDATE DOUBLE
+//========================================
+private double updateDouble(String message, double oldValue) {
+
+    while (true) {
+
+        System.out.print(message + " [" + oldValue + "]: ");
+
+        String input = scanner.nextLine().trim();
+
+        if (input.isEmpty()) {
+
+            return oldValue;
+
+        }
+
+        try {
+
+            double value = Double.parseDouble(input);
+
+            if (value >= 0) {
+
+                return value;
+
+            }
+
+            System.out.println("Giá trị phải lớn hơn hoặc bằng 0!");
+
+        } catch (NumberFormatException e) {
+
+            System.out.println("Vui lòng nhập số hợp lệ!");
+
+        }
+
+    }
+
+}
+//========================================
+// UPDATE DATE
+//========================================
+private LocalDate updateDate(String message, LocalDate oldValue) {
+
+    DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    while (true) {
+
+        System.out.print(message + " [" + oldValue.format(formatter) + "]: ");
+
+        String input = scanner.nextLine().trim();
+
+        if (input.isEmpty()) {
+
+            return oldValue;
+
+        }
+
+        try {
+
+            return LocalDate.parse(input, formatter);
+
+        } catch (DateTimeParseException e) {
+
+            System.out.println("Ngày không hợp lệ!");
+            System.out.println("Định dạng: dd/MM/yyyy");
+
+        }
+
+    }
+
+}
+
+//========================================
+// UPDATE UNIT
+//========================================
+private Unit updateUnit(Unit oldUnit) {
+
+    System.out.println();
+    System.out.println("Đơn vị hiện tại: " + oldUnit.getSymbol());
+    System.out.println("Nhấn ENTER để giữ nguyên.");
+
+    while (true) {
+
+        System.out.println("1. Gam (g)");
+        System.out.println("2. Kilôgam (Kg)");
+        System.out.println("3. Cái");
+        System.out.println("4. Bộ");
+        System.out.println("5. Hộp");
+        System.out.println("6. Chai");
+        System.out.println("7. Bánh");
+
+        System.out.print("Lựa chọn: ");
+
+        String input = scanner.nextLine().trim();
+
+        if (input.isEmpty()) {
+
+            return oldUnit;
+
+        }
+
+        switch (input) {
+
+            case "1":
+                return Unit.GRAM;
+
+            case "2":
+                return Unit.KILOGRAM;
+
+            case "3":
+                return Unit.PIECE;
+
+            case "4":
+                return Unit.SET;
+
+            case "5":
+                return Unit.BOX;
+
+            case "6":
+                return Unit.BOTTLE;
+
+            case "7":
+                return Unit.CAKE;
+
+            default:
+                System.out.println("Lựa chọn không hợp lệ!");
+
+        }
+
+    }
+
+}
+//========================================
+// UPDATE STATUS
+//========================================
+private ProductStatus updateStatus(ProductStatus oldStatus) {
+
+    System.out.println();
+    System.out.println("Trạng thái hiện tại: " + oldStatus.getDisplayName());
+    System.out.println("Nhấn ENTER để giữ nguyên.");
+
+    while (true) {
+
+        System.out.println("1. Còn hàng");
+        System.out.println("2. Hết hàng");
+        System.out.println("3. Ngừng kinh doanh");
+
+        System.out.print("Lựa chọn: ");
+
+        String input = scanner.nextLine().trim();
+
+        if (input.isEmpty()) {
+
+            return oldStatus;
+
+        }
+
+        switch (input) {
+
+            case "1":
+                return ProductStatus.AVAILABLE;
+
+            case "2":
+                return ProductStatus.OUT_OF_STOCK;
+
+            case "3":
+                return ProductStatus.DISCONTINUED;
+
+            default:
+                System.out.println("Lựa chọn không hợp lệ!");
+
+        }
+
+    }
+
+}
+//========================================
+// UPDATE SUPPLIER
+//========================================
+private Supplier updateSupplier(Supplier oldSupplier) {
+
+    while (true) {
+
+        printHeader("DANH SÁCH NHÀ CUNG CẤP");
+
+        supplierList.displayAllSupplier();
+
+        System.out.println();
+        System.out.println("Nhà cung cấp hiện tại: "
+                + oldSupplier.getSupplierName());
+
+        System.out.println("Nhấn ENTER để giữ nguyên.");
+
+        System.out.print("Nhập mã nhà cung cấp: ");
+
+        String supplierId = scanner.nextLine().trim();
+
+        if (supplierId.isEmpty()) {
+
+            return oldSupplier;
+
+        }
+
+        Supplier supplier = supplierList.searchSupplier(supplierId);
+
+        if (supplier != null) {
+
+            return supplier;
+
+        }
+
+        System.out.println("Không tìm thấy nhà cung cấp!");
+
+    }
+
+}
 //========================================
 // CHOOSE UNIT
 //========================================
@@ -309,14 +566,13 @@ public class ProductMenu {
         while (true) {
 
             printHeader("CHỌN ĐƠN VỊ ");
-
-            System.out.println("1. Gram");
-            System.out.println("2. Kilogram");
-            System.out.println("3. Piece");
-            System.out.println("4. Set");
-            System.out.println("5. Box");
-            System.out.println("6. Bottle");
-            System.out.println("7. Cake (357g)");
+            System.out.println("1. Gam (g)");
+            System.out.println("2. Kilôgam (kg)");
+            System.out.println("3. Cái");
+            System.out.println("4. Bộ");
+            System.out.println("5. Hộp");
+            System.out.println("6. Chai");
+            System.out.println("7. Bánh trà");
 
             int choice = inputChoice();
 
@@ -344,7 +600,7 @@ public class ProductMenu {
                     return Unit.CAKE;
 
                 default:
-                    System.out.println("Invalid choice!");
+                    System.out.println("Lựa chọn không hợp lệ!");
             }
 
         }
@@ -378,7 +634,7 @@ public class ProductMenu {
                     return ProductStatus.DISCONTINUED;
 
                 default:
-                    System.out.println("Invalid choice!");
+                    System.out.println("Lựa chọn không hợp lệ");
             }
 
         }
@@ -392,11 +648,11 @@ public class ProductMenu {
 
         while (true) {
 
-            printHeader("SUPPLIER LIST");
+            printHeader("DANH SÁCH NHÀ CUNG CẤP");
 
             supplierList.displayAllSupplier();
 
-            String supplierId = inputString("Enter Supplier ID: ");
+            String supplierId = inputString("Nhập mã nhà cung cấp: ");
 
             Supplier supplier = supplierList.searchSupplier(supplierId);
 
@@ -406,29 +662,58 @@ public class ProductMenu {
 
             }
 
-            System.out.println("Supplier does not exist!");
-            pause();
+            System.out.println();
+            System.out.println("Nhà cung cấp không tồn tại!");
 
-            addSupplier();
+            String choice = inputString("Bạn có muốn thêm nhà cung cấp mới không? (Y/N): ");
+
+            if (choice.equalsIgnoreCase("Y")) {
+
+                addSupplier();
+
+            } else {
+
+                System.out.println("Vui lòng nhập lại mã nhà cung cấp.");
+
+            }
+
+            pause();
 
         }
 
     }
 
+    //========================================
+// ADD SUPPLIER
+//========================================
     private void addSupplier() {
-        System.out.println("Thêm nhà cung cấp");
-        System.out.print("Nhập mã nhà cung cấp: ");
-        String id = scanner.nextLine();
-        System.out.print("Nhập tên nhà cung cấp: ");
-        String name = scanner.nextLine();
-        System.out.print("Nhập số điện thoại nhà cung cấp: ");
-        String phone = scanner.nextLine();
-        System.out.print("Nhập email nhà cung cấp: ");
-        String mail = scanner.nextLine();
-        System.out.print("Nhập địa chỉ  nhà cung cấp: ");
-        String address = scanner.nextLine();
-        Supplier sup = new Supplier(id, name, phone, mail, address);
-        supplierList.addSupplier(sup);
+
+        printHeader("THÊM NHÀ CUNG CẤP");
+
+        Supplier supplier = new Supplier();
+
+        supplier.setSupplierId(
+                inputString("Mã nhà cung cấp: "));
+
+        supplier.setSupplierName(
+                inputString("Tên nhà cung cấp: "));
+
+        supplier.setPhone(
+                inputString("Số điện thoại: "));
+
+        supplier.setEmail(
+                inputString("Email: "));
+
+        supplier.setAddress(
+                inputString("Địa chỉ: "));
+
+        supplierList.addSupplier(supplier);
+
+        System.out.println();
+        System.out.println("========================================");
+        System.out.println(" THÊM NHÀ CUNG CẤP THÀNH CÔNG!");
+        System.out.println("========================================");
+
     }
 //========================================
 // INPUT PRODUCT INFORMATION
@@ -441,24 +726,24 @@ public class ProductMenu {
      */
     private void inputProductInfo(Product product) {
 
-        System.out.println("\n===== PRODUCT INFORMATION =====");
+        System.out.println("\n===== THÔNG TIN SẢN PHẨM =====");
 
         // Tên sản phẩm
         product.setProductName(
-                inputString("Product Name: "));
+                inputString("Tên sản phẩm: "));
 
         // Giá nhập
         product.setImportPrice(
-                inputPositiveDouble("Import Price: "));
+                inputPositiveDouble("Giá nhập: "));
 
         // Giá bán
         product.setSellingPrice(
-                inputPositiveDouble("Selling Price: "));
+                inputPositiveDouble("Giá bán: "));
 
         // Số lượng ban đầu
-        product.setStockQuantity(
-                inputInt("Stock Quantity: "));
-
+        //product.setStockQuantity(
+        //   inputInt("Số lượng trong kho: "));
+        product.setStockQuantity(0);
         // Đơn vị tính
         product.setUnit(
                 chooseUnit());
@@ -469,7 +754,7 @@ public class ProductMenu {
 
         // Mô tả
         product.setDescription(
-                inputString("Description: "));
+                inputString("Mô tả: "));
 
         // Nhà cung cấp
         product.setSupplier(
@@ -477,38 +762,38 @@ public class ProductMenu {
 
     }
 
-    //========================================
+   //========================================
 // UPDATE COMMON PRODUCT INFO
 //========================================
-    private void updateProductInfo(Product product) {
+private void updateProductInfo(Product product) {
 
-        System.out.println("\n===== UPDATE PRODUCT =====");
+    System.out.println("\n===== CẬP NHẬT THÔNG TIN SẢN PHẨM =====");
 
-        product.setProductName(
-                inputString("Product Name: "));
+    product.setProductName(
+            updateString("Tên sản phẩm", product.getProductName()));
 
-        product.setImportPrice(
-                inputPositiveDouble("Import Price: "));
+    product.setImportPrice(
+            updateDouble("Giá nhập", product.getImportPrice()));
 
-        product.setSellingPrice(
-                inputPositiveDouble("Selling Price: "));
+    product.setSellingPrice(
+            updateDouble("Giá bán", product.getSellingPrice()));
 
-        // Không cập nhật Stock Quantity
-        // Kho sẽ quản lý số lượng
-        product.setUnit(
-                chooseUnit());
+    // Không cập nhật Stock Quantity
+    // Kho sẽ quản lý số lượng
 
-        product.setStatus(
-                chooseStatus());
+    product.setUnit(
+            updateUnit(product.getUnit()));
 
-        product.setDescription(
-                inputString("Description: "));
+    product.setStatus(
+            updateStatus(product.getStatus()));
 
-        product.setSupplier(
-                chooseSupplier());
+    product.setDescription(
+            updateString("Mô tả", product.getDescription()));
 
-    }
+    product.setSupplier(
+            updateSupplier(product.getSupplier()));
 
+}
 //========================================
 // ADD TEA
 //========================================
@@ -517,7 +802,7 @@ public class ProductMenu {
      */
     private void addTea() {
 
-        printHeader("ADD TEA");
+        printHeader("Thêm trà");
 
         //========================================
         // Tạo đối tượng Tea
@@ -529,7 +814,7 @@ public class ProductMenu {
         //========================================
         tea.setProductId(productService.generateProductId("TEA"));
 
-        System.out.println("Product ID: " + tea.getProductId());
+        System.out.println("Mã sản phẩm: " + tea.getProductId());
 
         //========================================
         // Nhập thông tin chung của Product
@@ -540,28 +825,28 @@ public class ProductMenu {
         // Nhập thông tin riêng của Tea
         //========================================
         tea.setTeaType(
-                inputString("Tea Type: "));
+                inputString("Loại trà: "));
 
         tea.setOrigin(
-                inputString("Origin: "));
+                inputString("Xuất xứ: "));
 
         tea.setHarvestYear(
-                inputInt("Harvest Year: "));
+                inputInt("Năm thu hoạch: "));
 
         tea.setNetWeight(
-                inputPositiveDouble("Net Weight (g): "));
+                inputPositiveDouble("Khối lượng tịnh (g): "));
 
         tea.setTeaGrade(
-                inputString("Tea Grade: "));
+                inputString("Phân hạng trà: "));
 
         tea.setBrewingTemperature(
-                inputInt("Brewing Temperature (°C): "));
+                inputInt("Nhiệt độ pha (°C): "));
 
         tea.setBrewingTime(
-                inputString("Brewing Time (seconds): "));
+                inputString("Thời gian pha (giây): "));
 
         tea.setExpiryDate(
-                inputDate("Expiry Date (yyyy-MM-dd): "));
+                inputDate("Hạn sử dụng (dd/MM/yyyy): "));
 
         //========================================
         // Lưu vào DataStore
@@ -572,14 +857,14 @@ public class ProductMenu {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("      ADD TEA SUCCESSFULLY!");
+            System.out.println("      THÊM TRÀ THÀNH CÔNG!");
             System.out.println("========================================");
 
         } else {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("        ADD TEA FAILED!");
+            System.out.println("        THÊM TRÀ THẤT BẠI!");
             System.out.println("========================================");
 
         }
@@ -594,7 +879,7 @@ public class ProductMenu {
      */
     private void addTeaPot() {
 
-        printHeader("ADD TEA POT");
+        printHeader("THÊM ẤM TRÀ");
 
         //========================================
         // Tạo đối tượng TeaPot
@@ -606,7 +891,7 @@ public class ProductMenu {
         //========================================
         teaPot.setProductId(productService.generateProductId("POT"));
 
-        System.out.println("Product ID: " + teaPot.getProductId());
+        System.out.println("Mã sản phẩm: " + teaPot.getProductId());
 
         //========================================
         // Nhập thông tin chung
@@ -617,25 +902,25 @@ public class ProductMenu {
         // Nhập thông tin riêng của TeaPot
         //========================================
         teaPot.setClayType(
-                inputString("Clay Type: "));
+                inputString("Loại đất: "));
 
         teaPot.setShape(
-                inputString("Shape: "));
+                inputString("Kiểu dáng: "));
 
         teaPot.setCapacity(
-                inputInt("Capacity (ml): "));
+                inputInt("Dung tích (ml): "));
 
         teaPot.setMaterial(
-                inputString("Material: "));
+                inputString("Chất liệu: "));
 
         teaPot.setColor(
-                inputString("Color: "));
+                inputString("Màu sắc: "));
 
         teaPot.setBrand(
-                inputString("Brand: "));
+                inputString("Thương hiệu: "));
 
         teaPot.setOrigin(
-                inputString("Origin: "));
+                inputString("Xuất xứ: "));
 
         //========================================
         // Lưu vào DataStore
@@ -646,14 +931,14 @@ public class ProductMenu {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("   ADD TEA POT SUCCESSFULLY!");
+            System.out.println("    THÊM ẤM TRÀ THÀNH CÔNG!");
             System.out.println("========================================");
 
         } else {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("      ADD TEA POT FAILED!");
+            System.out.println("       THÊM ẤM TRÀ THẤT BẠI!");
             System.out.println("========================================");
 
         }
@@ -668,7 +953,7 @@ public class ProductMenu {
      */
     private void addTeaCup() {
 
-        printHeader("ADD TEA CUP");
+        printHeader("THÊM CHÉN TRÀ");
 
         //========================================
         // Tạo đối tượng TeaCup
@@ -680,7 +965,7 @@ public class ProductMenu {
         //========================================
         teaCup.setProductId(productService.generateProductId("CUP"));
 
-        System.out.println("Product ID: " + teaCup.getProductId());
+        System.out.println("Mã sản phầm: " + teaCup.getProductId());
 
         //========================================
         // Nhập thông tin chung
@@ -691,19 +976,19 @@ public class ProductMenu {
         // Nhập thông tin riêng của TeaCup
         //========================================
         teaCup.setCupType(
-                inputString("Cup Type: "));
+                inputString("Loại chén: "));
 
         teaCup.setCapacity(
-                inputInt("Capacity (ml): "));
+                inputInt("Dung tích (ml): "));
 
         teaCup.setMaterial(
-                inputString("Material: "));
+                inputString("Chất liệu: "));
 
         teaCup.setColor(
-                inputString("Color: "));
+                inputString("Màu sắc: "));
 
         teaCup.setQuantityPerSet(
-                inputInt("Quantity Per Set: "));
+                inputInt("Số lượng trong bộ: "));
 
         //========================================
         // Lưu vào DataStore
@@ -714,14 +999,14 @@ public class ProductMenu {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("   ADD TEA CUP SUCCESSFULLY!");
+            System.out.println("   THÊM CHÉN TRÀ THÀNH CÔNG!");
             System.out.println("========================================");
 
         } else {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("      ADD TEA CUP FAILED!");
+            System.out.println("       THÊM CHÉN TRÀ THẤT BẠI!");
             System.out.println("========================================");
 
         }
@@ -736,7 +1021,7 @@ public class ProductMenu {
      */
     private void addAccessory() {
 
-        printHeader("ADD ACCESSORY");
+        printHeader("THÊM PHỤ KIỆN");
 
         //========================================
         // Tạo đối tượng Accessory
@@ -748,7 +1033,7 @@ public class ProductMenu {
         //========================================
         accessory.setProductId(productService.generateProductId("ACC"));
 
-        System.out.println("Product ID: " + accessory.getProductId());
+        System.out.println("Mã sản phẩm: " + accessory.getProductId());
 
         //========================================
         // Nhập thông tin chung
@@ -759,19 +1044,19 @@ public class ProductMenu {
         // Nhập thông tin riêng của Accessory
         //========================================
         accessory.setAccessoryType(
-                inputString("Accessory Type: "));
+                inputString("Loại phụ kiện: "));
 
         accessory.setMaterial(
-                inputString("Material: "));
+                inputString("Chất liệu: "));
 
         accessory.setSize(
-                inputString("Size: "));
+                inputString("Kích thước: "));
 
         accessory.setColor(
-                inputString("Color: "));
+                inputString("Màu sắc: "));
 
         accessory.setBrand(
-                inputString("Brand: "));
+                inputString("Thương hiệu: "));
 
         //========================================
         // Lưu vào DataStore
@@ -782,14 +1067,14 @@ public class ProductMenu {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println(" ADD ACCESSORY SUCCESSFULLY!");
+            System.out.println(" THÊM PHỤ KIỆN THÀNH CÔNG!");
             System.out.println("========================================");
 
         } else {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("    ADD ACCESSORY FAILED!");
+            System.out.println("    THÊM PHỤ KIỆN THẤT BẠI!");
             System.out.println("========================================");
 
         }
@@ -815,7 +1100,7 @@ public class ProductMenu {
     private void pause() {
 
         System.out.println();
-        System.out.print("Press ENTER to continue...");
+        System.out.print("Nhấn ENTER để tiếp tục...");
         scanner.nextLine();
 
     }
@@ -825,7 +1110,7 @@ public class ProductMenu {
     //========================================
     private void clearScreen() {
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 3; i++) {
 
             System.out.println();
 
@@ -838,7 +1123,7 @@ public class ProductMenu {
     //========================================
     private void viewAllProducts() {
 
-        printHeader("PRODUCT LIST");
+        printHeader("DANH SÁCH SẢN PHẨM");
 
         productService.displayAllProducts();
 
@@ -897,7 +1182,7 @@ public class ProductMenu {
 
                 default:
 
-                    System.out.println("Invalid choice!");
+                    System.out.println("Lựa chọn không hợp lệ!");
                     pause();
 
             }
@@ -916,9 +1201,9 @@ public class ProductMenu {
      */
     private void updateTea(Tea tea) {
 
-        printHeader("UPDATE TEA");
+        printHeader("CẬP NHẬT TRÀ");
 
-        System.out.println("Product ID: " + tea.getProductId());
+        System.out.println("Mã sản phẩm: " + tea.getProductId());
 
         //========================================
         // Cập nhật thông tin chung
@@ -929,28 +1214,28 @@ public class ProductMenu {
         // Cập nhật thông tin riêng của Tea
         //========================================
         tea.setTeaType(
-                inputString("Tea Type: "));
+        updateString("Loại trà", tea.getTeaType()));
 
-        tea.setOrigin(
-                inputString("Origin: "));
+tea.setOrigin(
+        updateString("Xuất xứ", tea.getOrigin()));
 
-        tea.setHarvestYear(
-                inputInt("Harvest Year: "));
+tea.setHarvestYear(
+        updateInt("Năm thu hoạch", tea.getHarvestYear()));
 
-        tea.setNetWeight(
-                inputPositiveDouble("Net Weight (g): "));
+tea.setNetWeight(
+        updateDouble("Khối lượng tịnh (g)", tea.getNetWeight()));
 
-        tea.setTeaGrade(
-                inputString("Tea Grade: "));
+tea.setTeaGrade(
+        updateString("Phân hạng trà", tea.getTeaGrade()));
 
-        tea.setBrewingTemperature(
-                inputInt("Brewing Temperature (°C): "));
+tea.setBrewingTemperature(
+        updateInt("Nhiệt độ pha (°C)", tea.getBrewingTemperature()));
 
-        tea.setBrewingTime(
-                inputString("Brewing Time (seconds): "));
+tea.setBrewingTime(
+        updateString("Thời gian pha (giây)", tea.getBrewingTime()));
 
-        tea.setExpiryDate(
-                inputDate("Expiry Date (yyyy-MM-dd): "));
+tea.setExpiryDate(
+        updateDate("Hạn sử dụng", tea.getExpiryDate()));
 
         //========================================
         // Lưu thay đổi
@@ -959,14 +1244,14 @@ public class ProductMenu {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("    UPDATE TEA SUCCESSFULLY!");
+            System.out.println("    CẬP NHẬT TRÀ THÀNH CÔNG!");
             System.out.println("========================================");
 
         } else {
 
             System.out.println();
             System.out.println("========================================");
-            System.out.println("      UPDATE TEA FAILED!");
+            System.out.println("      CẬP NHẬT TRÀ THẤT BẠI!");
             System.out.println("========================================");
 
         }
@@ -978,40 +1263,46 @@ public class ProductMenu {
 
     private void updateTeaPot(TeaPot teaPot) {
 
-        printHeader("UPDATE TEA POT");
+        printHeader("CẬP NHẬT ẤM TRÀ");
 
-        System.out.println("Product ID: " + teaPot.getProductId());
+        System.out.println("Mã sản phẩm: " + teaPot.getProductId());
 
         updateProductInfo(teaPot);
 
         teaPot.setClayType(
-                inputString("Clay Type: "));
+            updateString("Loại đất", teaPot.getClayType()));
 
-        teaPot.setShape(
-                inputString("Shape: "));
+    teaPot.setShape(
+            updateString("Kiểu dáng", teaPot.getShape()));
 
-        teaPot.setCapacity(
-                inputInt("Capacity (ml): "));
+    teaPot.setCapacity(
+            updateInt("Dung tích (ml)", teaPot.getCapacity()));
 
-        teaPot.setMaterial(
-                inputString("Material: "));
+    teaPot.setMaterial(
+            updateString("Chất liệu", teaPot.getMaterial()));
 
-        teaPot.setColor(
-                inputString("Color: "));
+    teaPot.setColor(
+            updateString("Màu sắc", teaPot.getColor()));
 
-        teaPot.setBrand(
-                inputString("Brand: "));
+    teaPot.setBrand(
+            updateString("Thương hiệu", teaPot.getBrand()));
 
-        teaPot.setOrigin(
-                inputString("Origin: "));
+    teaPot.setOrigin(
+            updateString("Xuất xứ", teaPot.getOrigin()));
 
         if (productService.updateProduct(teaPot)) {
 
-            System.out.println("\nUPDATE TEA POT SUCCESSFULLY!");
+            System.out.println();
+            System.out.println("========================================");
+            System.out.println("    CẬP NHẬT ẤM TRÀ THÀNH CÔNG!");
+            System.out.println("========================================");
 
         } else {
 
-            System.out.println("\nUPDATE FAILED!");
+            System.out.println();
+            System.out.println("========================================");
+            System.out.println("    CẬP NHẬT ẤM TRÀ THẤT BẠI!");
+            System.out.println("========================================");
 
         }
 
@@ -1022,35 +1313,38 @@ public class ProductMenu {
 
     private void updateTeaCup(TeaCup teaCup) {
 
-        printHeader("UPDATE TEA CUP");
+        printHeader("CẬP NHẬT CHÉN TRÀ");
 
-        System.out.println("Product ID: " + teaCup.getProductId());
+        System.out.println("Mã sản phẩm: " + teaCup.getProductId());
 
         updateProductInfo(teaCup);
 
-        teaCup.setCupType(
-                inputString("Cup Type: "));
+       teaCup.setCupType(
+            updateString("Loại chén", teaCup.getCupType()));
 
-        teaCup.setCapacity(
-                inputInt("Capacity (ml): "));
+    teaCup.setCapacity(
+            updateInt("Dung tích (ml)", teaCup.getCapacity()));
 
-        teaCup.setMaterial(
-                inputString("Material: "));
+    teaCup.setMaterial(
+            updateString("Chất liệu", teaCup.getMaterial()));
 
-        teaCup.setColor(
-                inputString("Color: "));
+    teaCup.setColor(
+            updateString("Màu sắc", teaCup.getColor()));
 
-        teaCup.setQuantityPerSet(
-                inputInt("Quantity Per Set: "));
+    teaCup.setQuantityPerSet(
+            updateInt("Số lượng trong bộ", teaCup.getQuantityPerSet()));
 
         if (productService.updateProduct(teaCup)) {
-
-            System.out.println("\nUPDATE TEA CUP SUCCESSFULLY!");
+            System.out.println();
+            System.out.println("========================================");
+            System.out.println("    CẬP NHẬT CHÉN TRÀ THÀNH CÔNG!");
+            System.out.println("========================================");
 
         } else {
-
-            System.out.println("\nUPDATE FAILED!");
-
+            System.out.println();
+            System.out.println("========================================");
+            System.out.println("    CẬP NHẬT CHÉN TRÀ THẤT BẠI!");
+            System.out.println("========================================");
         }
 
     }
@@ -1060,35 +1354,37 @@ public class ProductMenu {
 
     private void updateAccessory(Accessory accessory) {
 
-        printHeader("UPDATE ACCESSORY");
+        printHeader("CẬP NHẬT PHỤ KIỆN");
 
-        System.out.println("Product ID: " + accessory.getProductId());
+        System.out.println("Mã sản phẩm: " + accessory.getProductId());
 
         updateProductInfo(accessory);
 
-        accessory.setAccessoryType(
-                inputString("Accessory Type: "));
+       accessory.setAccessoryType(
+            updateString("Loại phụ kiện", accessory.getAccessoryType()));
 
-        accessory.setMaterial(
-                inputString("Material: "));
+    accessory.setMaterial(
+            updateString("Chất liệu", accessory.getMaterial()));
 
-        accessory.setSize(
-                inputString("Size: "));
+    accessory.setSize(
+            updateString("Kích thước", accessory.getSize()));
 
-        accessory.setColor(
-                inputString("Color: "));
+    accessory.setColor(
+            updateString("Màu sắc", accessory.getColor()));
 
-        accessory.setBrand(
-                inputString("Brand: "));
+    accessory.setBrand(
+            updateString("Thương hiệu", accessory.getBrand()));
 
         if (productService.updateProduct(accessory)) {
-
-            System.out.println("\nUPDATE ACCESSORY SUCCESSFULLY!");
-
+            System.out.println();
+            System.out.println("========================================");
+            System.out.println("    CẬP NHẬT PHỤ KIỆN THÀNH CÔNG!");
+            System.out.println("========================================");
         } else {
-
-            System.out.println("\nUPDATE FAILED!");
-
+            System.out.println();
+            System.out.println("========================================");
+            System.out.println("    CẬP NHẬT PHỤ KIỆN THẤT BẠI!");
+            System.out.println("========================================");
         }
 
     }
@@ -1098,15 +1394,15 @@ public class ProductMenu {
 //========================================
     private void updateProduct() {
 
-        printHeader("UPDATE PRODUCT");
+        printHeader("CẬP NHẬT SẢM PHẨM");
 
-        String productId = inputString("Enter Product ID: ");
+        String productId = inputString("Nhập mã sản phẩm: ");
 
         Product product = productService.findProductById(productId);
 
         if (product == null) {
 
-            System.out.println("Product not found!");
+            System.out.println("Không tìm thấy sản phẩm!");
             return;
 
         }
@@ -1136,15 +1432,15 @@ public class ProductMenu {
 //========================================
     private void deleteProduct() {
 
-        printHeader("DELETE PRODUCT");
+        printHeader("XÓA SẢN PHẨM");
 
-        String productId = inputString("Enter Product ID: ");
+        String productId = inputString("Nhập mã sản phẩm: ");
 
         Product product = productService.findProductById(productId);
 
         if (product == null) {
 
-            System.out.println("Product not found!");
+            System.out.println("Không tìm thấy sản phẩm!");
 
             return;
 
@@ -1152,23 +1448,25 @@ public class ProductMenu {
 
         System.out.println(product);
 
-        String confirm = inputString("Delete this product? (Y/N): ");
+        String confirm = inputString("Bạn có chắc muốn xóa sản phẩm này? (Y/N):: ");
 
         if (confirm.equalsIgnoreCase("Y")) {
 
             if (productService.deleteProduct(productId)) {
-
-                System.out.println("Delete successfully!");
-
+                System.out.println();
+                System.out.println("========================================");
+                System.out.println("    XÓA SẢN PHẨM THÀNH CÔNG!");
+                System.out.println("========================================");
             } else {
-
-                System.out.println("Delete failed!");
-
+                System.out.println();
+                System.out.println("========================================");
+                System.out.println("    XÓA SẢN PHẨM THẤT BẠI!");
+                System.out.println("========================================");
             }
 
         } else {
 
-            System.out.println("Cancelled.");
+            System.out.println("Đã hủy thao tác.");
 
         }
 
@@ -1179,21 +1477,12 @@ public class ProductMenu {
 //========================================
     private void searchProduct() {
 
-        printHeader("SEARCH PRODUCT");
+        printHeader("TÌM KIẾM SẢN PHẨM");
 
-        String keyword = inputString("Enter Product Name: ");
+        String keyword = inputString("Nhập tên sản phẩm: ");
 
         productService.displaySearchResult(keyword);
 
     }
 
-    //========================================
-    // SUPPLIER MENU
-    //========================================
-    private void supplierMenu() {
-
-        printHeader("SUPPLIER MENU");
-
-        // TODO
-    }
 }
