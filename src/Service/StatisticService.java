@@ -274,7 +274,7 @@ public class StatisticService {
         System.out.println("===== BÁO CÁO SẢN PHẨM =====");
         System.out.println("Top sản phẩm bán chạy:");
         for (Product p : getTopSellingProduct(5)) {
-            System.out.println(p.toString() + " - Đã bán: " + getSoldQuantity(p.getProductId()));
+            System.out.println(p.displayReport() + " - Đã bán: " + getSoldQuantity(p.getProductId()));
         }
     }
 

@@ -267,5 +267,14 @@ public abstract class Product {
 
         return builder.toString();
     }
+    public String displayReport() {
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("Product ID      : ").append(productId).append("\n");
+        builder.append("Product Name    : ").append(productName).append("\n");
+        
+        return builder.toString();
+    }
 
 }
