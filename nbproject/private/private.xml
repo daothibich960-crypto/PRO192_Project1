@@ -3,19 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Product/Product.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/List/CustomerList.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Invoice/Invoice.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Customer/Customer.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Product/TeaPot.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Enum/Position.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/List/EmployeeList.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Menu/MainMenu.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Product/TeaCup.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/App.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Enum/Gender.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Product/Tea.java</file>
-            <file>file:/D:/FPTU%20Program/PRO192/Project/QuanLyQuanTra/src/Menu/CustomerMenu.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Data/purchase.txt</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Purchase/PurchaseReceipt.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Product/Product.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Product/Tea.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Inventory/Inventory.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Data/product.txt</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/List/PurchaseList.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Supplier/SupplierList.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Menu/ProductMenu.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Purchase/PurchaseDetail.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/PRO192_Project1/src/Menu/PurchaseMenu.java</file>
         </group>
     </open-files>
 </project-private>
