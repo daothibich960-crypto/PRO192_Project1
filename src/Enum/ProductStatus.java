@@ -24,4 +24,12 @@ public enum ProductStatus {
         return displayName;
     }
 
+    public static ProductStatus fromString(String text) {
+        for (ProductStatus s : ProductStatus.values()) {
+            if (s.name().equalsIgnoreCase(text) || s.displayName.equalsIgnoreCase(text)) {
+                return s;
+            }
+        }
+        throw new IllegalArgumentException("Unknown status: " + text);
+    }
 }

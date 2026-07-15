@@ -22,7 +22,7 @@ public class MemberShipService {
         return list.getCustomer(phone);
     }
     private Customer registerNewMember(String phone,String name,String address){
-        Customer c = new Customer(phone,name,address);
+        Customer c = new Customer(name,phone, address);
         list.addCustomer(c);
         return c;
     }

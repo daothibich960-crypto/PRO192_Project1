@@ -15,10 +15,11 @@ import java.util.Scanner;
 
 public class EmployeeMenu {
 
+    private static final String FILE_PATH = "Data/employee.txt";
     private EmployeeList employeeList;
     private Scanner sc;
 
-    public EmployeeMenu(EmployeeList employeeList,Scanner sc) {
+    public EmployeeMenu(EmployeeList employeeList, Scanner sc) {
         this.employeeList = employeeList;
         this.sc = sc;
     }
@@ -47,7 +48,7 @@ public class EmployeeMenu {
                     searchByName();
                     break;
                 case 6:
-                    System.out.println("-------Display----------");
+                    System.out.println("-------Hiển thị----------");
                     employeeList.displayAllEmployee();
                     break;
                 case 7:
@@ -72,7 +73,7 @@ public class EmployeeMenu {
         System.out.println("4. Tìm theo mã nhân viên");
         System.out.println("5. Tìm theo tên");
         System.out.println("6. Hiển thị tất cả nhân viên");
-        System.out.println("7. Hiển thị theo loại (Full-time/Part-time)");
+        System.out.println("7. Hiển thị theo loại (Toàn thời gian/Bán thời gian)");
         System.out.println("8. Thống kê số lượng nhân viên");
         System.out.println("0. Quay lại");
     }
@@ -85,17 +86,28 @@ public class EmployeeMenu {
     }
 
     private void displayByType() {
+
+        System.out.println();
+        System.out.println("========== LOẠI NHÂN VIÊN ==========");
         System.out.println("1. Nhân viên toàn thời gian");
         System.out.println("2. Nhân viên bán thời gian");
+
         int type = Input.readIntInRange("Chọn: ", 1, 2);
+
+        System.out.println();
+
         if (type == 1) {
-            System.out.println("--------Full Time----------");
+
+            System.out.println("========================== NHÂN VIÊN TOÀN THỜI GIAN ==========================");
+
             employeeList.displayFullTimeEmployee();
+
         } else {
-            System.out.println("--------Part Time----------");
+
+            System.out.println("========================== NHÂN VIÊN BÁN THỜI GIAN ==========================");
+
             employeeList.displayPartTimeEmployee();
         }
-
     }
 
     private void addEmployee() {
@@ -106,7 +118,7 @@ public class EmployeeMenu {
             case 1:
                 System.out.print("Nhập họ và tên: ");
                 String name = sc.nextLine();
-                String phone = null ;
+                String phone = null;
                 phone = checkPhone(phone);
                 Gender gender1 = null;
                 try {
@@ -121,8 +133,8 @@ public class EmployeeMenu {
                     System.out.println("Nhập ví trị làm việc: ");
                     PositionMenu();
                     int choice1 = Input.readIntInRange("Chọn:", 1, 7);
-                    
-                    switch(choice1){
+
+                    switch (choice1) {
                         case 1:
                             position = Position.MANAGER;
                             break;
@@ -151,15 +163,17 @@ public class EmployeeMenu {
                 } catch (Exception e) {
                     System.out.println("Nhập vị trí không hợp lệ.");
                 }
-                System.out.print("Nhập trạng thái làm việc(Onl<true> | OFF<false>) :");
+                System.out.print("Nhập trạng thái làm việc(Bật<true> | Tắt<false>) :");
                 boolean status = sc.nextBoolean();
                 String employeeID = IDGenerator.generateEmployeeID();
                 Employee e = new PartTimeEmployee(employeeID, name, phone, gender1, position, status);
 
                 employeeList.addEmployee(e);
+                employeeList.saveToFile(FILE_PATH);
+                System.out.println("Thêm nhân viên thành công!");
                 break;
             case 2:
-                
+
                 System.out.print("Nhập họ và tên: ");
                 String name2 = sc.nextLine();
                 String phone2 = null;
@@ -177,8 +191,8 @@ public class EmployeeMenu {
                     System.out.println("Nhập ví trị làm việc: ");
                     PositionMenu();
                     int choice1 = Input.readIntInRange("Chọn:", 1, 7);
-                    
-                    switch(choice1){
+
+                    switch (choice1) {
                         case 1:
                             position2 = Position.MANAGER;
                             break;
@@ -204,16 +218,18 @@ public class EmployeeMenu {
                             System.out.println("Giá trị nhập không hợp lệ.");
                             break;
                     }
-                   
+
                 } catch (Exception e1) {
                     System.out.println("Nhập vị trí không hợp lệ.");
                 }
-                System.out.print("Nhập trạng thái làm việc(Onl<true> | OFF<false>) :");
+                System.out.print("Nhập trạng thái làm việc(Bật<true> | Tắt<false>) :");
                 boolean status2 = sc.nextBoolean();
                 String employeeID2 = IDGenerator.generateEmployeeID();
                 Employee e2 = new FullTimeEmployee(employeeID2, name2, phone2, gender2, position2, status2);
 
                 employeeList.addEmployee(e2);
+                employeeList.saveToFile(FILE_PATH);
+                System.out.println("Thêm nhân viên thành công!");
                 break;
             default:
                 System.out.println("Nhập không hợp lệ.");
@@ -221,11 +237,12 @@ public class EmployeeMenu {
         }
 
     }
-    private void PositionMenu(){
+
+    private void PositionMenu() {
         System.out.println("====== Vị trí làm việc =========");
-        System.out.println("1.Quản lí cửa hàng\n2.Nghệ nhân pa trà(tea master)"
+        System.out.println("1.Quản lí cửa hàng\n2.Nghệ nhân pha trà(tea master)"
                 + "\n3.Trà nương\n4.Trà nô\n5.Nhân viên bán hàng\n6.Thu ngân\n7.Nhân viên kho hàng");
-            
+
     }
 
     private void removeEmployee() {
@@ -236,11 +253,15 @@ public class EmployeeMenu {
                 System.out.print("Nhập ID của nhân viên: ");
                 String id = sc.nextLine();
                 employeeList.removeByID(id);
+                employeeList.saveToFile(FILE_PATH);
+                System.out.println("Xóa thành công!");
                 break;
             case 2:
                 String phone = null;
                 phone = checkPhone(phone);
                 employeeList.removeByPhone(phone);
+                employeeList.saveToFile(FILE_PATH);
+                System.out.println("Xóa thành công!");
                 break;
             default:
                 System.out.println("Nhập không hợp lệ.");
@@ -272,47 +293,49 @@ public class EmployeeMenu {
         try {
             System.out.println("Nhập ví trị làm việc: ");
             PositionMenu();
-                    int choice1 = Input.readIntInRange("Chọn:", 1, 7);
-                    
-                    switch(choice1){
-                        case 1:
-                            position = Position.MANAGER;
-                            break;
-                        case 2:
-                            position = Position.TEA_MASTER;
-                            break;
-                        case 3:
-                            position = Position.TEA_LADY;
-                            break;
-                        case 4:
-                            position = Position.TEA_ASSISTANT;
-                            break;
-                        case 5:
-                            position = Position.SALES_STAFF;
-                            break;
-                        case 6:
-                            position = Position.CASHIER;
-                            break;
-                        case 7:
-                            position = Position.WAREHOUSE_STAFF;
-                            break;
-                        default:
-                            System.out.println("Giá trị nhập không hợp lệ.");
-                            break;
-                    }
+            int choice1 = Input.readIntInRange("Chọn:", 1, 7);
+
+            switch (choice1) {
+                case 1:
+                    position = Position.MANAGER;
+                    break;
+                case 2:
+                    position = Position.TEA_MASTER;
+                    break;
+                case 3:
+                    position = Position.TEA_LADY;
+                    break;
+                case 4:
+                    position = Position.TEA_ASSISTANT;
+                    break;
+                case 5:
+                    position = Position.SALES_STAFF;
+                    break;
+                case 6:
+                    position = Position.CASHIER;
+                    break;
+                case 7:
+                    position = Position.WAREHOUSE_STAFF;
+                    break;
+                default:
+                    System.out.println("Giá trị nhập không hợp lệ.");
+                    break;
+            }
         } catch (Exception e) {
             System.out.println("Nhập vị trí không hợp lệ.");
         }
-        System.out.print("Nhập trạng thái làm việc(Onl<true> | OFF<false>) :");
+        System.out.print("Nhập trạng thái làm việc(Bật<true> | Tắt<false>) :");
         boolean status = sc.nextBoolean();
-        employeeList.updateEmployee(phone, name, phone, gender1, position, status);
+        employeeList.updateEmployee(id, name, phone, gender1, position, status);
+        employeeList.saveToFile(FILE_PATH);
+        System.out.println("Cập nhật thành công!");
     }
 
     private void searchByID() {
         System.out.print("Nhập ID của nhân viên cần cập nhập thông tin: ");
         String id = sc.nextLine();
         Employee e = employeeList.searchByID(id);
-        System.out.println("-------Search--------");
+        System.out.println("-------Tìm kiếm--------");
         System.out.println(e);
     }
 
@@ -320,7 +343,7 @@ public class EmployeeMenu {
         System.out.print("Nhập họ và tên: ");
         String name = sc.nextLine();
         ArrayList<Employee> list = employeeList.searchByName(name);
-        System.out.println("-------Search--------");
+        System.out.println("-------Tìm kiếm--------");
         for (Employee e : list) {
             System.out.println(e);
         }

@@ -13,6 +13,9 @@ import java.util.Scanner;
 
 public class SaleMenu {
 
+    private static final String INVOICE_FILE = "Data/invoice.txt";
+    private static final String CUSTOMER_FILE = "Data/customer.txt";
+    private static final String PRODUCT_FILE  = "Data/product.txt";
     private SaleService saleService;
     private Scanner scanner;
 
@@ -45,8 +48,6 @@ public class SaleMenu {
                 case 1:
                     System.out.print("Nhập Product ID của sản phẩm: ");
                     String productID = scanner.nextLine();
-                    System.out.print("Nhập tên sản phẩm: ");
-                    String name = scanner.nextLine();
                     System.out.print("Nhập số lượng sản phẩm: ");
                     int quantity = scanner.nextInt();
 
@@ -74,7 +75,8 @@ public class SaleMenu {
                     break;
                 case 6:
                     saleService.cancelInvoice(invoice);
-                    System.out.println("Đã hủy hóa đơn.");
+                    System.out.println("Dã hủy hóa đơn.");
+                    saleService.getInvoiceList().saveToFile(INVOICE_FILE);
                     finished = true;
                     break;
                 case 0:
@@ -125,6 +127,9 @@ public class SaleMenu {
         if (success) {
             System.out.println("Thanh toán thành công!");
             invoice.displayInvoice();
+            saleService.getInvoiceList().saveToFile(INVOICE_FILE);
+            saleService.getCustomerList().saveToFile(CUSTOMER_FILE);
+            saleService.getInventory().saveToFile(PRODUCT_FILE);
         } else {
             System.out.println("Thanh toán thất bại (hóa đơn trống hoặc bị hủy).");
         }

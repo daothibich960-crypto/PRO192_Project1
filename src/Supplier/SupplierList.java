@@ -1,5 +1,6 @@
 package Supplier;
 
+import FileIO.FileIO;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -13,227 +14,119 @@ public class SupplierList {
     private List<Supplier> list;
 
     public SupplierList() {
-
         list = new ArrayList<>();
-
     }
-
 
     // Thêm nhà cung cấp
-
     public void addSupplier(Supplier supplier) {
-
         if (containsSupplier(supplier.getSupplierId())) {
-
-            System.out.println("Supplier ID already exists!");
+            System.out.println("Mã nhà cung cấp đã tồn tại!");
             return;
-
         }
-
         list.add(supplier);
-
-        System.out.println("Add supplier successfully.");
-
+        System.out.println("Thêm nhà cung cấp thành công.");
     }
-
 
     // Xóa
-
     public void removeSupplier(String supplierId) {
-
         Supplier supplier = searchSupplier(supplierId);
-
         if (supplier == null) {
-
-            System.out.println("Supplier not found.");
+            System.out.println("Không tìm thấy nhà cung cấp.");
             return;
-
         }
-
         list.remove(supplier);
-
-        System.out.println("Delete successfully.");
-
+        System.out.println("Xóa thành công.");
     }
-
 
     // Tìm theo ID
-
     public Supplier searchSupplier(String supplierId) {
-
         if (!list.isEmpty()) {
-
             for (Supplier supplier : list) {
-
                 if (supplier.getSupplierId().equalsIgnoreCase(supplierId)) {
-
                     return supplier;
-
                 }
-
             }
-
         }
-
         return null;
-
     }
-
 
     // Kiểm tra tồn tại
-
     public boolean containsSupplier(String supplierId) {
-
         return searchSupplier(supplierId) != null;
-
     }
-
 
     // Hiển thị
- 
     public void displayAllSupplier() {
-
         if (list.isEmpty()) {
-
-            System.out.println("Supplier list is empty.");
+            System.out.println("Danh sách nhà cung cấp đang trống.");
             return;
-
         }
-
         System.out.println("===============================================================");
-        System.out.printf("%-10s %-25s %-15s %-30s %-25s\n",
-                "ID",
-                "NAME",
-                "PHONE",
+        System.out.printf("%-10s %-40s %-15s %-30s %-25s\n",
+                "MÃ",
+                "TÊN",
+                "SỐ ĐIỆN THOẠI",
                 "EMAIL",
-                "ADDRESS");
+                "ĐỊA CHỈ");
         System.out.println("===============================================================");
-
         for (Supplier supplier : list) {
-
             supplier.displaySupplier();
-
         }
-
     }
 
-    
     // Cập nhật
-    
     public void updateSupplier(String supplierId,
             String supplierName,
             String phone,
             String email,
             String address) {
-
         Supplier supplier = searchSupplier(supplierId);
-
         if (supplier == null) {
-
-            System.out.println("Supplier not found.");
+            System.out.println("Không tìm thấy nhà cung cấp.");
             return;
-
         }
-
         supplier.setSupplierName(supplierName);
         supplier.setPhone(phone);
         supplier.setEmail(email);
         supplier.setAddress(address);
-
-        System.out.println("Update successfully.");
-
+        System.out.println("Cập nhật thành công.");
     }
 
-    
     // Đếm số lượng
-   
     public int getTotalSupplier() {
-
         return list.size();
-
     }
 
-   
     // Xóa toàn bộ
-    
     public void clear() {
-
         list.clear();
-
     }
 
- 
     // Lấy danh sách
-    
     public List<Supplier> getList() {
-
         return list;
-
     }
+
     // Đọc dữ liệu từ file
-public void loadFromFile() {
-
-    list.clear();
-
-    try {
-
-        BufferedReader br = new BufferedReader(new FileReader("Data/supplier.txt"));
-
-        String line;
-
-        while ((line = br.readLine()) != null) {
-
-            String[] data = line.split("\\|");
-
-            Supplier supplier = new Supplier(
-                    data[0],
-                    data[1],
-                    data[2],
-                    data[3],
-                    data[4]);
-
-            list.add(supplier);
-
-        }
-
-        br.close();
-
-        System.out.println("Load supplier successfully.");
-
-    } catch (IOException e) {
-
-        System.out.println("Cannot read supplier.txt");
-
+    public void loadFromFile(String filePath) {
+        list.clear();
+        List<Supplier> loaded = FileIO.readFile(filePath, fields -> new Supplier(
+                fields[0].trim(), // supplierId
+                fields[1].trim(), // supplierName
+                fields[2].trim(), // phone
+                fields[3].trim(), // email
+                fields[4].trim() // address
+        ));
+        list.addAll(loaded);
     }
 
-}// Lưu dữ liệu xuống file
-public void saveToFile() {
-
-    try {
-
-        PrintWriter pw = new PrintWriter(new FileWriter("Data/supplier.txt"));
-
-        for (Supplier supplier : list) {
-
-            pw.println(
-                    supplier.getSupplierId() + "|"
-                    + supplier.getSupplierName() + "|"
-                    + supplier.getPhone() + "|"
-                    + supplier.getEmail() + "|"
-                    + supplier.getAddress());
-
-        }
-
-        pw.close();
-
-        System.out.println("Save supplier successfully.");
-
-    } catch (IOException e) {
-
-        System.out.println("Cannot save supplier.txt");
-
+    public void saveToFile(String filePath) {
+        FileIO.writeFile(filePath, list, s
+                -> s.getSupplierId() + "|"
+                + s.getSupplierName() + "|"
+                + s.getPhone() + "|"
+                + s.getEmail() + "|"
+                + s.getAddress()
+        );
     }
-
-}
-
 }

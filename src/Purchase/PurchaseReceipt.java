@@ -1,6 +1,7 @@
 package Purchase;
 
 import Supplier.Supplier;
+import Utils.Formatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,17 +20,14 @@ public class PurchaseReceipt {
     public PurchaseReceipt(String receiptId,
             Date importDate,
             Supplier supplier) {
-
         this.receiptId = receiptId;
         this.importDate = importDate;
         this.supplier = supplier;
         this.detailList = new ArrayList<>();
         this.totalAmount = 0;
-
     }
 
     //================ Getter & Setter =================
-
     public String getReceiptId() {
         return receiptId;
     }
@@ -64,89 +62,57 @@ public class PurchaseReceipt {
     }
 
     //================ Business Method =================
-
     // Thêm sản phẩm vào phiếu nhập
     public void addDetail(PurchaseDetail detail) {
-
         detailList.add(detail);
-
         calculateTotal();
-
     }
 
     // Xóa sản phẩm khỏi phiếu nhập
     public void removeDetail(PurchaseDetail detail) {
-
         detailList.remove(detail);
-
         calculateTotal();
-
     }
 
     // Tính tổng tiền
     public void calculateTotal() {
-
         totalAmount = 0;
-
         for (PurchaseDetail detail : detailList) {
-
             totalAmount += detail.getSubTotal();
-
         }
-
     }
 
     // Hiển thị phiếu nhập
     public void displayReceipt() {
-
         System.out.println("==============================================================");
-        System.out.println("PURCHASE RECEIPT");
+        System.out.println("PHIẾU NHẬP HÀNG");
         System.out.println("==============================================================");
-
-        System.out.println("Receipt ID : " + receiptId);
-        System.out.println("Import Date: " + importDate);
-
-        if (supplier != null) {
-
-            System.out.println("Supplier   : "
-                    + supplier.getSupplierName());
-
-        }
-
+        System.out.println("Mã phiếu    : " + receiptId);
+        System.out.println("Ngày nhập   : " + importDate);
+        System.out.println("Nhà cung cấp: "
+                + (supplier != null ? supplier.getSupplierName() : "Không có"));
         System.out.println("--------------------------------------------------------------");
-
         System.out.printf("%-12s %-25s %-10s %-15s %-15s\n",
-                "ID",
-                "Product",
-                "Quantity",
-                "Import Price",
-                "Sub Total");
-
+                "MÃ",
+                "SẢN PHẨM",
+                "SỐ LƯỢNG",
+                "GIÁ NHẬP",
+                "THÀNH TIỀN");
         for (PurchaseDetail detail : detailList) {
-
             detail.displayDetail();
-
         }
-
         System.out.println("--------------------------------------------------------------");
-
         calculateTotal();
-
-        System.out.printf("TOTAL AMOUNT : %.2f\n", totalAmount);
-
+        System.out.printf("TỔNG TIỀN : %.2s\n", Formatter.currency(totalAmount));
     }
 
     @Override
     public String toString() {
-
-        return "Receipt ID: " + receiptId
-                + ", Import Date: " + importDate
-                + ", Supplier: "
-                + supplier.getSupplierName()
-                + ", Total: "
-                + totalAmount;
-
+        return "Mã phiếu: " + receiptId
+                + ", Ngày nhập: " + importDate
+                + ", Nhà cung cấp: "
+                + (supplier != null ? supplier.getSupplierName() : "Không có")
+                + ", Tổng tiền: "
+                + Formatter.currency(totalAmount);
     }
 }
-
-    

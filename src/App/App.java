@@ -1,13 +1,12 @@
+package App;
+
+import Customer.Customer;
+import Employee.Employee;
 import Inventory.Inventory;
+import Invoice.Invoice;
 import List.CustomerList;
 import List.EmployeeList;
 import List.InvoiceList;
-import Service.MemberShipService;
-import Service.SaleService;
-import Service.StatisticService;
-import Supplier.SupplierList;
-import Utils.Input;
-import java.util.Scanner;
 import Menu.CustomerMenu;
 import Menu.EmployeeMenu;
 import Menu.ProductMenu;
@@ -15,6 +14,15 @@ import Menu.PurchaseMenu;
 import Menu.SaleMenu;
 import Menu.StatisticMenu;
 import Menu.SupplierMenu;
+import Service.MemberShipService;
+import Service.SaleService;
+import Service.StatisticService;
+import Supplier.SupplierList;
+import Utils.IDGenerator;
+import Utils.Input;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class App {
 
@@ -38,12 +46,15 @@ public class App {
 
         customerList = new CustomerList();
         customerList.loadFromFile("Data/customer.txt");
+        initCustomerCounter();
 
         employeeList = new EmployeeList();
         employeeList.loadFromFile("Data/employee.txt");
+        initEmployeeCounter();
 
         invoiceList = new InvoiceList();
         invoiceList.loadFromFile("Data/invoice.txt");
+        initInvoiceCounter();
 
         this.memberShipService = new MemberShipService(customerList);
         this.saleService = new SaleService(invoiceList, customerList, inventory, memberShipService);
@@ -64,6 +75,7 @@ public class App {
     }
 
     public void run() {
+
         boolean running = true;
         while (running) {
             printMenu();
@@ -126,6 +138,39 @@ public class App {
         customerList.saveToFile("Data/customer.txt");
         employeeList.saveToFile("Data/employee.txt");
         invoiceList.saveToFile("Data/invoice.txt");
+    }
+
+    private void initInvoiceCounter() {
+        int max = 0;
+        for (Invoice inv : invoiceList.getList()) {
+            int num = IDGenerator.extractNumber(inv.getInvoiceID());
+            if (num > max) {
+                max = num;
+            }
+        }
+        IDGenerator.initInvoiceCounter(max);
+    }
+
+    private void initEmployeeCounter() {
+        int max = 0;
+        for (Employee e : employeeList.getList()) {
+            int num = IDGenerator.extractNumber(e.getEmployeeID());
+            if (num > max) {
+                max = num;
+            }
+        }
+        IDGenerator.initEmployeeCounter(max);
+    }
+
+    private void initCustomerCounter() {
+        int max = 0;
+        for (Customer c : customerList.getList()) {
+            int num = IDGenerator.extractNumber(c.getCustomerID()); // đổi tên getter đúng với Customer.java của bạn
+            if (num > max) {
+                max = num;
+            }
+        }
+        IDGenerator.initCustomerCounter(max);
     }
 
 }

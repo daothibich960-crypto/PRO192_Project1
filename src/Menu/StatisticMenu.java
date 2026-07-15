@@ -5,7 +5,9 @@ import Customer.Customer;
 import Employee.Employee;
 import Product.Product;
 import Service.StatisticService;
+import Utils.Formatter;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,7 +61,7 @@ public class StatisticMenu {
         LocalDate date = readDate("Nhập ngày (yyyy-MM-dd): ");
         double revenue = statisticService.getRevenueByDate(date);
         int count = statisticService.getTotalInvoiceByDate(date);
-        System.out.println("Doanh thu ngày " + date + ": " + revenue + "VND (" + count + " hóa đơn)");
+        System.out.println("Doanh thu ngày " + date + ": " + Formatter.currency(revenue) + "VND (" + count + " hóa đơn)");
     }
 
     private void revenueByMonth() {
@@ -70,14 +72,14 @@ public class StatisticMenu {
 
         double revenue = statisticService.getRevenueByMonth(month, year);
         int count = statisticService.getTotalInvoiceByMonth(month, year);
-        System.out.println("Doanh thu tháng " + month + "/" + year + ": " + revenue + "đ (" + count + " hóa đơn)");
+        System.out.println("Doanh thu tháng " + month + "/" + year + ": " +Formatter.currency(revenue) + "đ (" + count + " hóa đơn)");
     }
 
     private void revenueBetween() {
         LocalDate from = readDate("Từ ngày (yyyy-MM-dd): ");
         LocalDate to = readDate("Đến ngày (yyyy-MM-dd): ");
         double revenue = statisticService.getRevenueBetween(from, to);
-        System.out.println("Doanh thu từ " + from + " đến " + to + ": " + revenue + "đ");
+        System.out.println("Doanh thu từ " + from + " đến " + to + ": " + Formatter.currency(revenue) + "đ");
     }
 
     private void topCustormers() {
@@ -91,47 +93,125 @@ public class StatisticMenu {
         }
     }
 
-    private void topEmployees() {
-        System.out.print("Xem top bao nhiêu nhân viên: ");
-        int top = Integer.parseInt(scanner.nextLine());
+ private void topEmployees() {
 
-        ArrayList<Employee> list = statisticService.getTopEmployee(top);
-        int i = 1;
-        for (Employee e : list) {
-            double revenue = statisticService.getRevenueEmployee(e.getEmployeeID());
-            System.out.println((i++) + ". " + e.toString() + " - Doanh thu: " + revenue);
-        }
+    System.out.print("Xem top bao nhiêu nhân viên: ");
+    int top = Integer.parseInt(scanner.nextLine());
+
+    ArrayList<Employee> list = statisticService.getTopEmployee(top);
+
+    if (list.isEmpty()) {
+        System.out.println("Không có dữ liệu!");
+        return;
     }
 
-    private void topSellingProducts() {
-        System.out.print("Xem top bao nhiêu sản phẩm: ");
-        int top = Integer.parseInt(scanner.nextLine());
+    System.out.println("\n===================================== TOP NHÂN VIÊN =====================================");
+    System.out.printf("%-5s %-8s %-22s %-18s %-10s %-18s%n",
+            "Top", "ID", "Tên nhân viên", "Chức vụ", "Hóa đơn", "Doanh thu");
+    System.out.println("------------------------------------------------------------------------------------------");
 
-        ArrayList<Product> list = statisticService.getTopSellingProduct(top);
-        int i = 1;
-        for (Product p : list) {
-            int sold = statisticService.getSoldQuantity(p.getProductId());
-            System.out.println((i++) + ". " + p.toString() + " - Đã bán: " + sold);
-        }
+    int rank = 1;
+
+    for (Employee e : list) {
+
+        int invoiceCount = statisticService.getInvoiceCountEmployee(e.getEmployeeID());
+        double revenue = statisticService.getRevenueEmployee(e.getEmployeeID());
+
+        System.out.printf("%-5d %-8s %-22s %-18s %-10d %-18s%n",
+                rank++,
+                e.getEmployeeID(),
+                e.getFullName(),
+                e.getPosition(),
+                invoiceCount,
+                Formatter.currency(revenue));
     }
 
-    private void leastSellingProducts() {
-        System.out.print("Xem bao nhiêu sản phẩm bán chậm nhất: ");
-        int top = Integer.parseInt(scanner.nextLine());
+    System.out.println("==========================================================================================");
+}
+private void topSellingProducts() {
 
-        ArrayList<Product> list = statisticService.getLeastSellingProduct(top);
-        int i = 1;
-        for (Product p : list) {
-            int sold = statisticService.getSoldQuantity(p.getProductId());
-            System.out.println((i++) + ". " + p.toString() + " - Đã bán: " + sold);
-        }
+    System.out.print("Xem top bao nhiêu sản phẩm: ");
+    int top = Integer.parseInt(scanner.nextLine());
+
+    ArrayList<Product> list = statisticService.getTopSellingProduct(top);
+
+    if (list.isEmpty()) {
+        System.out.println("Không có dữ liệu!");
+        return;
     }
 
+    System.out.println("\n====================================== TOP SẢN PHẨM BÁN CHẠY ======================================");
+    System.out.printf("%-5s %-10s %-30s %-15s %-12s %-15s%n",
+            "Top", "ID", "Tên sản phẩm", "Đơn giá", "Đã bán", "Tồn kho");
+    System.out.println("---------------------------------------------------------------------------------------------------");
+
+    int rank = 1;
+
+    for (Product p : list) {
+
+        int sold = statisticService.getSoldQuantity(p.getProductId());
+
+        System.out.printf("%-5d %-10s %-30s %-15s %-12d %-15d%n",
+                rank++,
+                p.getProductId(),
+                p.getProductName(),
+                Formatter.currency(p.getSellingPrice()),
+                sold,
+                p.getStockQuantity());
+    }
+
+    System.out.println("===================================================================================================");
+}
+private void leastSellingProducts() {
+
+    System.out.print("Xem bao nhiêu sản phẩm bán chậm nhất: ");
+    int top = Integer.parseInt(scanner.nextLine());
+
+    ArrayList<Product> list = statisticService.getLeastSellingProduct(top);
+
+    if (list.isEmpty()) {
+        System.out.println("Không có dữ liệu!");
+        return;
+    }
+
+    System.out.println("\n=================================== SẢN PHẨM BÁN CHẬM NHẤT ===================================");
+    System.out.printf("%-5s %-10s %-30s %-15s %-12s %-15s%n",
+            "Top", "ID", "Tên sản phẩm", "Đơn giá", "Đã bán", "Tồn kho");
+    System.out.println("-----------------------------------------------------------------------------------------------");
+
+    int rank = 1;
+
+    for (Product p : list) {
+
+        int sold = statisticService.getSoldQuantity(p.getProductId());
+
+        System.out.printf("%-5d %-10s %-30s %-15s %-12d %-15d%n",
+                rank++,
+                p.getProductId(),
+                p.getProductName(),
+                Formatter.currency(p.getSellingPrice()),
+                sold,
+                p.getStockQuantity());
+    }
+
+    System.out.println("===============================================================================================");
+}
+  
     // Hàm hỗ trợ đọc ngày, tránh lặp code ở nhiều chỗ
     private LocalDate readDate(String prompt) {
-        System.out.print(prompt);
-        String input = scanner.nextLine();
-        return LocalDate.parse(input); // định dạng yyyy-MM-dd
+    while (true) {
+        try {
+            System.out.print(prompt);
+            String input = scanner.nextLine().trim();
+
+            return LocalDate.parse(input); // Định dạng mặc định: yyyy-MM-dd
+
+        } catch (DateTimeParseException e) {
+            System.out.println("❌ Ngày không hợp lệ!");
+            System.out.println("Vui lòng nhập theo định dạng: yyyy-MM-dd");
+            System.out.println("Ví dụ: 2026-07-15\n");
+        }
     }
+}
     
 }

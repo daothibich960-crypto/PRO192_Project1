@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class CustomerMenu {
 
+    private static final String FILE_PATH = "Data/customer.txt";
     private CustomerList customerList;
     private Scanner scanner;
 
@@ -81,6 +82,7 @@ public class CustomerMenu {
         String custormerID = IDGenerator.generateCustomerID();
         Customer customer = new Customer(custormerID,fullName, phone, address);
         customerList.addCustomer(customer);
+        customerList.saveToFile(FILE_PATH);
         System.out.println("Thêm khách hàng thành công!");
     }
 
@@ -104,6 +106,7 @@ public class CustomerMenu {
             return;
         }
         customerList.removeCustomer(phone);
+        customerList.saveToFile(FILE_PATH);
         System.out.println("Xóa thành công!");
     }
 
@@ -123,20 +126,19 @@ public class CustomerMenu {
         String address = scanner.nextLine();
 
         customerList.updateCustomer(fullName, phone, address);
+        customerList.saveToFile(FILE_PATH);
         System.out.println("Cập nhật thành công!");
     }
 
     private void searchByPhone() {
-        System.out.print("Nhập số điện thoại: ");
         String phone =null;
         phone =  checkPhone(phone);
 
         Customer c = customerList.searchByPhone(phone);
         if (c == null) {
             System.out.println("Không tìm thấy khách hàng!");
-        } else {
-            System.out.println(c.toString());
-        }
+        } 
+        System.out.println(c.toString());
     }
 
     private void searchByName() {

@@ -79,7 +79,7 @@ public class SaleService {
 
     }
     public void addProduct(Invoice invoice, String productID, int quantity) {
-    Product product = inventory.searchProduct(productID);
+    Product product = inventory.searchProduct(productID.toUpperCase());
     if (product == null) {
         System.out.println("Sản phẩm không tồn tại trong kho!");
         return;
@@ -107,4 +107,9 @@ public void updateQuantity(Invoice invoice, String productID, int quantity) {
         invoice.updateDesceaseQuantity(productID, Math.abs(quantity));
     }
 }
+
+    public InvoiceList getInvoiceList() { return invoiceList; }
+    public CustomerList getCustomerList() { return customerList; }
+    public Inventory getInventory() { return inventory; }
 }
+

@@ -7,6 +7,7 @@ import java.io.*;
 import java.lang.*;
 import java.util.Scanner;
 import Supplier.Supplier;
+import Utils.Formatter;
 
 /**
  * Abstract class Product
@@ -267,14 +268,26 @@ public abstract class Product {
 
         return builder.toString();
     }
+
     public String displayReport() {
 
         StringBuilder builder = new StringBuilder();
 
         builder.append("Product ID      : ").append(productId).append("\n");
         builder.append("Product Name    : ").append(productName).append("\n");
-        
+
         return builder.toString();
     }
 
+    public void displaySummary() {
+        System.out.printf(
+                "%-8s %-25s %-12s %-10s %-12s %-8d%n",
+                productId,
+                productName,
+                Formatter.currency(sellingPrice),
+                unit,
+                status,
+                stockQuantity
+        );
+    }
 }

@@ -1,6 +1,9 @@
 package List;
 
 import Customer.Customer;
+import FileIO.FileIO;
+import Utils.DateUtil;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +14,7 @@ public class CustomerList {
 
     public CustomerList() {
         list = new ArrayList<>();
-        
+
     }
 
     public List<Customer> getList() {
@@ -22,7 +25,6 @@ public class CustomerList {
         this.list = list;
     }
 
-    
     public void addCustomer(Customer customer) {
         for (Customer c : list) {
             if (c.getPhone().equals(customer.getPhone())) {
@@ -66,19 +68,10 @@ public class CustomerList {
         return false;
     }
 
-    public void displayAllCustomer() {
-        if (list.isEmpty()) {
-            return;
-        }
-        for (Customer c : list) {
-            System.out.println(c);
-        }
-    }
-
     public Customer searchByPhone(String phone) {
         if (!list.isEmpty()) {
             for (Customer c : list) {
-                if (c.getPhone().equals(phone)) {
+                if (c.getPhone().equalsIgnoreCase(phone.trim())) {
                     return c;
                 }
             }
@@ -108,7 +101,7 @@ public class CustomerList {
                 double point1 = c.getPoint() + point;
                 c.setPoint(point1);
                 return;
-            } 
+            }
         }
     }
 
@@ -126,24 +119,82 @@ public class CustomerList {
                     c.setPoint(point1);
                 }
                 return;
-            } 
+            }
         }
     }
-    public long getToatlCustomer(){
+
+    public long getToatlCustomer() {
         long count = list.size();
         return count;
     }
-    public void clear(){
+
+    public void clear() {
         list.clear();
     }
-    
-    public boolean updateCustomer (String name, String phone, String address){
-        if (list.isEmpty()) return false;
+
+    public boolean updateCustomer(String name, String phone, String address) {
+        if (list.isEmpty()) {
+            return false;
+        }
         Customer c = getCustomer(phone);
-        if (c == null) return false;
+        if (c == null) {
+            return false;
+        }
         c.setAddress(address);
         c.setFullName(name);
         return true;
     }
+// đọc file .txt dự liệu 
+    public void loadFromFile(String filePath) {
+        list.clear();
+        List<Customer> loaded = FileIO.readFile(filePath, fields -> {
+            Customer c = new Customer(
+                    fields[0].trim(), // customerID
+                    fields[1].trim(), // fullName
+                    fields[2].trim(), // phone
+                    fields[3].trim() // address
+            );
+            c.setPoint(Double.parseDouble(fields[4].trim()));
+            c.setCreateDate(DateUtil.parse(fields[5].trim()));
+            return c;
+        });
+        list.addAll(loaded);
+    }
+// lưu dữ liệu vào file .txt 
+    public void saveToFile(String filePath) {
+        FileIO.writeFile(filePath, list, c
+                -> c.getCustomerID() + "|"
+                + c.getFullName() + "|"
+                + c.getPhone() + "|"
+                + c.getAddress() + "|"
+                + c.getPoint() + "|"
+                + DateUtil.format(c.getCreateDate())
+        );
+    }
+    public void displayAllCustomer() {
 
+    if (list.isEmpty()) {
+        System.out.println("Danh sách khách hàng trống!");
+        return;
+    }
+
+    System.out.println("========================================================================================");
+    System.out.printf("%-8s %-25s %-15s %-30s %-12s %-15s%n",
+            "ID", "Name", "Phone", "Address", "Point", "Create Date");
+    System.out.println("========================================================================================");
+
+    for (Customer c : list) {
+        System.out.printf("%-8s %-25s %-15s %-30s %-12.0f %-15s%n",
+                c.getCustomerID(),
+                c.getFullName(),
+                c.getPhone(),
+                c.getAddress(),
+                c.getPoint(),
+                c.getCreateDate());
+    }
+
+    System.out.println("========================================================================================");
+    System.out.println("Tổng số khách hàng: " + list.size());
+}
+    
 }
