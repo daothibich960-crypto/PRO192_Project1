@@ -2,6 +2,7 @@
 package Purchase;
 
 import Product.Product;
+import Utils.Formatter;
 
 public class PurchaseDetail {
 
@@ -64,8 +65,8 @@ public class PurchaseDetail {
                 product.getProductId(),
                 product.getProductName(),
                 quantity,
-                importPrice,
-                subTotal);
+                Formatter.currency(importPrice),
+                Formatter.currency(subTotal));
 
     }
 
@@ -76,8 +77,8 @@ public class PurchaseDetail {
                 product.getProductId(),
                 product.getProductName(),
                 quantity,
-                importPrice,
-                subTotal);
+                Formatter.currency(importPrice),
+                Formatter.currency(subTotal));
 
     }
 

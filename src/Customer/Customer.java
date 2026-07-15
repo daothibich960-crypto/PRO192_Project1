@@ -26,7 +26,6 @@ public class Customer {
         this.createDate = LocalDate.now();
     }
 
-    
     public Customer(String customerID, String fullName, String phone, String address) {
         this.customerID = customerID;
         this.fullName = fullName;
@@ -82,8 +81,14 @@ public class Customer {
 
     @Override
     public String toString() {
-        return fullName + ", " + Formatter.phone(phone) + ", " + address
-                + ", " + point + ", " + DateUtil.format(createDate);
+        return String.format(
+                "%-8s | %-22s | %-13s | %-20s | %6.0f điểm | %s",
+                customerID,
+                fullName,
+                Formatter.phone(phone),
+                address,
+                point,
+                DateUtil.format(createDate)
+        );
     }
-
 }

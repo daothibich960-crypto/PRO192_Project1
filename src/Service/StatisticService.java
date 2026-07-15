@@ -9,6 +9,7 @@ import List.CustomerList;
 import List.EmployeeList;
 import List.InvoiceList;
 import Product.Product;
+import Utils.Formatter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -249,14 +250,14 @@ public class StatisticService {
         for (Invoice inv : invoiceList.getList()) {
             total += inv.getTotalAmount();
         }
-        System.out.println("Tổng doanh thu: " + total);
+        System.out.println("Tổng doanh thu: " + Formatter.currency(total));
     }
 
     public void printEmployeeReport() {
         System.out.println("===== BÁO CÁO NHÂN VIÊN =====");
         for (Employee e : employeeList.getList()) {
             System.out.println(e.getEmployeeID() + " - Doanh thu: "
-                    + getRevenueEmployee(e.getEmployeeID())
+                    + Formatter.currency(getRevenueEmployee(e.getEmployeeID()))
                     + " - Số hóa đơn: " + getInvoiceCountEmployee(e.getEmployeeID()));
         }
     }

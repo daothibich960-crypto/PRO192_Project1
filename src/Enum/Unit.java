@@ -26,4 +26,12 @@ public enum Unit {
         return symbol;
     }
 
+    public static Unit fromString(String text) {
+        for (Unit u : Unit.values()) {
+            if (u.name().equalsIgnoreCase(text) || u.symbol.equalsIgnoreCase(text)) {
+                return u;
+            }
+        }
+        throw new IllegalArgumentException("Unknown unit: " + text);
+    }
 }

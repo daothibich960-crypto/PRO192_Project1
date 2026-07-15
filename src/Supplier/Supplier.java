@@ -68,7 +68,7 @@ public class Supplier {
 
     public void displaySupplier() {
 
-        System.out.printf("%-10s %-25s %-15s %-30s %-25s\n",
+        System.out.printf("%-10s %-40s %-15s %-30s %-25s\n",
                 supplierId,
                 supplierName,
                 phone,

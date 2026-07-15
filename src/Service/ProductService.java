@@ -41,12 +41,18 @@ public class ProductService {
             return;
 
         }
+        System.out.println("=================================================================================================");
+        System.out.printf("%-8s %-25s %-12s %-10s %-12s %-8s%n",
+                "ID", "Product Name", "Price", "Unit", "Status", "Stock");
+        System.out.println("=================================================================================================");
 
-        for (Product product : inventory.getProducts()) {
-
-            System.out.println(product);
-
+        for (Product p : inventory.getProducts()) {
+            p.displaySummary();
         }
+
+        System.out.println("=================================================================================================");
+
+       
 
     }
 
@@ -197,8 +203,8 @@ public class ProductService {
 
             if (product.getProductId().startsWith(prefix)) {
 
-                String number =
-                        product.getProductId().substring(prefix.length());
+                String number
+                        = product.getProductId().substring(prefix.length());
 
                 int value = Integer.parseInt(number);
 
