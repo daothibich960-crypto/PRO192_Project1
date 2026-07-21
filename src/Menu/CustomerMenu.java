@@ -64,6 +64,7 @@ public class CustomerMenu {
         } while (choice != 0);
     }
 
+    // thêm khách hàng mới vào dánh sách khách hàng 
     private void addCustomer() {
         String phone =null;
         phone = checkPhone(phone);
@@ -85,7 +86,7 @@ public class CustomerMenu {
         customerList.saveToFile(FILE_PATH);
         System.out.println("Thêm khách hàng thành công!");
     }
-
+// kiểm tra xem số điện thoại đã nhập dúng hay chưa 
     private String checkPhone(String phone) {
         do {
             phone = Input.readString("Số điện thoại: ");
@@ -95,7 +96,7 @@ public class CustomerMenu {
         } while (!Validation.isValidPhone(phone));
         return phone;
     }
-
+// xóa khách hàng khỏi dánh sách khách hàng bằng số điện thoại 
     private void removeCustomer() {
         System.out.print("Nhập số điện thoại cần xóa: ");
         String phone = null;
@@ -109,7 +110,7 @@ public class CustomerMenu {
         customerList.saveToFile(FILE_PATH);
         System.out.println("Xóa thành công!");
     }
-
+// cập nhập thông tin khách hàng bằng số điện thoại 
     private void updateCustomer() {
         System.out.print("Nhập số điện thoại cần cập nhật: ");
         String phone = null;
@@ -130,6 +131,7 @@ public class CustomerMenu {
         System.out.println("Cập nhật thành công!");
     }
 
+    // tìm kiếm khách hàng bằng số điện thoại 
     private void searchByPhone() {
         String phone =null;
         phone =  checkPhone(phone);
@@ -140,7 +142,7 @@ public class CustomerMenu {
         } 
         System.out.println(c.toString());
     }
-
+// tìm kiếm khách hàng bằng tên 
     private void searchByName() {
         System.out.print("Nhập tên khách hàng: ");
         String name = scanner.nextLine();

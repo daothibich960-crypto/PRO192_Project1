@@ -1,5 +1,6 @@
 package Menu;
 
+import Customer.Customer;
 import Enum.PayMethod;
 import Invoice.Invoice;
 import Product.Accessory;
@@ -15,7 +16,7 @@ public class SaleMenu {
 
     private static final String INVOICE_FILE = "Data/invoice.txt";
     private static final String CUSTOMER_FILE = "Data/customer.txt";
-    private static final String PRODUCT_FILE  = "Data/product.txt";
+    private static final String PRODUCT_FILE = "Data/product.txt";
     private SaleService saleService;
     private Scanner scanner;
 
@@ -26,7 +27,6 @@ public class SaleMenu {
 
     public void show() {
         String employeeID = Input.readNonEmptyString("Nhập mã nhân viên bán hàng: ");
-
 
         Invoice invoice = saleService.createInvoice(employeeID);
         System.out.println("Đã tạo hóa đơn: " + invoice.getInvoiceID());
@@ -94,10 +94,48 @@ public class SaleMenu {
     private boolean checkout(Invoice invoice) {
         System.out.print("Số điện thoại khách hàng (Enter nếu khách lẻ): ");
         String phone = scanner.nextLine();
+        Customer customer = null;
         if (!phone.isEmpty()) {
             invoice.setCustomerPhone(phone);
+            customer = saleService.getCustomerList().searchByPhone(phone); // lấy khách hàng 
         }
 
+        // hỏi khách hàng có muốn chiết khấu trừ điểm vào hóa đơn hay không 
+        double discount = 0;
+        double  usedPoint = 0;
+
+        if (customer != null && customer.getPoint() > 0) { // cần xác nhận tên getter đúng
+            System.out.println("\nKhách hàng hiện có: " + customer.getPoint() + " điểm.");
+            boolean useDiscount = Input.readYesNo("Khách hàng có muốn dùng điểm để chiết khấu không? ");
+
+            if (useDiscount) {
+                System.out.print("Nhập số điểm muốn dùng: ");
+                usedPoint = Integer.parseInt(scanner.nextLine().trim());
+
+                
+                if (usedPoint > customer.getPoint()) {
+                    System.out.println("Số điểm vượt quá điểm hiện có! Không áp dụng chiết khấu.");
+                    usedPoint = 0;
+                } else if (usedPoint < 0) {
+                    System.out.println("Số điểm không hợp lệ!");
+                    usedPoint = 0;
+                } else if (usedPoint > invoice.getTotalAmount()){
+                    System.out.println("Điểm nhập không được lớn hơn tổng tiền của hóa đơn.");
+                    usedPoint = 0;
+                }
+                else {
+                    discount = usedPoint * 1000; // cần xác nhận tỷ lệ quy đổi thật (ví dụ 1 điểm = 1000đ)
+                    if (discount > invoice.getTotalAmount()) {
+                        discount = invoice.getTotalAmount(); // không cho chiết khấu vượt quá tổng hóa đơn
+                    }
+                    invoice.chietKhau(discount); // lấy chiết khấu 
+                    saleService.truDiemChietKhau(phone, usedPoint); // update điểm đã trừ 
+                    System.out.println("Đã áp dụng chiết khấu: " + discount + "đ");
+                }
+            }
+        }
+        invoice.displayInvoice();
+        System.out.println("");
         System.out.println("Hình thức thanh toán: 1. Tiền mặt  2. Chuyển khoản  3. Thẻ 4.Other");
         System.out.print("Chọn: ");
         int payChoice = Integer.parseInt(scanner.nextLine());

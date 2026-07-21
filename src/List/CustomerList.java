@@ -24,7 +24,7 @@ public class CustomerList {
     public CustomerList(List<Customer> list) {
         this.list = list;
     }
-
+// thêm khách hàng mới 
     public void addCustomer(Customer customer) {
         for (Customer c : list) {
             if (c.getPhone().equals(customer.getPhone())) {
@@ -34,7 +34,7 @@ public class CustomerList {
         }
         list.add(customer);
     }
-
+// xóa khách hàng 
     public void removeCustomer(String phone) {
         if (list.isEmpty()) {
             return;
@@ -45,7 +45,7 @@ public class CustomerList {
             }
         }
     }
-
+// lấy khách hàng bằng số điện thoại 
     public Customer getCustomer(String phone) {
         if (!list.isEmpty()) {
             for (Customer c : list) {
@@ -56,7 +56,7 @@ public class CustomerList {
         }
         return null;
     }
-
+// kiểm tra xem khách hàng đã tồn tại chưa bằng số điện thoại 
     public boolean containsCustomer(String phone) {
         if (!list.isEmpty()) {
             for (Customer c : list) {
@@ -67,7 +67,7 @@ public class CustomerList {
         }
         return false;
     }
-
+// tìm kiếm khách hàng bằng số điện thoại 
     public Customer searchByPhone(String phone) {
         if (!list.isEmpty()) {
             for (Customer c : list) {
@@ -78,7 +78,7 @@ public class CustomerList {
         }
         return null;
     }
-
+// tìm kiếm khách hàng bằng tên 
     public ArrayList<Customer> searchByName(String name) {
         if (!list.isEmpty()) {
             ArrayList<Customer> list1 = new ArrayList<>();
@@ -91,7 +91,7 @@ public class CustomerList {
         }
         return null;
     }
-
+// set<cập nhật>  điểm của khách hàng 
     public void addPoint(String phone, double point) {
         if (list.isEmpty()) {
             return;
@@ -104,7 +104,7 @@ public class CustomerList {
             }
         }
     }
-
+// xóa điểm của khách hàng 
     public void deductPoint(String phone, double point) {
         if (list.isEmpty()) {
             return;
@@ -122,16 +122,16 @@ public class CustomerList {
             }
         }
     }
-
+// lấy tổng khách hàng ở trong danh sách khách hàng 
     public long getToatlCustomer() {
         long count = list.size();
         return count;
     }
-
+// xóa toàn bộ danh sách khách hàng 
     public void clear() {
         list.clear();
     }
-
+// cập nhập thông tin khách hàng 
     public boolean updateCustomer(String name, String phone, String address) {
         if (list.isEmpty()) {
             return false;
@@ -144,6 +144,7 @@ public class CustomerList {
         c.setFullName(name);
         return true;
     }
+    
 // đọc file .txt dự liệu 
     public void loadFromFile(String filePath) {
         list.clear();
@@ -171,6 +172,8 @@ public class CustomerList {
                 + DateUtil.format(c.getCreateDate())
         );
     }
+    
+// hiện thị tất cả khách hàng trong dánh sách 
     public void displayAllCustomer() {
 
     if (list.isEmpty()) {

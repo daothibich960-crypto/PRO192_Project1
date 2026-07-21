@@ -1,1 +1,10 @@
-TEA|TEA001|tr� � long|25000.0|45000.0|30|Gam (g)|Còn hàng|tr� � long|S001|null|null|2025|25.0|null|75|120|2027-12-30
+TEA|TEA001|Trà Ô Long|25000.0|45000.0|23|Gam (g)|Còn hàng|Trà Ô Long thượng hạng|S001|Oolong|Đài Loan|2025|25.0|Premium|75|120|2027-12-30
+TEA|TEA002|Hồng Trà|22000.0|40000.0|37|Gam (g)|Còn hàng|Hồng trà truyền thống|S001|Black Tea|Lâm Đồng|2025|25.0|Standard|95|180|2027-11-15
+TEA|TEA003|Lục Trà|18000.0|35000.0|53|Gam (g)|Còn hàng|Lục trà thơm tự nhiên|S002|Green Tea|Thái Nguyên|2026|25.0|Premium|80|90|2028-01-10
+TEA|TEA004|Bạch Trà|35000.0|60000.0|12|Gam (g)|Còn hàng|Bạch trà cao cấp|S002|White Tea|Phúc Kiến|2025|20.0|Premium|80|150|2028-05-20
+TEA|TEA005|Hoàng Trà|30000.0|55000.0|19|Gam (g)|Còn hàng|Hoàng trà quý hiếm|S003|Yellow Tea|Trung Quốc|2025|25.0|Premium|85|150|2028-03-15
+TEA|TEA006|Thiết Quan Âm|32000.0|58000.0|26|Gam (g)|Còn hàng|Trà Thiết Quan Âm|S003|Oolong|Phúc Kiến|2025|25.0|Premium|90|120|2028-02-28
+TEA|TEA007|Đông Phương Mỹ Nhân|45000.0|80000.0|14|Gam (g)|Còn hàng|Hương mật ong đặc trưng|S004|Oolong|Đài Loan|2025|20.0|Special|90|180|2028-06-01
+TEA|TEA008|Phổ Nhĩ Sống|28000.0|50000.0|45|Gam (g)|Còn hàng|Phổ Nhĩ sống lâu năm|S004|Pu-erh Raw|Vân Nam|2024|30.0|Premium|100|240|2030-12-31
+TEA|TEA009|Phổ Nhĩ Chín|30000.0|55000.0|40|Gam (g)|Còn hàng|Phổ Nhĩ chín lên men|S005|Pu-erh Ripe|Vân Nam|2024|30.0|Premium|100|240|2030-12-31
+TEA|TEA010|Trà Sen Tây Hồ|40000.0|70000.0|22|Gam (g)|Còn hàng|Ướp hương sen tự nhiên|S005|Green Tea|Hà Nội|2026|25.0|Special|80|120|2028-08-15

@@ -1,6 +1,5 @@
 package Invoice;
 
-
 import Enum.PayMethod;
 import Enum.InvoiceStatus;
 import Product.Product;
@@ -17,6 +16,7 @@ public class Invoice {
     private LocalDateTime invoiceDate;
     private ArrayList<InvoiceDetail> detail;
     private double totalAmount; // tong hoa don
+    private double discountAmount; // số tiền được chiết khấu 
     private PayMethod payMethod;
     private InvoiceStatus status;
 
@@ -31,6 +31,7 @@ public class Invoice {
         this.invoiceDate = LocalDateTime.now();
         this.detail = new ArrayList<>();
         this.totalAmount = 0;
+        this.discountAmount = 0;
         this.status = InvoiceStatus.PENDING;
     }
 
@@ -87,6 +88,22 @@ public class Invoice {
         return total;
     }
 
+    // tính chiết khấu háo đơn 
+    public void chietKhau(double point) {
+        if (point < 0) {
+            point = 0;
+        }
+        if (point > totalAmount) {
+            point = totalAmount;
+        }
+        this.discountAmount = point;
+    }
+
+    // cấp nhập số tiền cần trả của khách hàng sau khi tính tổng hóa đơn và chiết khấu 
+    public double getFinalAmount() {
+        return totalAmount - discountAmount;
+    }
+
     public void displayInvoice() {
         System.out.println("================== HÓA ĐƠN ==================");
         System.out.println("Mã HĐ: " + invoiceID);
@@ -95,12 +112,17 @@ public class Invoice {
         System.out.println("Ngày lập: " + DateUtil.format(invoiceDate));
         System.out.println("---------------------------------------------");
         System.out.printf("%-10s %-20s %-10s %-10s %-10s%n", "ProductID", "ProoductName",
-                 "Quantity", "Price", "Total"  );
+                "Quantity", "Price", "Total");
         for (InvoiceDetail d : detail) {
             d.display();
         }
         System.out.println("--------------------------------------------");
-        System.out.println("Tổng tiền: " + Formatter.currency(totalAmount));
+        System.out.println("Tổng tiền hàng : " + Formatter.currency(totalAmount));
+
+        if (discountAmount > 0) {
+            System.out.println("Chiết khấu :" + Formatter.currency(discountAmount));
+        }
+        System.out.println("Thành Tiền: " + Formatter.currency(getFinalAmount()));
         System.out.println("Thanh toán: " + payMethod);
         System.out.println("Trạng thái: " + status);
     }
@@ -147,7 +169,6 @@ public class Invoice {
     public void setInvoiceDate(LocalDateTime invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
-    
 
     public ArrayList<InvoiceDetail> getDetail() {
         return detail;
@@ -177,4 +198,7 @@ public class Invoice {
         this.status = status;
     }
 
+    public double getDiscountAmount() {
+        return discountAmount;
+    }
 }
