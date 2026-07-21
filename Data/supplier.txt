@@ -1,1 +1,15 @@
-S001|Cong TY A|0111111111|mail.com|ha noi
+S001|Công ty Trà Thái Nguyên|0911223344|thainguyentea@gmail.com|Thái Nguyên
+S002|Công ty Trà Bảo Lộc|0912345678|baoloctea@gmail.com|Bảo Lộc, Lâm Đồng
+S003|Công ty Trà Phúc Kiến|0988112233|phuckientea@gmail.com|Phúc Kiến, Trung Quốc
+S004|Công ty Trà Đài Loan|0966778899|taiwantea@gmail.com|Đài Bắc, Đài Loan
+S005|Công ty Trà Vân Nam|0977554433|yunnantea@gmail.com|Vân Nam, Trung Quốc
+S006|Công ty Trà Sen Tây Hồ|0933445566|tayhotea@gmail.com|Tây Hồ, Hà Nội
+S007|Công ty Gốm Tử Sa Nghi Hưng|0944556677|zishapottery@gmail.com|Nghi Hưng, Trung Quốc
+S008|Công ty Trà Cầu Đất|0922334455|caudattea@gmail.com|Đà Lạt, Lâm Đồng
+S009|Công ty Trà Shan Tuyết Hà Giang|0909887766|shantea@gmail.com|Hà Giang
+S010|Công ty Trà Mộc Châu|0988223344|moctea@gmail.com|Mộc Châu, Sơn La
+S011|Công ty Trà Việt Nam|0915667788|vietnamtea@gmail.com|Hà Nội
+S012|Công ty Trà Đông Phương|0966112233|dongphuongtea@gmail.com|Hồ Chí Minh
+S013|Công ty Trà Thiết Quan Âm|0933884455|tieguanyin@gmail.com|An Khê, Phúc Kiến
+S014|Công ty Trà Oolong Cao Cấp|0977990011|oolongtea@gmail.com|Đài Trung, Đài Loan
+S015|Công ty Trà Phổ Nhĩ|0944332211|puertea@gmail.com|Phổ Nhĩ, Vân Nam

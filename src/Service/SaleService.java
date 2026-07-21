@@ -1,5 +1,6 @@
 package Service;
 
+import Customer.Customer;
 import Enum.InvoiceStatus;
 import Inventory.Inventory;
 import Invoice.Invoice;
@@ -40,7 +41,7 @@ public class SaleService {
         if (status < 0 ){
             return false;
         }
-        double total = invoice.calculateTotal();
+        double total = invoice.getFinalAmount();
         if (invoice.getCustomerPhone() != null && !invoice.getCustomerPhone().isEmpty() ){
             member.earnPoint(invoice.getCustomerPhone(), total);
         }
@@ -54,7 +55,13 @@ public class SaleService {
         updateInventory(invoice);
         return true;
     }
-
+    
+    // cấp nhập điểm đã dùng vào trừ chiết khấu của hóa đơn 
+    public void truDiemChietKhau(String phone   , double point){
+        customerList.deductPoint(phone, point);
+    }
+/* cấp nhập kho hàng và thoát khỏi chương trình nếu hóa đơn thanh toán không thành công 
+    */
     public void cancelInvoice(Invoice invoice) {
         if (invoice.getStatus() == InvoiceStatus.COMPLETE){
             for (InvoiceDetail i: invoice.getDetail()){
@@ -72,7 +79,7 @@ public class SaleService {
         }
 
     }
-
+// thêm hóa đơn vào danh sách hóa đơn 
     private void saveInvoice(Invoice invoice) {
         invoiceList.addInvoice(invoice);
         System.out.println("Đã lưu hóa dơn: " + invoice.getInvoiceID());
