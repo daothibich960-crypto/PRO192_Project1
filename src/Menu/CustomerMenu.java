@@ -83,7 +83,6 @@ public class CustomerMenu {
         String custormerID = IDGenerator.generateCustomerID();
         Customer customer = new Customer(custormerID,fullName, phone, address);
         customerList.addCustomer(customer);
-        customerList.saveToFile(FILE_PATH);
         System.out.println("Thêm khách hàng thành công!");
     }
 // kiểm tra xem số điện thoại đã nhập dúng hay chưa 
@@ -107,7 +106,6 @@ public class CustomerMenu {
             return;
         }
         customerList.removeCustomer(phone);
-        customerList.saveToFile(FILE_PATH);
         System.out.println("Xóa thành công!");
     }
 // cập nhập thông tin khách hàng bằng số điện thoại 
@@ -127,7 +125,6 @@ public class CustomerMenu {
         String address = scanner.nextLine();
 
         customerList.updateCustomer(fullName, phone, address);
-        customerList.saveToFile(FILE_PATH);
         System.out.println("Cập nhật thành công!");
     }
 

@@ -103,7 +103,7 @@ public class PurchaseReceipt {
         }
         System.out.println("--------------------------------------------------------------");
         calculateTotal();
-        System.out.printf("TỔNG TIỀN : %.2s\n", Formatter.currency(totalAmount));
+        System.out.printf("TỔNG TIỀN : %s\n", Formatter.currency(totalAmount));
     }
 
     @Override

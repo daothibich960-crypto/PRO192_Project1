@@ -145,33 +145,6 @@ public class CustomerList {
         return true;
     }
     
-// đọc file .txt dự liệu 
-    public void loadFromFile(String filePath) {
-        list.clear();
-        List<Customer> loaded = FileIO.readFile(filePath, fields -> {
-            Customer c = new Customer(
-                    fields[0].trim(), // customerID
-                    fields[1].trim(), // fullName
-                    fields[2].trim(), // phone
-                    fields[3].trim() // address
-            );
-            c.setPoint(Double.parseDouble(fields[4].trim()));
-            c.setCreateDate(DateUtil.parse(fields[5].trim()));
-            return c;
-        });
-        list.addAll(loaded);
-    }
-// lưu dữ liệu vào file .txt 
-    public void saveToFile(String filePath) {
-        FileIO.writeFile(filePath, list, c
-                -> c.getCustomerID() + "|"
-                + c.getFullName() + "|"
-                + c.getPhone() + "|"
-                + c.getAddress() + "|"
-                + c.getPoint() + "|"
-                + DateUtil.format(c.getCreateDate())
-        );
-    }
     
 // hiện thị tất cả khách hàng trong dánh sách 
     public void displayAllCustomer() {
@@ -199,5 +172,33 @@ public class CustomerList {
     System.out.println("========================================================================================");
     System.out.println("Tổng số khách hàng: " + list.size());
 }
-    
+    // đọc file .txt dự liệu
+    public void loadFromFile(String filePath) {
+        list.clear();
+        List<Customer> loaded = FileIO.readFile(filePath, fields -> {
+            Customer c = new Customer(
+                    fields[0].trim(), // customerID
+                    fields[1].trim(), // fullName
+                    fields[2].trim(), // phone
+                    fields[3].trim() // address
+            );
+            c.setPoint(Double.parseDouble(fields[4].trim()));
+            c.setCreateDate(DateUtil.parse(fields[5].trim()));
+            return c;
+        });
+        list.addAll(loaded);
+    }
+    // lưu dữ liệu vào file .txt
+    public void saveToFile(String filePath) {
+        FileIO.writeFile(filePath, list, c
+                -> c.getCustomerID() + "|"
+                + c.getFullName() + "|"
+                + c.getPhone() + "|"
+                + c.getAddress() + "|"
+                + c.getPoint() + "|"
+                + DateUtil.format(c.getCreateDate())
+        );
+    }
+
+
 }

@@ -23,7 +23,6 @@ public class PurchaseMenu {
         this.inventory = inventory;
         this.supplierList = supplierList;
         this.purchaseList = new PurchaseList();
-        this.purchaseList.loadFromFile(supplierList);
 
     }
 
@@ -201,7 +200,6 @@ public class PurchaseMenu {
         purchaseList.addReceipt(receipt);
 
         inventory.saveToFile("Data/product.txt");
-        purchaseList.saveToFile();
 
         System.out.println();
         System.out.println("========================================");

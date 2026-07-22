@@ -1,23 +1,25 @@
+
 import Inventory.Inventory;
 import List.CustomerList;
 import List.EmployeeList;
 import List.InvoiceList;
-import Service.MemberShipService;
-import Service.SaleService;
-import Service.StatisticService;
-import Supplier.SupplierList;
-import Utils.Input;
-import java.util.Scanner;
 import Menu.CustomerMenu;
 import Menu.EmployeeMenu;
+import Menu.MainMenu;
 import Menu.ProductMenu;
 import Menu.PurchaseMenu;
 import Menu.SaleMenu;
 import Menu.StatisticMenu;
 import Menu.SupplierMenu;
+import Service.MemberShipService;
+import Service.SaleService;
+import Service.StatisticService;
+import Supplier.SupplierList;
+import Utils.Input;
+import java.lang.*;
+import java.util.*;
 
 public class App {
-
     private Inventory inventory;
     private CustomerList customerList;
     private EmployeeList employeeList;
@@ -26,24 +28,15 @@ public class App {
     private SaleService saleService;
     private StatisticService statisticService;
     private SupplierList supplierList;
-    private Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 
     public App() {
         // Khởi tạo toàn bộ dữ liệu + service 1 lần duy nhất khi chương trình chạy
-        supplierList = new SupplierList();
-        supplierList.loadFromFile("Data/supplier.txt");
-
-        inventory = new Inventory();
-        inventory.loadFromFile("Data/product.txt", supplierList);
-
-        customerList = new CustomerList();
-        customerList.loadFromFile("Data/customer.txt");
-
-        employeeList = new EmployeeList();
-        employeeList.loadFromFile("Data/employee.txt");
-
-        invoiceList = new InvoiceList();
-        invoiceList.loadFromFile("Data/invoice.txt");
+        this.inventory = new Inventory();
+        this.customerList = new CustomerList();
+        this.employeeList = new EmployeeList();
+        this.invoiceList = new InvoiceList();
+        this.supplierList = new SupplierList();
 
         this.memberShipService = new MemberShipService(customerList);
         this.saleService = new SaleService(invoiceList, customerList, inventory, memberShipService);
@@ -71,7 +64,7 @@ public class App {
 
             switch (choice) {
                 case 1:
-                    new ProductMenu(inventory, supplierList, sc).show();
+                    new ProductMenu(inventory,supplierList, sc).show();
                     break;
                 case 2:
                     new CustomerMenu(customerList, sc).show();
@@ -93,7 +86,6 @@ public class App {
                     break;
                 case 0:
                     running = false;
-                    saveAllData();
                     System.out.println("Cảm ơn đã sử dụng chương trình. Hẹn gặp lại!");
                     break;
             }
@@ -116,16 +108,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println("Working dir: " + System.getProperty("user.dir"));
         new App().run();
-    }
-
-    private void saveAllData() {
-        inventory.saveToFile("Data/product.txt");
-        supplierList.saveToFile("Data/supplier.txt");
-        customerList.saveToFile("Data/customer.txt");
-        employeeList.saveToFile("Data/employee.txt");
-        invoiceList.saveToFile("Data/invoice.txt");
     }
 
 }

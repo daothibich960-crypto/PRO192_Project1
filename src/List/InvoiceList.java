@@ -104,8 +104,7 @@ public class InvoiceList {
         int count = list.size();
         return count;
     }
-    
-     public void loadFromFile(String filePath) {
+    public void loadFromFile(String filePath) {
         list.clear();
         List<Invoice> loaded = FileIO.readFile(filePath, fields -> {
 
@@ -184,23 +183,14 @@ public class InvoiceList {
                 }
             }
 
-            return inv.getInvoiceID()     + "|" +
-                   inv.getEmployeeID()    + "|" +
-                   inv.getCustomerPhone() + "|" +
-                   inv.getInvoiceDate()   + "|" +
-                   payMethodStr           + "|" +
-                   inv.getStatus()        + "|" +
-                   inv.getTotalAmount()   + "|" +
-                   detailsBlock.toString();
+            return inv.getInvoiceID() + "|" +
+                    inv.getEmployeeID() + "|" +
+                    inv.getCustomerPhone() + "|" +
+                    inv.getInvoiceDate() + "|" +
+                    payMethodStr + "|" +
+                    inv.getStatus() + "|" +
+                    inv.getTotalAmount() + "|" +
+                    detailsBlock.toString();
         });
     }
-    
-    
-    
-    
-    
-    
-    
-    
-
-}
+    }

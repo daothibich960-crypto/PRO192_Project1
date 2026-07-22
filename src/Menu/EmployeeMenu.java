@@ -169,7 +169,6 @@ public class EmployeeMenu {
                 Employee e = new PartTimeEmployee(employeeID, name, phone, gender1, position, status);
 
                 employeeList.addEmployee(e);
-                employeeList.saveToFile(FILE_PATH);
                 System.out.println("Thêm nhân viên thành công!");
                 break;
             case 2:
@@ -228,7 +227,6 @@ public class EmployeeMenu {
                 Employee e2 = new FullTimeEmployee(employeeID2, name2, phone2, gender2, position2, status2);
 
                 employeeList.addEmployee(e2);
-                employeeList.saveToFile(FILE_PATH);
                 System.out.println("Thêm nhân viên thành công!");
                 break;
             default:
@@ -253,14 +251,12 @@ public class EmployeeMenu {
                 System.out.print("Nhập ID của nhân viên: ");
                 String id = sc.nextLine();
                 employeeList.removeByID(id);
-                employeeList.saveToFile(FILE_PATH);
                 System.out.println("Xóa thành công!");
                 break;
             case 2:
                 String phone = null;
                 phone = checkPhone(phone);
                 employeeList.removeByPhone(phone);
-                employeeList.saveToFile(FILE_PATH);
                 System.out.println("Xóa thành công!");
                 break;
             default:
@@ -327,7 +323,6 @@ public class EmployeeMenu {
         System.out.print("Nhập trạng thái làm việc(Bật<true> | Tắt<false>) :");
         boolean status = sc.nextBoolean();
         employeeList.updateEmployee(id, name, phone, gender1, position, status);
-        employeeList.saveToFile(FILE_PATH);
         System.out.println("Cập nhật thành công!");
     }
 

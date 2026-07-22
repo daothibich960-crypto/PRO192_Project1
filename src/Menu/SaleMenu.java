@@ -76,7 +76,6 @@ public class SaleMenu {
                 case 6:
                     saleService.cancelInvoice(invoice);
                     System.out.println("Dã hủy hóa đơn.");
-                    saleService.getInvoiceList().saveToFile(INVOICE_FILE);
                     finished = true;
                     break;
                 case 0:
@@ -165,8 +164,6 @@ public class SaleMenu {
         if (success) {
             System.out.println("Thanh toán thành công!");
             invoice.displayInvoice();
-            saleService.getInvoiceList().saveToFile(INVOICE_FILE);
-            saleService.getCustomerList().saveToFile(CUSTOMER_FILE);
             saleService.getInventory().saveToFile(PRODUCT_FILE);
         } else {
             System.out.println("Thanh toán thất bại (hóa đơn trống hoặc bị hủy).");

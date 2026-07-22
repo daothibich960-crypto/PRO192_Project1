@@ -1,4 +1,4 @@
-TEA|TEA001|Trà Ô Long|25000.0|45000.0|23|Gam (g)|Còn hàng|Trà Ô Long thượng hạng|S001|Oolong|Đài Loan|2025|25.0|Premium|75|120|2027-12-30
+TEA|TEA001|Trà Ô Long|25000.0|45000.0|123|Gam (g)|Còn hàng|Trà Ô Long thượng hạng|S001|Oolong|Đài Loan|2025|25.0|Premium|75|120|2027-12-30
 TEA|TEA002|Hồng Trà|22000.0|40000.0|37|Gam (g)|Còn hàng|Hồng trà truyền thống|S001|Black Tea|Lâm Đồng|2025|25.0|Standard|95|180|2027-11-15
 TEA|TEA003|Lục Trà|18000.0|35000.0|53|Gam (g)|Còn hàng|Lục trà thơm tự nhiên|S002|Green Tea|Thái Nguyên|2026|25.0|Premium|80|90|2028-01-10
 TEA|TEA004|Bạch Trà|35000.0|60000.0|12|Gam (g)|Còn hàng|Bạch trà cao cấp|S002|White Tea|Phúc Kiến|2025|20.0|Premium|80|150|2028-05-20

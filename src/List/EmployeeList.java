@@ -163,52 +163,6 @@ public class EmployeeList {
         e.setStatus(status);
         return true;
     }
-//  đọc file .txt 
-
-    public void loadFromFile(String filePath) {
-        list.clear();
-        List<Employee> loaded = FileIO.readFile(filePath, fields -> {
-            String type = fields[0].trim();   // "FT" hoặc "PT"
-            String empID = fields[1].trim();
-            String fullName = fields[2].trim();
-            String phone = fields[3].trim();
-            Gender gender = Gender.valueOf(fields[4].trim());
-            Position pos = Position.valueOf(fields[5].trim());
-            boolean status = Boolean.parseBoolean(fields[6].trim());
-            if (type.equalsIgnoreCase("FT") || type.equalsIgnoreCase("FULLTIME")) {
-                FullTimeEmployee ft = new FullTimeEmployee(empID, fullName, phone, gender, pos, status);
-                ft.setBaseSalary(Double.parseDouble(fields[7].trim()));
-                ft.setAllowance(Double.parseDouble(fields[8].trim()));
-                ft.setBonus(Double.parseDouble(fields[9].trim()));
-                return ft;
-            } else {
-                PartTimeEmployee pt = new PartTimeEmployee(empID, fullName, phone, gender, pos, status);
-                pt.setHourWorked(Double.parseDouble(fields[7].trim()));
-                pt.setSalaryPerHour(Double.parseDouble(fields[8].trim()));
-                return pt;
-            }
-        });
-        list.addAll(loaded);
-    }
-// lưu file .txt 
-
-    public void saveToFile(String filePath) {
-        FileIO.writeFile(filePath, list, e -> {
-            String base = e.getEmployeeID() + "|"
-                    + e.getFullName() + "|"
-                    + e.getPhone() + "|"
-                    + e.getGender() + "|"
-                    + e.getPosition() + "|"
-                    + e.isStatus();
-            if (e instanceof FullTimeEmployee) {
-                FullTimeEmployee ft = (FullTimeEmployee) e;
-                return "FT|" + base + "|" + ft.getBaseSalary() + "|" + ft.getAllowance() + "|" + ft.getBonus();
-            } else {
-                PartTimeEmployee pt = (PartTimeEmployee) e;
-                return "PT|" + base + "|" + pt.getHourWorked() + "|" + pt.getSalaryPerHour();
-            }
-        });
-    }
 
     public void displayAllEmployee() {
 
@@ -331,4 +285,51 @@ public class EmployeeList {
 
         System.out.println("===============================================================================================================================");
     }
+    //  đọc file .txt
+
+    public void loadFromFile(String filePath) {
+        list.clear();
+        List<Employee> loaded = FileIO.readFile(filePath, fields -> {
+            String type = fields[0].trim();   // "FT" hoặc "PT"
+            String empID = fields[1].trim();
+            String fullName = fields[2].trim();
+            String phone = fields[3].trim();
+            Gender gender = Gender.valueOf(fields[4].trim());
+            Position pos = Position.valueOf(fields[5].trim());
+            boolean status = Boolean.parseBoolean(fields[6].trim());
+            if (type.equalsIgnoreCase("FT") || type.equalsIgnoreCase("FULLTIME")) {
+                FullTimeEmployee ft = new FullTimeEmployee(empID, fullName, phone, gender, pos, status);
+                ft.setBaseSalary(Double.parseDouble(fields[7].trim()));
+                ft.setAllowance(Double.parseDouble(fields[8].trim()));
+                ft.setBonus(Double.parseDouble(fields[9].trim()));
+                return ft;
+            } else {
+                PartTimeEmployee pt = new PartTimeEmployee(empID, fullName, phone, gender, pos, status);
+                pt.setHourWorked(Double.parseDouble(fields[7].trim()));
+                pt.setSalaryPerHour(Double.parseDouble(fields[8].trim()));
+                return pt;
+            }
+        });
+        list.addAll(loaded);
+    }
+// lưu file .txt
+
+    public void saveToFile(String filePath) {
+        FileIO.writeFile(filePath, list, e -> {
+            String base = e.getEmployeeID() + "|"
+                    + e.getFullName() + "|"
+                    + e.getPhone() + "|"
+                    + e.getGender() + "|"
+                    + e.getPosition() + "|"
+                    + e.isStatus();
+            if (e instanceof FullTimeEmployee) {
+                FullTimeEmployee ft = (FullTimeEmployee) e;
+                return "FT|" + base + "|" + ft.getBaseSalary() + "|" + ft.getAllowance() + "|" + ft.getBonus();
+            } else {
+                PartTimeEmployee pt = (PartTimeEmployee) e;
+                return "PT|" + base + "|" + pt.getHourWorked() + "|" + pt.getSalaryPerHour();
+            }
+        });
+    }
+
 }

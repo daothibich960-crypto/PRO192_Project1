@@ -19,10 +19,6 @@ public class Formatter {
         return phone.substring(0, 4) + " " + phone.substring(4, 7) + " " + phone.substring(7);
     }
 
-    // Cắt chuỗi quá dài khi hiển thị bảng (VD: tên sản phẩm dài trong danh sách)
-    public static String truncate(String text, int maxLength) {
-        if (text == null || text.length() <= maxLength) return text;
-        return text.substring(0, maxLength - 3) + "...";
-    }
+
     
 }
