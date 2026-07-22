@@ -13,3 +13,13 @@ S012|Công ty Trà Đông Phương|0966112233|dongphuongtea@gmail.com|Hồ Chí 
 S013|Công ty Trà Thiết Quan Âm|0933884455|tieguanyin@gmail.com|An Khê, Phúc Kiến
 S014|Công ty Trà Oolong Cao Cấp|0977990011|oolongtea@gmail.com|Đài Trung, Đài Loan
 S015|Công ty Trà Phổ Nhĩ|0944332211|puertea@gmail.com|Phổ Nhĩ, Vân Nam
+S016|Công ty Thủy Tinh Trà Cụ Cao Cấp|0912112233|glassteaware@gmail.com|Thượng Hải, Trung Quốc
+S017|Xưởng Gốm Chu Đậu Thủ Công|0988445566|chudauceramics@gmail.com|Nam Sách, Hải Dương, Việt Nam
+S018|Công ty Khay Trà Đá Tự Nhiên|0933778899|stoneteatray@gmail.com|Đà Nẵng, Việt Nam
+S019|Xưởng Chế Tác Kim Khí & Đồng Trà Cụ|0909556677|copperteaware@gmail.com|Ý Yên, Nam Định, Việt Nam
+S020|Công ty Trà Cụ Tre Trúc Đài Loan|0977113355|taiwanbambootea@gmail.com|Đài Trung, Đài Loan
+S021|Xưởng Sơn Mài Trà Cụ Mỹ Nghệ|0918224466|lacquerteaware@gmail.com|Hạ Thái, Hà Nội, Việt Nam
+S022|Công ty Khay Trà & Dụng Cụ Trà Gỗ Mun|0944889900|ebonyteaware@gmail.com|Đồng Nai, Việt Nam
+S023|Xưởng Tử Sa Triều Châu Thủ Công|0933112244|chaozhouzisha@gmail.com|Triều Châu, Quảng Đông, Trung Quốc
+S024|Công ty Bàn Trà Điện Thông Minh|0988667788|smartteatable@gmail.com|Thâm Quyến, Trung Quốc
+S025|Xưởng Gốm Men Hỏa Biến Bát Tràng|0904889911|hoabienbattrang@gmail.com|Gia Lâm, Hà Nội, Việt Nam
