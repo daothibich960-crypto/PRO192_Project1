@@ -5,7 +5,8 @@ Cấu trúc dự án :
 
 TeaShopManagement/
 │
-├── Main.java
+├── App/
+|     Main.java
 │
 ├── model/
 │   │
@@ -35,7 +36,8 @@ TeaShopManagement/
 │   │      PurchaseReceipt.java
 │   │      PurchaseDetail.java
 │   │
-│   └
+│   └-- inventory/
+|         inventory.java 
 ├── list/
 │
 │   ProductList.java
@@ -48,10 +50,7 @@ TeaShopManagement/
 ├── service/
 │
 │   ProductService.java
-│   CustomerService.java
-│   SupplierService.java
-│   InventoryService.java
-│   PurchaseService.java
+│   MemberShipService.java
 │   SaleService.java
 │   StatisticService.java
 │
@@ -78,4 +77,3 @@ TeaShopManagement/
         customer.txt
         supplier.txt
         invoice.txt
-        purchase.txt
