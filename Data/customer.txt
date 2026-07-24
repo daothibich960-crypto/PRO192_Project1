@@ -11,7 +11,7 @@ KH010|Vũ Thanh Tùng|0981123456|Long Xuyên, An Giang|407.0|15/07/2026
 KH011|Ngô Thị Hương|0912233445|Nam Định|60.0|15/07/2026
 KH012|Đặng Minh Đức|0935566778|Thái Bình|90.0|15/07/2026
 KH013|Phan Quốc Việt|0963344556|Quảng Ninh|405.0|15/07/2026
-KH014|Lý Thu Trang|0987766554|Vinh, Nghệ An|0.0|15/07/2026
+KH014|Lý Thu Trang|0987766554|Vinh, Nghệ An|49.5|15/07/2026
 KH015|Trịnh Hải Nam|0909988776|Biên Hòa, Đồng Nai|250.0|15/07/2026
 KH016|Mai Phương Linh|0975544332|Bình Dương|100.0|15/07/2026
 KH017|Đinh Tuấn Anh|0914455667|Thanh Xuân, Hà Nội|0.0|15/07/2026

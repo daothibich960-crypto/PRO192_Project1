@@ -98,13 +98,13 @@ public class EmployeeMenu {
 
         if (type == 1) {
 
-            System.out.println("========================== NHÂN VIÊN TOÀN THỜI GIAN ==========================");
+            System.out.println("========================================= NHÂN VIÊN TOÀN THỜI GIAN ================================================");
 
             employeeList.displayFullTimeEmployee();
 
         } else {
 
-            System.out.println("========================== NHÂN VIÊN BÁN THỜI GIAN ==========================");
+            System.out.println("========================================= NHÂN VIÊN BÁN THỜI GIAN =================================================");
 
             employeeList.displayPartTimeEmployee();
         }

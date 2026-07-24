@@ -281,7 +281,7 @@ public abstract class Product {
 
     public void displaySummary() {
         System.out.printf(
-                "%-8s %-25s %-12s %-10s %-12s %-8d%n",
+                "%-8s %-40s %-12s %-10s %-12s %-8d%n",
                 productId,
                 productName,
                 Formatter.currency(sellingPrice),

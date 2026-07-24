@@ -105,18 +105,18 @@ public class Invoice {
     }
 
     public void displayInvoice() {
-        System.out.println("================== HÓA ĐƠN ==================");
+        System.out.println("==================================================== HÓA ĐƠN ========================================================");
         System.out.println("Mã HĐ: " + invoiceID);
         System.out.println("Nhân viên: " + employeeID);
         System.out.println("Khách hàng: " + customerPhone);
         System.out.println("Ngày lập: " + DateUtil.format(invoiceDate));
-        System.out.println("---------------------------------------------");
-        System.out.printf("%-10s %-20s %-10s %-10s %-10s%n", "ProductID", "ProoductName",
+        System.out.println("---------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-10s %-35s %-10s %-20s %-20s%n", "ProductID", "ProoductName",
                 "Quantity", "Price", "Total");
         for (InvoiceDetail d : detail) {
             d.display();
         }
-        System.out.println("--------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------------");
         System.out.println("Tổng tiền hàng : " + Formatter.currency(totalAmount));
 
         if (discountAmount > 0) {

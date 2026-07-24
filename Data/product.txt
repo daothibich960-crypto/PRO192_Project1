@@ -1,31 +1,32 @@
-TEA|TEA001|Trà Ô Long|100000.0|165000.0|100|Gam (g)|Còn hàng|Trà Ô Long thượng hạng|S001|Oolong|Đài Loan|2025|25.0|Premium|75|120|2027-12-30
+TEA|TEA001|Trà Ô Long|100000.0|165000.0|217|Gam (g)|Còn hàng|Trà Ô Long thượng hạng|S001|Oolong|Đài Loan|2025|25.0|Premium|75|120|2027-12-30
 TEA|TEA002|Hồng Trà|22000.0|85000.0|100|Gam (g)|Còn hàng|Hồng trà truyền thống|S001|Black Tea|Lâm Đồng|2025|25.0|Standard|95|180|2027-11-15
 TEA|TEA003|Lục Trà|60000.0|110000.0|100|Gam (g)|Còn hàng|Lục trà thơm tự nhiên|S002|Green Tea|Thái Nguyên|2026|25.0|Premium|80|90|2028-01-10
 TEA|TEA004|Bạch Trà|180000.0|320000.0|100|Gam (g)|Còn hàng|Bạch trà cao cấp|S002|White Tea|Phúc Kiến|2025|20.0|Premium|80|150|2028-05-20
 TEA|TEA005|Hoàng Trà|220000.0|380000.0|100|Gam (g)|Còn hàng|Hoàng trà quý hiếm|S003|Yellow Tea|Trung Quốc|2025|25.0|Premium|85|150|2028-03-15
-TEA|TEA006|Thiết Quan Âm|120000.0|180000|100|Gam (g)|Còn hàng|Trà Thiết Quan Âm|S003|Oolong|Phúc Kiến|2025|25.0|Premium|90|120|2028-02-28
+TEA|TEA006|Thiết Quan Âm|120000.0|180000.0|100|Gam (g)|Còn hàng|Trà Thiết Quan Âm|S003|Oolong|Phúc Kiến|2025|25.0|Premium|90|120|2028-02-28
 TEA|TEA007|Đông Phương Mỹ Nhân|300000.0|500000.0|100|Gam (g)|Còn hàng|Hương mật ong đặc trưng|S004|Oolong|Đài Loan|2025|20.0|Special|90|180|2028-06-01
 TEA|TEA008|Phổ Nhĩ Sống|6000000.0|800000.0|375|Gam (g)|Còn hàng|Phổ Nhĩ sống lâu năm|S004|Pu-erh Raw|Vân Nam|2024|30.0|Premium|100|240|2030-12-31
 TEA|TEA009|Phổ Nhĩ Chín|250000.0|450000.0|375|Gam (g)|Còn hàng|Phổ Nhĩ chín lên men|S005|Pu-erh Ripe|Vân Nam|2024|30.0|Premium|100|240|2030-12-31
 TEA|TEA010|Trà Sen Tây Hồ|450000.0|700000.0|100|Gam (g)|Còn hàng|Ướp hương sen tự nhiên|S005|Green Tea|Hà Nội|2026|25.0|Special|80|120|2028-08-15
-TEAPOT|POT001|Ấm Tử Sa Tây Thi|500000|800000|10|PIECE|AVAILABLE|Ấm tử sa thủ công|SUP002|Tử Nê|Tây Thi|200|Tử Sa|Đỏ nâu|Nghi Hưng|Trung Quốc
-TEAPOT|POT002|Ấm Tử Sa Thạch Biều|850000|1400000|15|PIECE|AVAILABLE|Thạch Biều chu nê nguyên khoáng|SUP002|Chu Nê|Thạch Biều|220|Tử Sa|Đỏ cam|Nghi Hưng|Trung Quốc
-TEAPOT|POT003|Ấm Tử Sa Đức Chung|1200000|1850000|8|PIECE|AVAILABLE|Dáng ấm cổ điển, chế tác tinh xảo|SUP003|Hắc Nê|Đức Chung|250|Tử Sa|Đen tuyền|Nghi Hưng|Trung Quốc
-TEAPOT|POT004|Ấm Tử Sa Phan Hồ|900000|1600000|12|PIECE|AVAILABLE|Phan Hồ quặng quế hoa cát|SUP003|Đoàn Nê|Phan Hồ|180|Tử Sa|Vàng nhạt|Nghi Hưng|Trung Quốc
-TEAPOT|POT005|Ấm Gốm Mộc Bát Tràng|180000|350000|30|PIECE|AVAILABLE|Ấm gốm không tráng men|SUP004|Đất sét Bát Tràng|Bán Nguyệt|300|Gốm|Nâu sẫm|Hà Nội|Việt Nam
-TEAPOT|POT006|Ấm Thủy Tinh Chịu Nhiệt|100000|180000|50|PIECE|AVAILABLE|Có lõi lọc lò xo inox|SUP005|Thủy tinh Borosilicate|Trụ tròn|600|Thủy Tinh|Trong suốt|Quảng Đông|Trung Quốc
-TEAPOT|POT007|Ấm Bạc Nguyên Chất 999|4500000|6500000|3|PIECE|AVAILABLE|Ấm bạc chạm khắc thủ công|SUP006|Bạc 999|Bầu dục|150|Ấm Bạc|Bạc sáng|Vân Nam|Trung Quốc
-TEACUP|CUP001|Chén Chủ Tử Sa|45000|90000|80|PIECE|AVAILABLE|Chén chủ thưởng hương, lòng tráng men|SUP002|Chén Chủ|80|Tử Sa|Đỏ nâu|1
-TEACUP|CUP002|Chén Kiến Tráo Hỏa Biến|120000|250000|40|PIECE|AVAILABLE|Chén chủ men hỏa biến lông thỏ|SUP006|Chén Chủ|100|Sứ|Xanh ngọc vân sao|1
-TEACUP|CUP003|Bộ Chén Quân Thanh Hoa|150000|280000|25|SET|AVAILABLE|Bộ 6 chén vẽ tay hoa sen|SUP005|Chén Quân|45|Sứ Cảnh Đức|Trắng xanh|6
-TEACUP|CUP004|Chén Tống Thủy Tinh Vành Gỗ|80000|150000|60|PIECE|AVAILABLE|Chén chia trà, chịu nhiệt tốt|SUP005|Chén Tống|250|Thủy tinh - Gỗ|Trong suốt|1
-TEACUP|CUP005|Chén Gốm Mộc Trúc Lâm|20000|45000|150|PIECE|AVAILABLE|Chén uống trà hàng ngày|SUP004|Chén Quân|50|Gốm|Nâu mộc|1
-TEACUP|CUP006|Chén Chủ Ngọc Bích|250000|450000|20|PIECE|AVAILABLE|Chén chủ đá ngọc tự nhiên cao cấp|SUP007|Chén Chủ|75|Đá Ngọc|Xanh ngọc bích|1
-ACCESSORY|ACC001|Tea Pet Long Quy|100000|180000|20|PIECE|AVAILABLE|Thú trà may mắn|SUP003|Tea Pet|Gốm|Small|Nâu|Bát Tràng
-ACCESSORY|ACC002|Thiềm Thừ Đổi Màu|200000|350000|15|PIECE|AVAILABLE|Cóc ngậm tiền đổi màu khi dội nước sôi|SUP005|Tea Pet|Nhựa Resin|Medium|Xanh ngọc|Phúc Kiến
-ACCESSORY|ACC003|Khay Trà Tre Tự Nhiên|250000|450000|30|PIECE|AVAILABLE|Khay tre đục rãnh thoát nước|SUP008|Khay Trà|Tre trúc|Large|Vàng gỗ|Việt Nam
-ACCESSORY|ACC004|Khay Trà Gỗ Hương Nguyên Khối|1800000|3200000|5|PIECE|AVAILABLE|Gỗ hương đỏ đục chạm rồng|SUP009|Khay Trà|Gỗ Hương|Extra Large|Đỏ cánh gián|Bắc Ninh
-ACCESSORY|ACC005|Bộ Lục Bảo Pha Trà Đàn Hương|150000|280000|45|SET|AVAILABLE|Bộ dụng cụ 6 món gắp, xúc, thông ấm|SUP010|Dụng Cụ Pha|Gỗ Đàn Hương|Standard|Nâu sẫm|Đài Loan
-ACCESSORY|ACC006|Lọc Trà Sứ Thanh Hoa|60000|120000|80|PIECE|AVAILABLE|Lưới lọc mịn kèm chân đế để bàn|SUP005|Lọc Trà|Sứ - Inox|Small|Trắng họa tiết|Cảnh Đức Trấn
-ACCESSORY|ACC007|Chổi Quét Ấm Dưỡng Trà|35000|70000|100|PIECE|AVAILABLE|Lông mềm tự nhiên không xước ấm|SUP008|Dụng Cụ Dưỡng|Sợi cọ tự nhiên|Medium|Vàng be|Việt Nam
-ACCESSORY|ACC008|Khăn Lau Trà Đa Năng|15000|35000|200|PIECE|AVAILABLE|Khăn vi sợi thấm hút nước cực tốt|SUP001|Vệ Sinh|Microfiber|Small|Nâu sẫm|Việt Nam
+TEAPOT|POT001|Ấm Tử Sa Tây Thi|500000.0|800000.0|10|Cái|Còn hàng|Ấm tử sa thủ công|NONE|Tử Nê|Tây Thi|200|Tử Sa|Đỏ nâu|Nghi Hưng|Trung Quốc
+TEAPOT|POT002|Ấm Tử Sa Thạch Biều|850000.0|1400000.0|15|Cái|Còn hàng|Thạch Biều chu nê nguyên khoáng|NONE|Chu Nê|Thạch Biều|220|Tử Sa|Đỏ cam|Nghi Hưng|Trung Quốc
+TEAPOT|POT003|Ấm Tử Sa Đức Chung|1200000.0|1850000.0|8|Cái|Còn hàng|Dáng ấm cổ điển, chế tác tinh xảo|NONE|Hắc Nê|Đức Chung|250|Tử Sa|Đen tuyền|Nghi Hưng|Trung Quốc
+TEAPOT|POT004|Ấm Tử Sa Phan Hồ|900000.0|1600000.0|12|Cái|Còn hàng|Phan Hồ quặng quế hoa cát|NONE|Đoàn Nê|Phan Hồ|180|Tử Sa|Vàng nhạt|Nghi Hưng|Trung Quốc
+TEAPOT|POT005|Ấm Gốm Mộc Bát Tràng|180000.0|350000.0|30|Cái|Còn hàng|Ấm gốm không tráng men|NONE|Đất sét Bát Tràng|Bán Nguyệt|300|Gốm|Nâu sẫm|Hà Nội|Việt Nam
+TEAPOT|POT006|Ấm Thủy Tinh Chịu Nhiệt|100000.0|180000.0|50|Cái|Còn hàng|Có lõi lọc lò xo inox|NONE|Thủy tinh Borosilicate|Trụ tròn|600|Thủy Tinh|Trong suốt|Quảng Đông|Trung Quốc
+TEAPOT|POT007|Ấm Bạc Nguyên Chất 999|4500000.0|6500000.0|3|Cái|Còn hàng|Ấm bạc chạm khắc thủ công|NONE|Bạc 999|Bầu dục|150|Ấm Bạc|Bạc sáng|Vân Nam|Trung Quốc
+TEACUP|CUP001|Chén Chủ Tử Sa|45000.0|90000.0|80|Cái|Còn hàng|Chén chủ thưởng hương, lòng tráng men|NONE|Chén Chủ|80|Tử Sa|Đỏ nâu|1
+TEACUP|CUP002|Chén Kiến Tráo Hỏa Biến|120000.0|250000.0|40|Cái|Còn hàng|Chén chủ men hỏa biến lông thỏ|NONE|Chén Chủ|100|Sứ|Xanh ngọc vân sao|1
+TEACUP|CUP003|Bộ Chén Quân Thanh Hoa|150000.0|280000.0|25|Bộ|Còn hàng|Bộ 6 chén vẽ tay hoa sen|NONE|Chén Quân|45|Sứ Cảnh Đức|Trắng xanh|6
+TEACUP|CUP004|Chén Tống Thủy Tinh Vành Gỗ|80000.0|150000.0|60|Cái|Còn hàng|Chén chia trà, chịu nhiệt tốt|NONE|Chén Tống|250|Thủy tinh - Gỗ|Trong suốt|1
+TEACUP|CUP005|Chén Gốm Mộc Trúc Lâm|20000.0|45000.0|150|Cái|Còn hàng|Chén uống trà hàng ngày|NONE|Chén Quân|50|Gốm|Nâu mộc|1
+TEACUP|CUP006|Chén Chủ Ngọc Bích|250000.0|450000.0|20|Cái|Còn hàng|Chén chủ đá ngọc tự nhiên cao cấp|NONE|Chén Chủ|75|Đá Ngọc|Xanh ngọc bích|1
+ACCESSORY|ACC001|Tea Pet Long Quy|100000.0|180000.0|20|Cái|Còn hàng|Thú trà may mắn|NONE|Tea Pet|Gốm|Small|Nâu|Bát Tràng
+ACCESSORY|ACC002|Thiềm Thừ Đổi Màu|200000.0|350000.0|15|Cái|Còn hàng|Cóc ngậm tiền đổi màu khi dội nước sôi|NONE|Tea Pet|Nhựa Resin|Medium|Xanh ngọc|Phúc Kiến
+ACCESSORY|ACC003|Khay Trà Tre Tự Nhiên|250000.0|450000.0|30|Cái|Còn hàng|Khay tre đục rãnh thoát nước|NONE|Khay Trà|Tre trúc|Large|Vàng gỗ|Việt Nam
+ACCESSORY|ACC004|Khay Trà Gỗ Hương Nguyên Khối|1800000.0|3200000.0|5|Cái|Còn hàng|Gỗ hương đỏ đục chạm rồng|NONE|Khay Trà|Gỗ Hương|Extra Large|Đỏ cánh gián|Bắc Ninh
+ACCESSORY|ACC005|Bộ Lục Bảo Pha Trà Đàn Hương|150000.0|280000.0|45|Bộ|Còn hàng|Bộ dụng cụ 6 món gắp, xúc, thông ấm|NONE|Dụng Cụ Pha|Gỗ Đàn Hương|Standard|Nâu sẫm|Đài Loan
+ACCESSORY|ACC006|Lọc Trà Sứ Thanh Hoa|60000.0|120000.0|80|Cái|Còn hàng|Lưới lọc mịn kèm chân đế để bàn|NONE|Lọc Trà|Sứ - Inox|Small|Trắng họa tiết|Cảnh Đức Trấn
+ACCESSORY|ACC007|Chổi Quét Ấm Dưỡng Trà|35000.0|70000.0|100|Cái|Còn hàng|Lông mềm tự nhiên không xước ấm|NONE|Dụng Cụ Dưỡng|Sợi cọ tự nhiên|Medium|Vàng be|Việt Nam
+ACCESSORY|ACC008|Kh?n lau tr� ?a n?ng|15000.0|35000.0|200|Cái|Hết hàng|Khăn vi sợi thấm hút nước cực tốt|NONE|Vệ Sinh|Microfiber|Small|Nâu sẫm|Việt Nam
+TEA|TEA011|tra hoa nhai|60000.0|70000.0|50|Gam (g)|Còn hàng|tra hoa nhai|S001|tra hoa nhai|Thai Nguyen|2025|50.0|binh dan|100|150|2027-12-26

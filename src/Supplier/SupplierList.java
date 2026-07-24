@@ -61,14 +61,14 @@ public class SupplierList {
             System.out.println("Danh sách nhà cung cấp đang trống.");
             return;
         }
-        System.out.println("===============================================================");
+        System.out.println("=====================================================================================================================");
         System.out.printf("%-10s %-40s %-15s %-30s %-25s\n",
                 "MÃ",
                 "TÊN",
                 "SỐ ĐIỆN THOẠI",
                 "EMAIL",
                 "ĐỊA CHỈ");
-        System.out.println("===============================================================");
+        System.out.println("=====================================================================================================================");
         for (Supplier supplier : list) {
             supplier.displaySupplier();
         }

@@ -61,7 +61,7 @@ public class PurchaseDetail {
 
     public void displayDetail() {
 
-        System.out.printf("%-12s %-25s %-10d %-15.2f %-15.2f\n",
+        System.out.printf("%-12s %-25s %-10d %-15s %-15s\n",
                 product.getProductId(),
                 product.getProductName(),
                 quantity,

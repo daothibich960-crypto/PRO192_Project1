@@ -83,7 +83,7 @@ public class InvoiceDetail {
     }
     
     public void display(){
-        System.out.printf("%-10s %-20s %-10s %-10s %-10s%n",
+        System.out.printf("%-10s %-35s %-10s %-20s %-20s%n",
                 productID , productName ,quantity,Formatter.currency(price),
                 Formatter.currency(subTotal));
     }
